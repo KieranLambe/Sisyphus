@@ -1,10 +1,12 @@
 /* home.scss */
 
 /* Title styles */
-.title {
+.title .sub {
   text-align: center;
-  font-size: 24px;
-  margin-bottom: 20px; /* Add some space below the title */
+  font-size: 60px;
+  margin-bottom: 50px; /* Add some space below the title */
+  text-align: left;
+  margin-top: 60px;
 }
 
 /* Button styles */
@@ -17,7 +19,7 @@
   margin: 0 10px; /* Add some space between buttons */
   padding: 10px 20px;
   border: 1px solid #black; /* Black border */
-  border-radius: 5px; /* Rounded corners */
+  border-radius: 20px; /* Rounded corners */
   background-color: #fff; /* White background */
   color: #d16644; /* Black text */
   text-decoration: none; /* Remove default underline */
@@ -30,7 +32,7 @@
   color: #70601b; /* White text on hover */
 }
 
-body {
+body{
   background-color: #eedac2
 }
 
@@ -38,4 +40,9 @@ body {
   text-align: center;
   font-size: 16px;
   margin-bottom: 10px; /* Add some space below the title */
+}
+
+.button-wrapper {
+  display: flex; /* Use flexbox layout */
+  justify-content: center; /* Center the buttons horizontally */
 }
