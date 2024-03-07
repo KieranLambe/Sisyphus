@@ -2,7 +2,7 @@ class UserTasksController < ApplicationController
   before_action :set_user_task, only: [:show, :edit, :update, :destroy]
 
   def index
-    @user_tasks = UserTask.all
+    @user_tasks = current_user.user_tasks.includes(:task)
   end
 
   def show
@@ -61,8 +61,9 @@ class UserTasksController < ApplicationController
   end
 
   def randomly_selected_tasks
-    interests = current_user.interests.pluck(:id)
-    tasks = Task.where(interest_id: interests).to_a
-    tasks.shuffle.take(5)
+    interests = @user.interests.pluck(:id)
+    interest_tasks = Task.where(interest_id: interests).sample(3)
+    non_interest_tasks = Task.where.not(interest_id: interests).sample(2)
+    tasks = interest_tasks + non_interest_tasks
   end
 end
