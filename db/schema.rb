@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_07_203133) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_07_204440) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "interest_tasks", force: :cascade do |t|
+    t.bigint "interest_id", null: false
+    t.bigint "task_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["interest_id"], name: "index_interest_tasks_on_interest_id"
+    t.index ["task_id"], name: "index_interest_tasks_on_task_id"
+  end
 
   create_table "interests", force: :cascade do |t|
     t.string "title"
@@ -49,6 +58,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_07_203133) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "interest_tasks", "interests"
+  add_foreign_key "interest_tasks", "tasks"
   add_foreign_key "user_interests", "interests"
   add_foreign_key "user_interests", "users"
 end
