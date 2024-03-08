@@ -11,7 +11,9 @@ Rails.application.routes.draw do
   # root "posts#index"
   resources :users do
     resources :user_interests
-    resources :user_tasks
+    resources :user_tasks do
+      post :add_task_to_user
+    end
   end
 
   resources :tasks do
