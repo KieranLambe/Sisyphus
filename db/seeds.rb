@@ -60,7 +60,6 @@ end
 
 
 tasks_data.each do |task_params|
-  # p task_params
   new_task = Task.create(task_params)
 
   interest_title = "Sports"
@@ -68,7 +67,6 @@ tasks_data.each do |task_params|
   if(new_task.id.present?)
     interest_task = InterestTask.create!(interest: interest, task: new_task)
   end
-  p interest_task
 end
 
 puts 'Seed data for tasks has been added from the wger API.'
@@ -125,6 +123,37 @@ end
 puts "Seed data for recipes has been added from the spoonacular API."
 
 
+def fetch_book_data(times = 10)
+  url = "https://books-api7.p.rapidapi.com/books/get/random/"
+  headers = { "X-RapidAPI-Key" => "4554b15d14msh39ff42284fa55b6p120f45jsn70608139d682",
+  "X-RapidAPI-Host" => "books-api7.p.rapidapi.com" }
+
+    response = HTTParty.get(url, headers: headers)
+
+    return [] unless response.success?
+
+    parsed_data = JSON.parse(response.body)
+
+    title = parsed_data["title"]
+    description = parsed_data["plot"]
+
+    [{ "title" => title, "description" => description }]
+
+end
+
+books = fetch_book_data(10)
+
+books.each do |task_params|
+  puts "Book Params: #{task_params}"
+  new_task = Task.create(task_params)
+
+  reading_interests = Interest.find_or_create_by!(title: "Reading")
+
+  new_task.interests << reading_interests
+end
+
+p "Seed data for books has been added from the books API."
+
 tasks = [
   { title: "Conduct a Random Act of Kindness", description: "Brighten someone's day by performing a random act of kindness. It could be as simple as offering a compliment or helping someone in need.", interests: [life_intrests] },
   { title: "Brainstorm and Write Down 10 New Ideas", description: "Exercise your creativity by brainstorming and jotting down 10 new ideas. They could be related to work, hobbies, or personal projects.", interests: [life_intrests] },
@@ -152,3 +181,4 @@ tasks.each do |task|
   new_task = Task.create(title: task[:title], description: task[:description])
   task[:interests].each { |interest| new_task.interests << interest } if task[:interests]
 end
+p "Seed data for tasks has been added."
