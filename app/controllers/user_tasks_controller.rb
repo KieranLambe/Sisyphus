@@ -6,6 +6,8 @@ class UserTasksController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
+    @user_task.user = @user
   end
 
   def new
