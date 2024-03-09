@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     # resources :user_tasks, except: %i[]
   end
 
-  resources :interests
+  resources :interests, only: %i[index]
   # resources :user_interests
   # resources :interest_task
   # end
