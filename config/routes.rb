@@ -10,19 +10,19 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   resources :users do
-    resources :user_interests
+    resources :user_interests, except: %i[show]
     resources :user_tasks do
       post :add_task_to_user
     end
   end
 
   resources :tasks do
-    resources :interest_tasks
-    resources :user_tasks
+    resources :interest_tasks, only: %i[new create]
+    # resources :user_tasks, except: %i[]
   end
 
-  resources :interests do
-    resources :user_interests
-    resources :interest_task
-  end
+  resources :interests
+  # resources :user_interests
+  # resources :interest_task
+  # end
 end
