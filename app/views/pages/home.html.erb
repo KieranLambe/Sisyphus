@@ -36,6 +36,7 @@
         <% @user_tasks.each do |user_task| %>
           <% if user_task.complete == false %>
             <h3><%= link_to user_task.task.title, user_user_task_path(current_user, user_task) %></h3>
+            <%= link_to 'Toggle Complete', toggle_complete_user_task_path(user_task), method: :patch, class: 'btn btn-primary' %>
           <% else %>
             <h2><%= user_task.task.title %> This task is complete</h2>
           <% end %>

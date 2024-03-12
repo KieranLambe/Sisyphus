@@ -26,4 +26,11 @@ Rails.application.routes.draw do
   # resources :user_interests
   # resources :interest_task
   # end
+
+  resources :user_tasks do
+    member do
+      patch 'toggle_complete'
+    end
+  end
+  
 end
