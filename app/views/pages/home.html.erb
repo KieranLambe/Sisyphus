@@ -34,7 +34,7 @@
       <div class="col-md-4 offset-md-2">
         <h2> Your tasks for the day </h2>
         <% @user_tasks.each do |user_task| %>
-          <h3><%= user_task.task.title %></h3>
+          <h3><%= link_to user_task.task.title, user_user_task_path(current_user, user_task) %></h3>
         <% end %>
       </div>
     </div>
