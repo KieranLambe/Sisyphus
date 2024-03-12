@@ -28,6 +28,16 @@
       done
     </h2>
   </div>
-
+  <%if @user_tasks.length > 0%>
+    <div class="row">
+      <div class="col-md-6"></div>
+      <div class="col-md-4 offset-md-2">
+        <h2> Your tasks for the day </h2>
+        <% @user_tasks.each do |user_task| %>
+          <h3><%= user_task.task.title %></h3>
+        <% end %>
+      </div>
+    </div>
+  <%end%>
 </body>
 </html>
