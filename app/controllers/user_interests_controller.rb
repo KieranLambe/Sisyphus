@@ -1,7 +1,7 @@
 class UserInterestsController < ApplicationController
-  def index
-    @user_interests = current_user.user_interests.includes(:interest)
-  end
+  # def index
+  #   @user_interests = current_user.user_interests.includes(:interest)
+  # end
 
   def new
     @interests = Interest.all
@@ -16,7 +16,7 @@ class UserInterestsController < ApplicationController
     if @user_interest.save!
       redirect_to root_path
     else
-      raise
+      render 'new', status: :unprocessable_entity
     end
   end
 

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :views
-  devise_for :users, controllers: { registrations: 'users/registrations' }
+  devise_for :users, controllers: { registrations: 'registrations' }
   root to: "pages#home"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -10,6 +10,13 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  # resources :registration do
+  #   collection do
+  #     get :interests
+  #   end
+  # end
+
   resources :users do
     resources :user_interests, except: %i[show]
     resources :user_tasks do
