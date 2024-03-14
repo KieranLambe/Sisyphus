@@ -3,7 +3,9 @@
     <div class="col-12 col-sm-4">
       <div class="login-box" style="background-color: #E2725B; padding: 20px; border-radius: 10px;">
         <%= simple_form_for(current_user) do |f| %>
-          <%= f.association :interests, as: :check_boxes %>
+          <div class="interest-item">
+            <%= f.association :interests, as: :check_boxes %>
+          </div>
           <%= f.button :submit, "Begin journey" %>
         <% end %>
       </div>

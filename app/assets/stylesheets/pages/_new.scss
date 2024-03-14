@@ -1,0 +1,28 @@
+.form-check {
+  display: inline-block;
+}
+
+.form-check-input {
+  position: absolute;
+  transform: scale(0);
+  // display: inline-block;
+}
+
+.form-check-input + label {
+  cursor: pointer;
+  height: 35px;
+  width: 100px;
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-check-label:hover {
+  background-color: $custom-background;
+}
+
+.form-check-input:checked + label{
+  background-color: white;
+  color: #d16644;
+}
