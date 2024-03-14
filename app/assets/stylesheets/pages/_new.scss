@@ -1,0 +1,28 @@
+.form-check {
+  display: inline-block;
+}
+
+.interest {
+  position: absolute;
+  transform: scale(0);
+  // display: inline-block;
+}
+
+.interest + label {
+  cursor: pointer;
+  height: 35px;
+  width: 100px;
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.interest:hover + label {
+  background-color: $custom-background;
+}
+
+.interest:checked + label{
+  background-color: white;
+  color: #d16644;
+}
