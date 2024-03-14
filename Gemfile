@@ -32,6 +32,12 @@ gem "jbuilder"
 # Josue added for seed file
 gem 'httparty'
 
+# Josue added for pagination
+gem 'kaminari'
+
+# Josue added for search
+gem "pg_search"
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
