@@ -2,13 +2,13 @@
   display: inline-block;
 }
 
-.form-check-input {
+.interest {
   position: absolute;
   transform: scale(0);
   // display: inline-block;
 }
 
-.form-check-input + label {
+.interest + label {
   cursor: pointer;
   height: 35px;
   width: 100px;
@@ -18,11 +18,11 @@
   align-items: center;
 }
 
-.form-check-label:hover {
+.interest:hover + label {
   background-color: $custom-background;
 }
 
-.form-check-input:checked + label{
+.interest:checked + label{
   background-color: white;
   color: #d16644;
 }
