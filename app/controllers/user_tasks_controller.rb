@@ -16,9 +16,8 @@ class UserTasksController < ApplicationController
 
   def create
     @user_task = UserTask.new(user_task_params)
-
     if @user_task.save
-      redirect_to user_tasks_path, notice: 'User task was successfully created.'
+      redirect_to root_path, notice: 'User task was successfully created.'
     else
       render :new
     end
