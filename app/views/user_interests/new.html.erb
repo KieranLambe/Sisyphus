@@ -1,0 +1,4 @@
+<%= simple_form_for(current_user) do |f| %>
+    <%= f.association :interests, as: :check_boxes %>
+    <%= f.submit %>
+<% end %>

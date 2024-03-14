@@ -1,27 +1,46 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
 require 'httparty'
 
+
+Task.all.each do |task|
+  task.interests.clear
+end
+
+Task.destroy_all
+puts 'Tasks have been destroyed'
+intrests = [
+{ title: "Music"},
+{ title: "Sports"},
+{ title: "Baking"},
+{ title: "Cooking"},
+{ title: "Language"},
+{ title: "Reading"},
+{ title: "Lifestyle"},
+{ title: "Misc"},
+]
+
+
+
+intrests.each do |intrest|
+  Interest.create(title: intrest[:title])
+end
+music_intrests = Interest.where(title: "Music")
+sport_intrests = Interest.where(title: "Sports")
+baking_intrests = Interest.where(title: "Baking")
+cooking_intrests = Interest.where(title: "Cooking")
+language_intrests = Interest.where(title: "Language")
+reading_intrests = Interest.where(title: "Reading")
+life_intrests = Interest.where(title: "Lifestyle")
+misc_intrests = Interest.where(title: "Misc")
 
 def fetch_wger_data(endpoint, access_token, language, limit)
   url = "https://wger.de/api/v2/#{endpoint}/"
   params = { 'language' => language, 'limit' => limit}
   response = HTTParty.get(url, headers: { 'Authorization' => "Bearer #{access_token}" }, query: params)
-  # Check if the request was successful
   return [] unless response.success?
 
-  # Parse the API response and return the results
   JSON.parse(response.body)['results']
 end
 
-# Authenticate and get the access token
 auth_response = HTTParty.post(
   'https://wger.de/api/v2/token',
   body: { username: 'hjosh100', password: '@Lewagon12345' }
@@ -29,20 +48,25 @@ auth_response = HTTParty.post(
 
 access_token = auth_response['access']
 
-# Fetch exercises from the wger API
 exercises = fetch_wger_data('exercise', access_token, 2, 50)
 
-# Create tasks based on fetched data
 tasks_data = exercises.map do |exercise|
   {
     title: exercise['name'],
-    description: "#{exercise['description']}",
+    description: "#{exercise['description'].presence || 'No description available'}",
   }
 end
 
-# Create tasks from API data
+
+
 tasks_data.each do |task_params|
-  Task.create(task_params)
+  new_task = Task.create(task_params)
+
+  interest_title = "Sports"
+  interest = Interest.find_or_create_by!(title: interest_title)
+  if(new_task.id.present?)
+    interest_task = InterestTask.create!(interest: interest, task: new_task)
+  end
 end
 
 puts 'Seed data for tasks has been added from the wger API.'
@@ -52,28 +76,21 @@ puts 'Seed data for tasks has been added from the wger API.'
 def fetch_yoga_data
   url = "https://yoga-api-nzy4.onrender.com/v1/poses"
   response = HTTParty.get(url)
+  return [] unless response.success?
 
-  # Check if the request was successful
-  unless response.success?
-    puts "Error fetching yoga data. HTTP Status Code: #{response.code}"
-    return []
-  end
+  parsed_data = JSON.parse(response.body)
+  filtered_data = parsed_data.map { |pose| { "title" => pose["english_name"], "description" => pose["pose_description"] } }
 
-  # Parse the API response and return a filtered list with only english_name and pose_description
-  begin
-    parsed_data = JSON.parse(response.body)
-    filtered_data = parsed_data.map { |pose| { "title" => pose["english_name"], "description" => pose["pose_description"] } }
-    return filtered_data
-  rescue JSON::ParserError => e
-    puts "Error parsing JSON response: #{e.message}"
-    return []
-  end
 end
 
 yogaposes = fetch_yoga_data
 
 yogaposes.each do |task_params|
-  Task.create(task_params)
+  new_task = Task.create(task_params)
+  sports_interest = Interest.find_or_create_by!(title: "Sports")
+  lifestyle_interest = Interest.find_or_create_by!(title: "Lifestyle")
+  new_task.interests << sports_interest
+  new_task.interests << lifestyle_interest
 end
 
 puts 'seed data for yoga poses has been added from the yoga API.'
@@ -97,64 +114,71 @@ end
 recipes = fetch_recipe_data
 
 recipes.each do |task_params|
-  Task.create(task_params)
+  new_task = Task.create(task_params)
+
+  cooking_intrests = Interest.find_or_create_by!(title: "Cooking")
+
+  cooking_intrests.tasks << new_task
 end
 puts "Seed data for recipes has been added from the spoonacular API."
 
 
+def fetch_book_data(times = 10)
+  url = "https://books-api7.p.rapidapi.com/books/get/random/"
+  headers = { "X-RapidAPI-Key" => "4554b15d14msh39ff42284fa55b6p120f45jsn70608139d682",
+  "X-RapidAPI-Host" => "books-api7.p.rapidapi.com" }
+
+    response = HTTParty.get(url, headers: headers)
+
+    return [] unless response.success?
+
+    parsed_data = JSON.parse(response.body)
+
+    title = parsed_data["title"]
+    description = parsed_data["plot"]
+
+    [{ "title" => title, "description" => description }]
+
+end
+
+books = fetch_book_data(10)
+
+books.each do |task_params|
+  puts "Book Params: #{task_params}"
+  new_task = Task.create(task_params)
+
+  reading_interests = Interest.find_or_create_by!(title: "Reading")
+
+  new_task.interests << reading_interests
+end
+
+p "Seed data for books has been added from the books API."
+
 tasks = [
-  { title: "Conduct a Random Act of Kindness", description: "Brighten someone's day by performing a random act of kindness. It could be as simple as offering a compliment or helping someone in need." },
-  { title: "Brainstorm and Write Down 10 New Ideas", description: "Exercise your creativity by brainstorming and jotting down 10 new ideas. They could be related to work, hobbies, or personal projects." },
-  { title: "Learn a New Instrumental Skill", description: "If you have a musical instrument lying around, dedicate some time to learning a new skill or playing a new song." },
-  { title: "Do a Nature Sketch or Painting", description: "Head outdoors, observe nature, and create a sketch or painting inspired by what you see." },
-  { title: "Attend a Virtual Workshop or Webinar", description: "Enhance your skills or knowledge by attending a virtual workshop or webinar on a topic of interest. Many platforms offer free or affordable options." },
-  { title: "Learn a New Dance Move", description: "Spice up your day by learning a new dance move. Whether it's a simple step or a full routine, have fun and get moving!" },
-  { title: "Write a Letter to Your Future Self", description: "Reflect on your goals, aspirations, and current thoughts by writing a letter to your future self. Seal it and open it at a later date for a self-discovery moment." },
-  { title: "Create a Vision Board", description: "Unleash your creativity by making a vision board. Cut out images and quotes that inspire you and represent your goals." },
-  { title: "Try a New Type of Cuisine", description: "Explore the culinary world by trying a new type of cuisine. Cook a dish or order from a restaurant you haven't experienced before." },
-  { title: "Practice Mindful Walking", description: "Take a break and practice mindful walking. Pay attention to each step, your surroundings, and the sensations you experience." },
-  { title: "Explore a New Podcast", description: "Broaden your knowledge or entertain yourself by exploring a new podcast on a topic that interests you." },
-  { title: "Do a Digital Detox for an Hour", description: "Unplug from digital devices for an hour. Use the time to read, go for a walk, or engage in an offline activity." },
-  { title: "Write a Gratitude Journal Entry", description: "Cultivate a positive mindset by writing a gratitude journal entry. Acknowledge and appreciate the good things in your life." },
-  { title: "Learn a Magic Trick", description: "Amaze yourself and others by learning a simple magic trick. It's a great way to add a touch of wonder to your day." },
-  { title: "Plan a DIY Home Improvement Project", description: "Channel your creativity into a home improvement project. Whether it's rearranging furniture or adding new decorations, make your space feel fresh." },
-  { title: "Conduct a Random Act of Kindness", description: "Brighten someone's day by performing a random act of kindness. It could be as simple as offering a compliment or helping someone in need." },
-  { title: "Brainstorm and Write Down 10 New Ideas", description: "Exercise your creativity by brainstorming and jotting down 10 new ideas. They could be related to work, hobbies, or personal projects." },
-  { title: "Learn a New Instrumental Skill", description: "If you have a musical instrument lying around, dedicate some time to learning a new skill or playing a new song." },
-  { title: "Do a Nature Sketch or Painting", description: "Head outdoors, observe nature, and create a sketch or painting inspired by what you see." },
-  { title: "Attend a Virtual Workshop or Webinar", description: "Enhance your skills or knowledge by attending a virtual workshop or webinar on a topic of interest. Many platforms offer free or affordable options." },
-  { title: "Try a New Dance Move", description: "Spice up your day by learning a new dance move. Whether it's a simple step or a full routine, have fun and get moving!" },
-  { title: "Write a Letter to Your Future Self", description: "Reflect on your goals, aspirations, and current thoughts by writing a letter to your future self. Seal it and open it at a later date for a self-discovery moment." },
-  { title: "Create a Vision Board", description: "Unleash your creativity by making a vision board. Cut out images and quotes that inspire you and represent your goals." },
-  { title: "Try a New Type of Cuisine", description: "Explore the culinary world by trying a new type of cuisine. Cook a dish or order from a restaurant you haven't experienced before." },
-  { title: "Practice Mindful Walking", description: "Take a break and practice mindful walking. Pay attention to each step, your surroundings, and the sensations you experience." },
-  { title: "Explore a New Podcast", description: "Broaden your knowledge or entertain yourself by exploring a new podcast on a topic that interests you." },
-  { title: "Do a Digital Detox for an Hour", description: "Unplug from digital devices for an hour. Use the time to read, go for a walk, or engage in an offline activity." },
-  { title: "Write a Gratitude Journal Entry", description: "Cultivate a positive mindset by writing a gratitude journal entry. Acknowledge and appreciate the good things in your life." },
-  { title: "Learn a Magic Trick", description: "Amaze yourself and others by learning a simple magic trick. It's a great way to add a touch of wonder to your day." },
-  { title: "Plan a DIY Home Improvement Project", description: "Channel your creativity into a home improvement project. Whether it's rearranging furniture or adding new decorations, make your space feel fresh." },
-  { title: "Conduct a Random Act of Kindness", description: "Brighten someone's day by performing a random act of kindness. It could be as simple as offering a compliment or helping someone in need." },
-  { title: "Brainstorm and Write Down 10 New Ideas", description: "Exercise your creativity by brainstorming and jotting down 10 new ideas. They could be related to work, hobbies, or personal projects." },
-  { title: "Learn a New Instrumental Skill", description: "If you have a musical instrument lying around, dedicate some time to learning a new skill or playing a new song." },
-  { title: "Do a Nature Sketch or Painting", description: "Head outdoors, observe nature, and create a sketch or painting inspired by what you see." },
-  { title: "Attend a Virtual Workshop or Webinar", description: "Enhance your skills or knowledge by attending a virtual workshop or webinar on a topic of interest. Many platforms offer free or affordable options." }
+  { title: "Conduct a Random Act of Kindness", description: "Brighten someone's day by performing a random act of kindness. It could be as simple as offering a compliment or helping someone in need.", interests: [life_intrests] },
+  { title: "Brainstorm and Write Down 10 New Ideas", description: "Exercise your creativity by brainstorming and jotting down 10 new ideas. They could be related to work, hobbies, or personal projects.", interests: [life_intrests] },
+  { title: "Learn a New Instrumental Skill", description: "If you have a musical instrument lying around, dedicate some time to learning a new skill or playing a new song.", interests: [music_intrests] },
+  { title: "Do a Nature Sketch or Painting", description: "Head outdoors, observe nature, and create a sketch or painting inspired by what you see.", interests: [misc_intrests] },
+  { title: "Attend a Virtual Workshop or Webinar", description: "Enhance your skills or knowledge by attending a virtual workshop or webinar on a topic of interest. Many platforms offer free or affordable options.", interests: [life_intrests] },
+  { title: "Learn a New Dance Move", description: "Spice up your day by learning a new dance move. Whether it's a simple step or a full routine, have fun and get moving!", interests: [life_intrests, sport_intrests] },
+  { title: "Write a Letter to Your Future Self", description: "Reflect on your goals, aspirations, and current thoughts by writing a letter to your future self. Seal it and open it at a later date for a self-discovery moment.", interests: [life_intrests] },
+  { title: "Create a Vision Board", description: "Unleash your creativity by making a vision board. Cut out images and quotes that inspire you and represent your goals.", interests: [life_intrests] },
+  { title: "Try a New Type of Cuisine", description: "Explore the culinary world by trying a new type of cuisine. Cook a dish or order from a restaurant you haven't experienced before.", interests: [cooking_intrests, life_intrests] },
+  { title: "Practice Mindful Walking", description: "Take a break and practice mindful walking. Pay attention to each step, your surroundings, and the sensations you experience.", interests: [life_intrests, sport_intrests] },
+  { title: "Explore a New Podcast", description: "Broaden your knowledge or entertain yourself by exploring a new podcast on a topic that interests you.", interests: [life_intrests] },
+  { title: "Do a Digital Detox for an Hour", description: "Unplug from digital devices for an hour. Use the time to read, go for a walk, or engage in an offline activity.", interests: [life_intrests] },
+  { title: "Write a Gratitude Journal Entry", description: "Cultivate a positive mindset by writing a gratitude journal entry. Acknowledge and appreciate the good things in your life.", interests: [life_intrests] },
+  { title: "Learn a Magic Trick", description: "Amaze yourself and others by learning a simple magic trick. It's a great way to add a touch of wonder to your day.", interests: [life_intrests] },
+  { title: "Plan a DIY Home Improvement Project", description: "Channel your creativity into a home improvement project. Whether it's rearranging furniture or adding new decorations, make your space feel fresh.", interests: [life_intrests] },
+  { title: "Conduct a Random Act of Kindness", description: "Brighten someone's day by performing a random act of kindness. It could be as simple as offering a compliment or helping someone in need.", interests: [life_intrests] },
+  { title: "Brainstorm and Write Down 10 New Ideas", description: "Exercise your creativity by brainstorming and jotting down 10 new ideas. They could be related to work, hobbies, or personal projects.", interests: [life_intrests] },
+  { title: "Learn a New Instrumental Skill", description: "If you have a musical instrument lying around, dedicate some time to learning a new skill or playing a new song.", interests: [music_intrests] },
+  { title: "Do a Nature Sketch or Painting", description: "Head outdoors, observe nature, and create a sketch or painting inspired by what you see.", interests: [misc_intrests] },
+  { title: "Attend a Virtual Workshop or Webinar", description: "Enhance your skills or knowledge by attending a virtual workshop or webinar on a topic of interest. Many platforms offer free or affordable options.", interests: [life_intrests] },
 ]
 
 tasks.each do |task|
-  Task.create(title: task[:title], description: task[:description])
+  new_task = Task.create(title: task[:title], description: task[:description])
+  task[:interests].each { |interest| new_task.interests << interest } if task[:interests]
 end
-
-
-intrests = [
-{ title: "Music"},
-{ title: "Sports"},
-{ title: "Baking"},
-{ title: "Cooking"},
-{ title: "Language"},
-{ title: "Reading"},
-{ title: "Misc"},
-]
-
-intrests.each do |intrest|
-  Interest.create(title: intrest[:title])
-end
+p "Seed data for tasks has been added."

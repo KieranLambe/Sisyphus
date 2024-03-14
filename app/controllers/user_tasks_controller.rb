@@ -6,6 +6,8 @@ class UserTasksController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
+    @user_task.user = @user
   end
 
   def new
@@ -48,6 +50,12 @@ class UserTasksController < ApplicationController
     end
 
     redirect_to user_tasks_path, notice: 'Random tasks were successfully assigned to the user.'
+  end
+
+  def toggle_complete
+    @user_task = YourUsertask.find(params[:id])
+    @user_task.update(complete: !@user_task.complete)
+    redirect_to your_user_task_path(@user_task), notice: 'Complete toggled successfully'
   end
 
   private
