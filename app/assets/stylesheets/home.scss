@@ -46,3 +46,14 @@ body{
   display: flex; /* Use flexbox layout */
   justify-content: center; /* Center the buttons horizontally */
 }
+
+.task-card {
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 25px;
+  padding: 8px;
+}
+
+.user_task:hover {
+  color: #d16644;
+}

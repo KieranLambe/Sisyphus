@@ -52,9 +52,9 @@ class UserTasksController < ApplicationController
   end
 
   def toggle_complete
-    @user_task = YourUsertask.find(params[:id])
+    @user_task = UserTask.find(params[:id])
     @user_task.update(complete: !@user_task.complete)
-    redirect_to your_user_task_path(@user_task), notice: 'Complete toggled successfully'
+    redirect_to root_path, notice: 'Complete toggled successfully'
   end
 
   private
