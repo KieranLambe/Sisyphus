@@ -1,0 +1,5 @@
+<div>
+  <%= simple_form_for(current_user) do |f| %>
+    <%= f.associations :interests, as: :check_boxes %>
+  <% end %>
+</div>

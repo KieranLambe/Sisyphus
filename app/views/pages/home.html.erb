@@ -1,32 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <%= stylesheet_link_tag 'home', media: 'all' %>
-</head>
-<body>
-  <div class="container p-3">
-    <!-- Title -->
+<div class="container p-3">
+  <!-- Title -->
 
-    <!-- Button container -->
-    <div class="button-container">
-      <!-- Enclosing div for buttons -->
-      <div class="button-wrapper">
-        <!-- Journal Button -->
-        <a href="#" class="button">Journal</a>
-        <!-- Forum Button -->
-        <a href="#" class="button">Forum</a>
-        <!-- Dashboard Button -->
-        <a href="#" class="button">Dashboard</a>
-      </div>
+  <!-- Button container -->
+  <div class="button-container">
+    <!-- Enclosing div for buttons -->
+    <div class="button-wrapper">
+      <!-- Journal Button -->
+      <a href="#" class="button">Journal</a>
+      <!-- Forum Button -->
+      <a href="#" class="button">Forum</a>
+      <!-- Dashboard Button -->
+      <a href="#" class="button">Dashboard</a>
     </div>
-
-    <h1 class="title">Sisyphus</h1>
-    <h2 class="sub">The legend of you trying <Br> to get stuff
-      done
-    </h2>
   </div>
   <div class="card-container">
       <div class="card">
@@ -49,9 +34,28 @@
         <h2> Your tasks for the day </h2>
         <% @user_tasks.each do |user_task| %>
           <h3><%= user_task.task.title %></h3>
+  <h1 class="title">Sisyphus</h1>
+  <h2 class="sub">The legend of you trying <Br> to get stuff
+    done
+  </h2>
+</div>
+<%if @user_tasks.length > 0%>
+  <div class="row me-3">
+    <div class="col-md-6"></div>
+    <div class="col-md-4 offset-md-2">
+      <h2> Your tasks for the day </h2>
+      <% @user_tasks.each do |user_task| %>
+        <% if user_task.complete == false %>
+          <div class="task-card">
+            <h3 class="user_task"><%= link_to user_task.task.title, user_user_task_path(current_user, user_task), class: "text-decoration-none text-dark" %></h3>
+            <div class="button-container">
+              <%= link_to "Check", toggle_complete_user_task_path(user_task), data: { turbo_method: :patch }, class: 'button fa-solid fa-check' %>
+            </div>
+          </div>
+        <% else %>
+          <h2><%= user_task.task.title %> This task is complete</h2>
         <% end %>
-      </div>
+      <% end %>
     </div>
-  <%end%>
-</body>
-</html>
+  </div>
+<%end%>
