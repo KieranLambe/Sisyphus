@@ -1,4 +1,12 @@
-<%= simple_form_for(current_user) do |f| %>
-    <%= f.association :interests, as: :check_boxes %>
-    <%= f.submit %>
-<% end %>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-4">
+      <div class="login-box d-flex flew-column justify-content-center" style="background-color: #E2725B; padding: 20px; border-radius: 10px;">
+        <%= simple_form_for(current_user) do |f| %>
+          <%= f.association :interests, as: :check_boxes, input_html: { class: 'interest' } %>
+          <%= f.button :submit, "Begin journey" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

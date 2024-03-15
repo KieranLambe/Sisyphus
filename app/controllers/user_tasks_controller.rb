@@ -16,9 +16,8 @@ class UserTasksController < ApplicationController
 
   def create
     @user_task = UserTask.new(user_task_params)
-
     if @user_task.save
-      redirect_to user_tasks_path, notice: 'User task was successfully created.'
+      redirect_to root_path, notice: 'User task was successfully created.'
     else
       render :new
     end
@@ -52,6 +51,12 @@ class UserTasksController < ApplicationController
     redirect_to user_tasks_path, notice: 'Random tasks were successfully assigned to the user.'
   end
 
+  def toggle_complete
+    @user_task = UserTask.find(params[:id])
+    @user_task.update(complete: !@user_task.complete)
+    redirect_to root_path, notice: 'Complete toggled successfully'
+  end
+
   private
 
   def set_user_task
@@ -59,13 +64,13 @@ class UserTasksController < ApplicationController
   end
 
   def user_task_params
-    params.require(:user_task).permit(:user_id, :task_id, :complete)
+    params.require(:user_task).permit(:user_id, :task_id)
   end
 
   def randomly_selected_tasks
     interests = @user.interests.pluck(:id)
     interest_tasks = Task.where(interest_id: interests).sample(3)
     non_interest_tasks = Task.where.not(interest_id: interests).sample(2)
-    tasks = interest_tasks + non_interest_tasks
+    interest_tasks + non_interest_tasks
   end
 end
