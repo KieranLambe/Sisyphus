@@ -71,6 +71,6 @@ class UserTasksController < ApplicationController
     interests = @user.interests.pluck(:id)
     interest_tasks = Task.where(interest_id: interests).sample(3)
     non_interest_tasks = Task.where.not(interest_id: interests).sample(2)
-    tasks = interest_tasks + non_interest_tasks
+    interest_tasks + non_interest_tasks
   end
 end
