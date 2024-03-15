@@ -1,11 +1,11 @@
 .form-check {
   display: inline-block;
+  padding: 20px;
 }
 
 .interest {
   position: absolute;
   transform: scale(0);
-  // display: inline-block;
 }
 
 .interest + label {
@@ -24,5 +24,4 @@
 
 .interest:checked + label{
   background-color: white;
-  color: #d16644;
 }
