@@ -11,4 +11,6 @@ class User < ApplicationRecord
   has_many :interests, through: :user_interests
   has_many :user_tasks, dependent: :destroy
   has_many :tasks, through: :user_tasks
+  has_many :user_achievments, dependent: :destroy
+  has_many :achievments, through: :user_achievments
 end
