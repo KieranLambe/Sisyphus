@@ -9,21 +9,22 @@
   margin-top: 60px;
 }
 
+/* Button styles */
+.button-container {
+  text-align: center;
+}
 
 .button-container .button {
-  display: flex; /* or inline-block */
-  flex-direction: column;
-  margin: 10 10px; /* Add some space between buttons */
+  display: inline-block;
+  margin: 0 10px; /* Add some space between buttons */
   padding: 10px 20px;
-  padding-bottom: 5px;
+  border: 1px solid black; /* Black border */
   border-radius: 20px; /* Rounded corners */
   background-color: #fff; /* White background */
   color: #d16644; /* Black text */
   text-decoration: none; /* Remove default underline */
   font-size: 16px;
-  align-items: center;
 }
-
 
 /* Style hover effect */
 .button-container .button:hover {
@@ -31,7 +32,9 @@
   color: #70601b; /* White text on hover */
 }
 
-
+body{
+  background-color: #eedac2
+}
 
 .h1 {
   text-align: center;
@@ -43,6 +46,7 @@
   display: flex; /* Use flexbox layout */
   justify-content: center; /* Center the buttons horizontally */
 }
+
 
 
 body {
