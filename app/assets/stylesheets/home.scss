@@ -1,4 +1,3 @@
-// Specific CSS for your home-page
 /* home.scss */
 
 /* Title styles */
@@ -120,81 +119,4 @@ body {
   margin-bottom: 50px;
   height: 350px;
 
-}
-
-
-// footer css:
-
-/* home.scss */
-
-/* Other styles... */
-
-/* Footer styles */
-/* Footer styles */
-.footer {
-  background-color: #333;
-  color: #fff;
-  padding: 30px 0;
-}
-
-.footer-columns {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-}
-
-.footer-column {
-  flex: 1;
-  max-width: 250px;
-  margin: 0 20px;
-}
-
-.footer-column h3 {
-  font-size: 20px;
-  margin-bottom: 20px;
-}
-
-.footer-column a {
-  color: #fff;
-  text-decoration: none;
-  display: block;
-  margin-bottom: 10px;
-}
-
-.footer-column p {
-  color: #ccc;
-  margin-bottom: 10px;
-}
-
-.social-icons,
-.app-icons {
-  list-style: none;
-  padding: 0;
-}
-
-.social-icons li,
-.app-icons li {
-  display: inline-block;
-  margin-right: 10px;
-}
-
-.social-icon,
-.app-icon {
-  color: #fff;
-  font-size: 24px;
-}
-
-.social-icon:hover,
-.app-icon:hover {
-  color: #ffd700;
-}
-
-.footer-column-divider {
-  border-bottom: 1px solid #fff;
-  margin-bottom: 20px;
-  padding-bottom: 20px;
-}
-
-.footer-column-divider.get-our-app-divider {
-  line-height: 0;
 }
