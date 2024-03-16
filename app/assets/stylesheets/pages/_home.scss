@@ -1,1 +1,123 @@
 // Specific CSS for your home-page
+/* home.scss */
+
+/* Title styles */
+.title .sub {
+  text-align: center;
+  font-size: 60px;
+  margin-bottom: 50px; /* Add some space below the title */
+  text-align: left;
+  margin-top: 60px;
+}
+
+/* Button styles */
+.button-container {
+  text-align: center;
+}
+
+.button-container .button {
+  display: inline-block;
+  margin: 0 10px; /* Add some space between buttons */
+  padding: 10px 20px;
+  border: 1px solid black; /* Black border */
+  border-radius: 20px; /* Rounded corners */
+  background-color: #fff; /* White background */
+  color: #d16644; /* Black text */
+  text-decoration: none; /* Remove default underline */
+  font-size: 16px;
+}
+
+/* Style hover effect */
+.button-container .button:hover {
+  background-color: #cf7956; /* Black background on hover */
+  color: #70601b; /* White text on hover */
+}
+
+body{
+  background-color: #eedac2
+}
+
+.h1 {
+  text-align: center;
+  font-size: 16px;
+  margin-bottom: 10px; /* Add some space below the title */
+}
+
+.button-wrapper {
+  display: flex; /* Use flexbox layout */
+  justify-content: center; /* Center the buttons horizontally */
+}
+
+
+
+body {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #eedac2;
+  border-bottom: #333;
+}
+
+.card-container {
+  float: right;
+  margin-top: 20px; /* Adjust top margin as needed */
+  background-color:  #eedac2;
+  color:  #eedac2;
+}
+
+.card, .card1, .card2, .card3, .card4 {
+  border: 1px solid;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 350px; /* Adjust width as needed */
+  // height: 400px; /* Adjust height as needed */
+  padding: 20px;
+  padding-bottom: 5px;
+  overflow: hidden; /* Ensure contents don't overflow */
+  color: #eedac2;
+  background-color: rgb(142, 135, 86);
+  margin-right: 50px;
+  padding-bottom: 25px;
+}
+
+.card-content {
+  text-align: center;
+}
+
+.body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #cf7956;
+}
+
+.buttondiv {
+  width: 150px; /* Set a fixed width for the buttons */
+  height: 40px; /* Set a fixed height for the buttons */
+  margin-bottom: 2px; /* Add some vertical spacing between buttons */
+  border: none; /* Remove default button border */
+  border-radius: 20px; /* Add some border-radius for rounded corners */
+  background-color: #f0f0f0; /* Set background color */
+  color: #333; /* Set text color */
+  font-size: 16px; /* Set font size */
+  display: flex;
+  padding: 0px 125px;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttondiv:hover {
+  background-color: #f7f7f7; /* Black background on hover */
+  color: #70601b; /* White text on hover */
+  // we willl have some issues with this
+}
+
+.card1, .card2, .card3, .card4{
+  position: relative;
+  margin-top: 80px;
+  margin-right: 50px;
+  margin-bottom: 50px;
+  height: 350px;
+
+}
