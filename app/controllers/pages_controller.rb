@@ -3,7 +3,7 @@ class PagesController < ApplicationController
 
   def home
     if current_user
-      @user_tasks = current_user.user_tasks
+      @user_tasks = current_user.user_tasks.to_a
     else
       @user_tasks = []
     end
