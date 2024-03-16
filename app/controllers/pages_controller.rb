@@ -16,9 +16,12 @@ class PagesController < ApplicationController
 
     @tasks = Task.page(params[:page]).per(21)
 
-    # respond_to do |format|
-    #   format.html
-    #   format.text { render partial: 'pages/lists', locals: { tasks: @tasks }, formats: [:html]}
-    # end
+    respond_to do |format|
+      format.html
+      format.text { render partial: 'pages/lists', locals: { tasks: @tasks }, formats: [:html]}
+    end
+
+
+    @interests = Interest.all
   end
 end

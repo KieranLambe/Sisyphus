@@ -1,9 +1,8 @@
 
   <div class="container p-3">
     <!-- Title -->
-
     <!-- Button container -->
-    <div class="button-container">
+    <%# <div class="button-container">
       <!-- Enclosing div for buttons -->
       <div class="button-wrapper">
         <!-- Journal Button -->
@@ -13,7 +12,7 @@
         <!-- Dashboard Button -->
         <a href="#" class="button">Dashboard</a>
       </div>
-    </div>
+    </div> %>
 
     <h1 class="title">Sisyphus</h1>
     <h2 class="sub">The legend of you trying <br> to get stuff done</h2>
@@ -101,7 +100,7 @@
       </div>
     </div>
   <%end%>
-  <div data-controller="search-tasks">
+  <div data-controller="search-tasks interest-search">
     <div class="row justify-content-center">
       <div class="col-sm-8 my-3"  >
         <%= form_with url: tasks_path, method: :get, html: {class: "d-flex", data: {search_tasks_target: "form"} } do |f|%>
@@ -113,8 +112,12 @@
                 action: "keyup->search-tasks#search"
                 }
             %>
+          <%= f.submit "Search", class: "btn btn-primary d-none", id: "hidden-submit", disabled: true %>
         <% end %>
       </div>
+    </div>
+    <div class="container">
+      <%= render "interest", tasks: @tasks %>
     </div>
     <div class="container">
       <h2>Tasks</h2>
