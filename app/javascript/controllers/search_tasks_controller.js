@@ -5,7 +5,7 @@ export default class extends Controller {
   static targets = ["form", "query", "list"];
 
   connect() {
-    console.log(this.listTarget)
+
   }
 
   search(event) {
@@ -14,12 +14,13 @@ export default class extends Controller {
     console.log(this.queryTarget.value);
     console.log(this.formTarget.action);
     console.log(this.listTarget);
-    if (event.key === "Backspace" && !this.queryTarget.value.trim()) {
-      event.preventDefault();
+    const query = this.queryTarget.value.trim();
+
+    if (!query) {
       return;
     }
-    const url = `${this.formTarget.action}?query=${this.queryTarget.value}`
-
+    const url = `${this.formTarget.action}?query=${this.queryTarget.value}`;
+    console.log(url);
     fetch(url, {headers: {"Accept": "text/plain"}})
       .then(response => response.text())
       .then((data) => {

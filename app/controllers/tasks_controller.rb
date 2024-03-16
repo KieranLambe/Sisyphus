@@ -1,11 +1,13 @@
 class TasksController < ApplicationController
+  before_action :authenticate_user!, only: [:index]
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
     @tasks = Task.all
 
     @tasks = if params[:query].present?
-                Task.where("title ILIKE ? OR description ILIKE ?", "%#{params[:query]}%", "%#{params[:query]}%")
+                Task.includes(:interests).joins(:interests).
+                where("tasks.title ILIKE ? OR tasks.description ILIKE ? OR interests.title ILIKE ? ", "%#{params[:query]}%", "%#{params[:query]}%","%#{params[:query]}%")
               else
                 Task.includes(:interests).all.shuffle
              end
