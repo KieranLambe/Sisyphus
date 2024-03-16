@@ -1,6 +1,7 @@
 <div data-controller="roll-boulder">
   <div class="boulder-container" data-roll-boulder-target="hill">
-    <button data-roll-boulder-target="boulder" data-action="click->roll-boulder#rollBoulder"><h1>Like a Rolling Stone</h1></button>
+    <button class="image-button" data-roll-boulder-target="boulder" data-action="click->roll-boulder#rollBoulder"><%= cl_image_tag("Transparent_Boulder_Cropped_c4abo3",
+      width: 186, height: 186, crop: :fill) %></button>
   </div>
 </div>
 
