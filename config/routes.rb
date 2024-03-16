@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
 
+  post "users/:id/user_tasks/add_new", to: "user_tasks#add_task", as: "user_task_add"
+
   # Defines the root path route ("/")
   # root "posts#index"
 
@@ -17,8 +19,9 @@ Rails.application.routes.draw do
   #   end
   # end
 
-  resources :achievements
-  resources :user_achievements
+  resources :achievements do
+    resources :user_achievements
+  end
 
   resources :users do
     resources :user_interests, except: %i[show]
@@ -42,5 +45,4 @@ Rails.application.routes.draw do
       patch 'toggle_complete'
     end
   end
-
 end
