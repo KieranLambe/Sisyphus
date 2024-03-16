@@ -190,11 +190,20 @@ body {
 }
 
 .footer-column-divider {
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid silver;
   margin-bottom: 20px;
   padding-bottom: 20px;
 }
 
 .footer-column-divider.get-our-app-divider {
-  line-height: 0;
+  line-height: -1;
+}
+
+.footer-column a:hover{
+  color: #ffd700;
+}
+
+.footer-column h4 {
+  color: white; /* Example style */
+  font-size: 16px;
 }
