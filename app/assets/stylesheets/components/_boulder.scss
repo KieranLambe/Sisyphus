@@ -1,0 +1,28 @@
+.transition-effect {
+  transition: all 2s ease; /* Adjust the duration and timing function as needed */
+}
+
+.boulder-container {
+  position: relative;
+  width: 80%; /* Adjust the width as needed */
+  height: 80vh; /* Adjust the height as needed */
+}
+
+[data-roll-boulder-target="boulder"] {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(720deg);
+  }
+}
+
+.spin-animation {
+  animation: spin 2s linear forwards;
+}
