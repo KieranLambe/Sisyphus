@@ -1,6 +1,6 @@
-class CreateAchievments < ActiveRecord::Migration[7.1]
+class CreateAchievements < ActiveRecord::Migration[7.1]
   def change
-    create_table :achievments do |t|
+    create_table :achievements do |t|
       t.string :name
       t.text :description
       t.boolean :achieved, default: false
