@@ -4,23 +4,16 @@ class UserInterestsController < ApplicationController
   # end
 
   def new
-    @interests = Interest.all
     @user_interest = UserInterest.new
-    # @user_interest.interest = @interests[0]
   end
 
   def create
     @user_interest = UserInterest.new(user_interest_params)
-    @user_interest.user = current_user
-    @user_interest.interest = @interest
     if @user_interest.save!
       redirect_to root_path
     else
       render 'new', status: :unprocessable_entity
     end
-  end
-
-  def updated
   end
 
   private

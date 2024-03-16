@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_09_153318) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_16_110302) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "achievements", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.boolean "achieved", default: false
+    t.string "condition"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -64,6 +73,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_09_153318) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "user_achievements", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "achievement_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["achievement_id"], name: "index_user_achievements_on_achievement_id"
+    t.index ["user_id"], name: "index_user_achievements_on_user_id"
+  end
+
   create_table "user_interests", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "interest_id", null: false
@@ -112,6 +130,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_09_153318) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "interest_tasks", "interests"
   add_foreign_key "interest_tasks", "tasks"
+  add_foreign_key "user_achievements", "achievements"
+  add_foreign_key "user_achievements", "users"
   add_foreign_key "user_interests", "interests"
   add_foreign_key "user_interests", "users"
   add_foreign_key "user_tasks", "tasks"
