@@ -1,5 +1,5 @@
 require 'httparty'
-
+require 'action_view'
 
 Task.all.each do |task|
   task.interests.clear
@@ -18,7 +18,7 @@ intrests = [
 { title: "Misc"},
 ]
 
-
+include ActionView::Helpers::SanitizeHelper
 
 intrests.each do |intrest|
   Interest.create(title: intrest[:title])
@@ -35,7 +35,7 @@ misc_intrests = Interest.where(title: "Misc")
 def fetch_wger_data(endpoint, access_token, language, limit)
   url = "https://wger.de/api/v2/#{endpoint}/"
   params = { 'language' => language, 'limit' => limit}
-  response = HTTParty.get(url, headers: { 'Authorization' => "Bearer #{access_token}" }, query: params)
+  response = HTTParty.get(url, headers: { 'Authorization' => "Bearer #{access_token}"}, query: params)
   return [] unless response.success?
 
   JSON.parse(response.body)['results']
@@ -48,12 +48,12 @@ auth_response = HTTParty.post(
 
 access_token = auth_response['access']
 
-exercises = fetch_wger_data('exercise', access_token, 2, 50)
+exercises = fetch_wger_data('exercise', access_token, 'en', 100)
 
 tasks_data = exercises.map do |exercise|
   {
     title: exercise['name'],
-    description: "#{exercise['description'].presence || 'No description available'}",
+    description: strip_tags(exercise['description']).presence || 'No description available'
   }
 end
 
@@ -105,7 +105,7 @@ def fetch_recipe_data
   parsed_data = JSON.parse(response.body)
 
   actual_data = parsed_data["recipes"].map do |recipe|
-    { "title" => recipe["title"], "description" => recipe["summary"] }
+    { "title" => recipe["title"], "description" => strip_tags(recipe["summary"]) }
   end
 
   actual_data
@@ -123,7 +123,7 @@ end
 puts "Seed data for recipes has been added from the spoonacular API."
 
 
-def fetch_book_data(times = 10)
+def fetch_book_data
   url = "https://books-api7.p.rapidapi.com/books/get/random/"
   headers = { "X-RapidAPI-Key" => "4554b15d14msh39ff42284fa55b6p120f45jsn70608139d682",
   "X-RapidAPI-Host" => "books-api7.p.rapidapi.com" }
@@ -141,10 +141,9 @@ def fetch_book_data(times = 10)
 
 end
 
-books = fetch_book_data(10)
+books = fetch_book_data
 
 books.each do |task_params|
-  puts "Book Params: #{task_params}"
   new_task = Task.create(task_params)
 
   reading_interests = Interest.find_or_create_by!(title: "Reading")
@@ -153,6 +152,41 @@ books.each do |task_params|
 end
 
 p "Seed data for books has been added from the books API."
+
+def fetch_google_book_data(query, max_results = 40)
+  url = 'https://www.googleapis.com/books/v1/volumes'
+  api_key = 'AIzaSyAAtoNMtinl8XQXQTpHJ7T8JERdVhJ_4ws'
+  query_params = { q: query, maxResults: max_results, key: api_key }
+  response = HTTParty.get(url, query: query_params)
+
+  if response.success?
+    parsed_data = JSON.parse(response.body)
+    if parsed_data['totalItems'] > 0
+      parsed_data['items'].map do |item|
+        volume_info = item['volumeInfo']
+        { 'title' => volume_info['title'], 'description' => volume_info['description'] }
+      end
+    else
+      puts 'No books found.'
+      []
+    end
+  else
+    puts "Error: #{response.code}, #{response.message}"
+    []
+  end
+end
+
+google_books = fetch_google_book_data('best sellers')
+
+google_books.each do |task_params|
+  new_task = Task.create(task_params)
+
+  reading_interests = Interest.find_or_create_by!(title: "Reading")
+
+  new_task.interests << reading_interests
+end
+
+p "Seed data for books has been added from the google books API."
 
 tasks = [
   { title: "Conduct a Random Act of Kindness", description: "Brighten someone's day by performing a random act of kindness. It could be as simple as offering a compliment or helping someone in need.", interests: [life_intrests] },
@@ -181,4 +215,5 @@ tasks.each do |task|
   new_task = Task.create(title: task[:title], description: task[:description])
   task[:interests].each { |interest| new_task.interests << interest } if task[:interests]
 end
+
 p "Seed data for tasks has been added."
