@@ -10,46 +10,46 @@ class UserTasksController < ApplicationController
     @user_task.user = @user
   end
 
-  def new
-    @user_task = UserTask.new
-  end
+  # def new
+  #   @user_task = UserTask.new
+  # end
 
-  def create
-    @user_task = UserTask.new(user_task_params)
-    if @user_task.save
-      redirect_to root_path, notice: 'User task was successfully created.'
-    else
-      render :new
-    end
-  end
+  # def create
+  #   @user_task = UserTask.new(user_task_params)
+  #   if @user_task.save
+  #     redirect_to root_path, notice: 'User task was successfully created.'
+  #   else
+  #     render :new
+  #   end
+  # end
 
-  def edit
-  end
+  # def edit
+  # end
 
-  def update
-    if @user_task.update(user_task_params)
-      redirect_to user_tasks_path, notice: 'User task was successfully updated.'
-    else
-      render :edit
-    end
-  end
+  # def update
+  #   if @user_task.update(user_task_params)
+  #     redirect_to user_tasks_path, notice: 'User task was successfully updated.'
+  #   else
+  #     render :edit
+  #   end
+  # end
 
   def destroy
     @user_task.destroy
     redirect_to user_tasks_path, notice: 'User task was successfully destroyed.'
   end
 
-  def add_tasks_to_user
-    @user = current_user
-    @tasks = randomly_selected_tasks
+  # def add_tasks_to_user
+  #   @user = current_user
+  #   @tasks = randomly_selected_tasks
 
-    @tasks.each do |task|
-      @user_task = UserTask.new(user: @user, task: task, complete: false)
-      @user_task.save
-    end
+  #   @tasks.each do |task|
+  #     @user_task = UserTask.new(user: @user, task: task, complete: false)
+  #     @user_task.save
+  #   end
 
-    redirect_to user_tasks_path, notice: 'Random tasks were successfully assigned to the user.'
-  end
+  #   redirect_to user_tasks_path, notice: 'Random tasks were successfully assigned to the user.'
+  # end
 
   def toggle_complete
     @user_task = UserTask.find(params[:id])
