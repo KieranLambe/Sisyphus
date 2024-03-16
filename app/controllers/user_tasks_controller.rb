@@ -23,16 +23,16 @@ class UserTasksController < ApplicationController
   #   end
   # end
 
-  # def edit
-  # end
+  def edit
+  end
 
-  # def update
-  #   if @user_task.update(user_task_params)
-  #     redirect_to user_tasks_path, notice: 'User task was successfully updated.'
-  #   else
-  #     render :edit
-  #   end
-  # end
+  def update
+    if @user_task.update(user_task_params)
+      redirect_to user_tasks_path, notice: 'User task was successfully updated.'
+    else
+      render :edit
+    end
+  end
 
   def destroy
     @user_task.destroy
