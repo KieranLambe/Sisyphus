@@ -1,5 +1,5 @@
 class UserTasksController < ApplicationController
-  before_action :set_user_task, only: %i[show edit update destroy toggle_complete add_task]
+  before_action :set_user_task, only: %i[show edit update destroy]
 
   def index
     @user_tasks = current_user.user_tasks.includes(:task)
@@ -18,7 +18,6 @@ class UserTasksController < ApplicationController
     @user_task = UserTask.new(user_task_params)
     if @user_task.save
       redirect_to root_path, notice: 'User task was successfully created.'
-      raise
     else
       render :new
     end
@@ -53,13 +52,17 @@ class UserTasksController < ApplicationController
   end
 
   def add_task
-    @user_task.save!
-    redirect_to root_path, notice: 'Task added'
+    @user_task = UserTask.new(user_task_params)
+    if @user_task.save!
+      redirect_to root_path, notice: 'Task added'
+    else
+      raise
+    end
   end
 
-
   def toggle_complete
-    @user_task.update(complete: @user_task.complete)
+    @user_task = UserTask.find(params[:id])
+    @user_task.update(complete: true)
     redirect_to root_path, notice: 'Task complete'
   end
 
@@ -70,7 +73,7 @@ class UserTasksController < ApplicationController
   end
 
   def user_task_params
-    params.require(:user_task).permit(:user_id, :task_id)
+    params.permit(:user_id, :task_id)
   end
 
   def randomly_selected_tasks
