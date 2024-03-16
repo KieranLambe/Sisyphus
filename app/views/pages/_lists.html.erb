@@ -1,0 +1,20 @@
+<div data-search-tasks-target="list", class='row'>
+  <% tasks.each do |task| %>
+    <div class="col-md-4 mb-4">
+      <div class="card shadow h-100" style="border-radius: 0.5rem;">
+        <div class="card-body">
+          <h3 class="card-title"><%= task.title %></h3>
+          <p class="card-text"><%= task.description %></p>
+          <% if task.interests.any? %>
+            <p class="card-text"><strong>Interests:</strong> <%= task.interests.map(&:title).join(", ") %></p>
+          <% end %>
+          <%= link_to 'Add to my tasks', new_user_task_path(user: current_user, task_id: task.id), method: :post, class: 'btn btn-primary float-end' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <%# <div class="d-flex justify-content-end">
+    <%= paginate tasks%
+  <%#</div> %>
+</div>

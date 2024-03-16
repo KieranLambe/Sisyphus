@@ -3,6 +3,17 @@ class TasksController < ApplicationController
 
   def index
     @tasks = Task.all
+
+    @tasks = if params[:query].present?
+                Task.where("title ILIKE ? OR description ILIKE ?", "%#{params[:query]}%", "%#{params[:query]}%")
+              else
+                Task.includes(:interests).all.shuffle
+             end
+
+    respond_to do |format|
+      format.html
+      format.text { render partial: 'pages/lists', locals: { tasks: @tasks }, formats: [:html]}
+    end
   end
 
   def show
