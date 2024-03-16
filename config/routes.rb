@@ -17,6 +17,9 @@ Rails.application.routes.draw do
   #   end
   # end
 
+  resources :achievements
+  resources :user_achievements
+
   resources :users do
     resources :user_interests, except: %i[show]
     resources :user_tasks do
@@ -39,5 +42,5 @@ Rails.application.routes.draw do
       patch 'toggle_complete'
     end
   end
-  
+
 end
