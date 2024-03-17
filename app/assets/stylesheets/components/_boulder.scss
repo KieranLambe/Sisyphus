@@ -5,7 +5,15 @@
 .boulder-container {
   position: relative;
   width: 100%; /* Adjust the width as needed */
-  height: 80vh; /* Adjust the height as needed */
+  height: 90vh; /* Adjust the height as needed */
+  z-index: 4;
+}
+
+.boulder-container-container {
+  position: relative;
+  width: 100%; /* Adjust the width as needed */
+  height: 90vh; /* Adjust the height as needed */
+  z-index: 3;
 }
 
 [data-roll-boulder-target="boulder"] {
@@ -35,4 +43,24 @@
   display: inline-block; /* Ensure button wraps around content */
   width: 186px; /* Set custom width */
   height: 186px; /* Set custom height */
+}
+
+.content {
+  position: relative;
+  z-index: 2; /* Ensure content is above the line */
+  width: 50%; /* Adjust as needed */
+  height: 100%;
+  background-color: #ffffff; /* Default background color */
+}
+
+.diagonal-line {
+  position: absolute;
+  bottom: 0;
+  //   top: calc(10vh - 10px); /* Adjust as needed */
+  left: 0;
+  width: 0%;
+  height: 0;
+  border-top: 70vh solid transparent; /* Adjust height to match container */
+  border-right: 100vw solid #000000; /* Adjust width to match container */
+  z-index: 1; /* Ensure line is behind content */
 }
