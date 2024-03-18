@@ -14,7 +14,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_16_110302) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "achievments", force: :cascade do |t|
+  create_table "achievements", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.boolean "achieved", default: false
@@ -73,13 +73,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_16_110302) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "user_achievments", force: :cascade do |t|
+  create_table "user_achievements", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "achievment_id", null: false
+    t.bigint "achievement_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["achievment_id"], name: "index_user_achievments_on_achievment_id"
-    t.index ["user_id"], name: "index_user_achievments_on_user_id"
+    t.index ["achievement_id"], name: "index_user_achievements_on_achievement_id"
+    t.index ["user_id"], name: "index_user_achievements_on_user_id"
   end
 
   create_table "user_interests", force: :cascade do |t|
@@ -130,8 +130,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_16_110302) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "interest_tasks", "interests"
   add_foreign_key "interest_tasks", "tasks"
-  add_foreign_key "user_achievments", "achievments"
-  add_foreign_key "user_achievments", "users"
+  add_foreign_key "user_achievements", "achievements"
+  add_foreign_key "user_achievements", "users"
   add_foreign_key "user_interests", "interests"
   add_foreign_key "user_interests", "users"
   add_foreign_key "user_tasks", "tasks"
