@@ -14,5 +14,5 @@ class User < ApplicationRecord
   has_many :user_achievements, dependent: :destroy
   has_many :achievements, through: :user_achievements
 
-  validates :user_tasks, uniqueness: true
+  # validates :user_tasks, uniqueness: true
 end
