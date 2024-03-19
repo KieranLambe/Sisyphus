@@ -1,6 +1,8 @@
 require 'httparty'
 require 'action_view'
 
+UserTask.destroy_all
+
 Task.all.each do |task|
   task.interests.clear
 end
