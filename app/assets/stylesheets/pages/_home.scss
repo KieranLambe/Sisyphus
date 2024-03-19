@@ -33,8 +33,8 @@
   color: #70601b; /* White text on hover */
 }
 
-body{
-  background-color: #eedac2
+body {
+  background-color: #eedac2;
 }
 
 .h1 {
@@ -48,8 +48,6 @@ body{
   justify-content: center; /* Center the buttons horizontally */
 }
 
-
-
 body {
   position: relative;
   margin: 0;
@@ -62,11 +60,15 @@ body {
 .card-container {
   float: right;
   margin-top: 20px; /* Adjust top margin as needed */
-  background-color:  #eedac2;
-  color:  #eedac2;
+  background-color: #eedac2;
+  color: #eedac2;
 }
 
-.card, .card1, .card2, .card3, .card4 {
+.card,
+.card1,
+.card2,
+.card3,
+.card4 {
   border: 1px solid;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -113,11 +115,125 @@ body {
   // we willl have some issues with this
 }
 
-.card1, .card2, .card3, .card4{
+.card1,
+.card2,
+.card3,
+.card4 {
   position: relative;
   margin-top: 80px;
   margin-right: 50px;
   margin-bottom: 50px;
   height: 350px;
+}
 
+// footer css:
+
+/* home.scss */
+
+/* Other styles... */
+
+/* Footer styles */
+/* Footer styles */
+.footer {
+  background-color: #333;
+  color: #fff;
+  padding-top: 30px;
+  height: auto;
+}
+
+.footer-columns {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.footer-column {
+  flex: 1;
+  max-width: 250px;
+  margin: 0 20px;
+}
+
+.footer-column h3 {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.footer-column a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.footer-column p {
+  color: #ccc;
+  margin-bottom: 10px;
+}
+
+.social-icons,
+.app-icons {
+  list-style: none;
+  padding: 0;
+}
+
+.social-icons li,
+.app-icons li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.social-icon,
+.app-icon {
+  color: #fff;
+  font-size: 24px;
+}
+
+.social-icon:hover,
+.app-icon:hover {
+  color: #ffd700;
+}
+
+.footer-column-divider {
+  border-bottom: 1px solid silver;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+}
+
+.footer-column-divider.get-our-app-divider {
+  line-height: -1;
+}
+
+.footer-column a:hover {
+  color: #ffd700;
+}
+
+.footer-column h4 {
+  color: white; /* Example style */
+  font-size: 16px;
+}
+
+.title-card {
+  z-index: 5;
+  position: absolute;
+  top: 15vh;
+  left: 5vw;
+}
+
+.list-card {
+  z-index: 6;
+  position: absolute;
+  top: 40vh;
+  right: 5vw;
+  border: 1px solid;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 350px; /* Adjust width as needed */
+  // height: 400px; /* Adjust height as needed */
+  padding: 20px;
+  padding-bottom: 5px;
+  overflow: hidden; /* Ensure contents don't overflow */
+  color: #eedac2;
+  background-color: rgb(142, 135, 86);
+  margin-right: 50px;
+  padding-bottom: 25px;
 }
