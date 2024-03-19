@@ -5,6 +5,8 @@ export default class extends Controller {
 
   initialize() {
     this.currentStage = 0;
+    console.log(this.boulderTarget);
+    console.log(this.hillTarget);
     this.stageFunctions = [
       this.rollBoulder1,
       this.rollBoulder2,
@@ -24,25 +26,16 @@ export default class extends Controller {
   }
 
   rollBoulder1() {
-    this.boulder = this.boulderTarget; // Get the element associated with this controller
-    this.hill = this.hillTarget;
-
-    console.log("Rolling Boulder 1");
-    this.boulder = this.boulderTarget; // Get the element associated with this controller
-    console.log("Boulder:", this.boulder);
-    this.hill = this.hillTarget;
-    console.log("Hill:", this.hill);
-
-    const hillWidth = this.hill.offsetWidth;
-    const hillHeight = this.hill.offsetHeight;
-    const boulderWidth = this.boulder.offsetWidth;
-    const boulderHeight = this.boulder.offsetHeight;
+    const hillWidth = this.hillTarget.offsetWidth;
+    const hillHeight = this.hillTarget.offsetHeight;
+    const boulderWidth = this.boulderTarget.offsetWidth;
+    const boulderHeight = this.boulderTarget.offsetHeight;
     const newPositionX = hillWidth - boulderWidth;
     const newPositionY = hillHeight - boulderHeight;
 
-    this.boulder.classList.add("transition-effect");
-    // Move the this.boulder to the top right
-    this.boulder.style.transform = `translate(${newPositionX}px, -${newPositionY}px) rotate(720deg)`;
+    this.boulderTarget.classList.add("transition-effect");
+    // Move the this.boulderTarget to the top right
+    this.boulderTarget.style.transform = `translate(${newPositionX}px, -${newPositionY}px) rotate(720deg)`;
   }
 
   rollBoulder2() {
