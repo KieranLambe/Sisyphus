@@ -23,5 +23,6 @@ class PagesController < ApplicationController
 
 
     @interests = Interest.all
+    @achievements = Achievement.all
   end
 end
