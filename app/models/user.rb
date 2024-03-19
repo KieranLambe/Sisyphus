@@ -9,8 +9,10 @@ class User < ApplicationRecord
 
   has_many :user_interests, dependent: :destroy
   has_many :interests, through: :user_interests
-  has_many :user_tasks, dependent: :destroy, uniquness: true
+  has_many :user_tasks, dependent: :destroy
   has_many :tasks, through: :user_tasks
   has_many :user_achievements, dependent: :destroy
   has_many :achievements, through: :user_achievements
+
+  validates :user_tasks, uniqueness: true
 end
