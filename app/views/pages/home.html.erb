@@ -1,11 +1,9 @@
 <div class="boulder-container-container" data-controller="roll-boulder">
   <div class="boulder-container" data-roll-boulder-target="hill">
-    <button class="image-button" data-roll-boulder-target="boulder" data-action="click->roll-boulder#rollBoulder"><%= cl_image_tag("Transparent_Boulder_Cropped_c4abo3",
-      width: 186, height: 186, crop: :fill) %></button>
+    <button class="image-button" data-roll-boulder-target="boulder"><%= image_tag "boulder.png", alt: "boulder" %></button>
   </div>
   <div class="content"></div>
   <div class="diagonal-line"></div>
-</div>
 
 
 <div class="title-card">
@@ -21,7 +19,8 @@
             <div class="task-card">
               <h4 class="user_task"><%= link_to user_task.task.title, user_user_task_path(current_user, user_task), class: "text-decoration-none text-dark" %></h4>
               <div class="button-container">
-                <%= link_to " Check", toggle_complete_user_task_path(user_task), data: { turbo_method: :patch }, class: 'button fa-solid fa-check' %>
+                <%= link_to "Check", toggle_complete_user_task_path(user_task), data: { turbo_method: :patch }, class: 'button fa-solid fa-check' %>
+                <button class="btn-primary" data-action="click->roll-boulder#nextStage">Roll it!</button>
               </div>
             </div>
           <% else %>
