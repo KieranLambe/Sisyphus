@@ -225,6 +225,11 @@ body {
   left: 5vw;
 }
 
+.logo-image {
+  width: 400px; /* Adjust width as needed */
+  height: auto /* Maintain aspect ratio */
+}
+
 .list-card {
   z-index: 6;
   position: absolute;
