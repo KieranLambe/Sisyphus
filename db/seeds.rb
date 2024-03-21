@@ -469,4 +469,27 @@ tasks.each do |task|
   task[:interests].each { |interest| new_task.interests << interest } if task[:interests]
 end
 
+Achievement.destroy_all
+achievements = [
+  { name: "Your journey begins now", description: "Complete your first task" },
+  { name: "At the top!", description: "Finish all your daily tasks for the first time" }
+]
+
+achievements.each do |achievement|
+  Achievement.create!(name: achievement[:name], description: achievement[:description])
+end
+
+intrests.each do |intrest|
+  p intrest[:title]
+  achievements = [
+    { name: "New beginnings: #{intrest[:title]}", description: "Complete a #{intrest[:title]} task for the first time" },
+    { name: "Warming up: #{intrest[:title]}", description: "Complete 3 #{intrest[:title]} tasks" }
+  ]
+  achievements.each do |achievement|
+    Achievement.create!(name: achievement[:name], description: achievement[:description])
+  end
+end
+
+p "Achievements have been added"
+
 p "Seed data for tasks has been added."
