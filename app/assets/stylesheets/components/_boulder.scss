@@ -1,5 +1,5 @@
 .transition-effect {
-  transition: all 3s ease; /* Adjust the duration and timing function as needed */
+  transition: all 2s ease; /* Adjust the duration and timing function as needed */
 }
 
 .boulder-container {
@@ -27,12 +27,12 @@
     transform: rotate(0deg);
   }
   100% {
-    transform: rotate(720deg);
+    transform: rotate(360deg);
   }
 }
 
 .spin-animation {
-  animation: spin 3s linear forwards;
+  animation: spin 2s linear forwards;
 }
 
 .image-button {
