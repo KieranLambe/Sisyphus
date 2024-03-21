@@ -19,8 +19,9 @@
       <% if user_task.complete == false %>
         <div class="task-card">
           <h4 class="user_task"><%= link_to user_task.task.title, user_user_task_path(current_user, user_task), class: "text-decoration-none text-dark" %></h4>
-          <div class="button-container" data-action="click->roll-boulder#rollBoulder">
-            <%= link_to " Check", toggle_complete_user_task_path(user_task), data: { turbo_method: :patch }, class: 'button fa-solid fa-check' %>
+          <div class="button-container">
+            <%= link_to "Roll it", toggle_complete_user_task_path(user_task), data: { action: "click->roll-boulder#nextStage", turbo_method: :patch }, class: 'btn-primary' %>
+            <%# <button class="btn-primary" data-action="click->roll-boulder#nextStage">Roll it!</button> %>
           </div>
         </div>
       <% else %>
