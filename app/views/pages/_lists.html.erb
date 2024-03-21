@@ -4,7 +4,7 @@
       <div class="card shadow h-100" style="border-radius: 0.5rem;">
         <div class="card-body">
           <h3 class="card-title"><%= task.title %></h3>
-          <p class="card-text"><%= task.description.slice(0, 200) %>  <%= link_to "see more", task_path(task) %></p>
+          <p class="card-text"><%= task.description.slice(0, 200) %>  <%= link_to "see more", task_path(task), class: "text-dark text-decoration-none" %></p>
           <% if task.interests.any? %>
             <p class="card-text"><strong>Interests:</strong> <%= task.interests.map(&:title).join(", ") %></p>
           <% end %>
