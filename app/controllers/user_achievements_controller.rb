@@ -1,4 +1,8 @@
 class UserAchievementsController < ApplicationController
+  def index
+    @user_achievements = UserAchievement.all
+  end
+
   def new
     @user_achievement = UserAchievement.new
   end
