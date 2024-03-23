@@ -70,11 +70,7 @@ body {
   color: #eedac2;
 }
 
-.card,
-.card1,
-.card2,
-.card3,
-.card4 {
+.card {
   border: 1px solid;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -86,6 +82,11 @@ body {
   color: #eedac2;
   background-color: rgb(142, 135, 86);
   margin-right: 50px;
+  padding-bottom: 25px;
+}
+
+.card-link {
+  color: #eedac2;
   padding-bottom: 25px;
 }
 

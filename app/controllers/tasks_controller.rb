@@ -4,17 +4,20 @@ class TasksController < ApplicationController
 
   def index
     @tasks = Task.all
+    @interests = Interest.all
 
     @tasks = if params[:query].present?
                 Task.includes(:interests).joins(:interests).
                 where("tasks.title ILIKE ? OR tasks.description ILIKE ? OR interests.title ILIKE ? ", "%#{params[:query]}%", "%#{params[:query]}%","%#{params[:query]}%")
+                .order(Arel.sql('RANDOM()')).page(params[:page]).per(21)
               else
-                Task.includes(:interests).all.shuffle
+                Task.includes(:interests).all.order(:title).page(params[:page]).per(21)
              end
+
 
     respond_to do |format|
       format.html
-      format.text { render partial: 'pages/lists', locals: { tasks: @tasks }, formats: [:html]}
+      format.text { render partial: 'tasks/lists', locals: { tasks: @tasks }, formats: [:html]}
     end
   end
 
