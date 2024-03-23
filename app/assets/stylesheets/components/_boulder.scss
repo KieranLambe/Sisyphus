@@ -61,6 +61,6 @@
   width: 0%;
   height: 0;
   border-top: 70vh solid transparent; /* Adjust height to match container */
-  border-right: 100vw solid #8e8756; /* Adjust width to match container */
+  border-right: 100vw solid $final-contrast; /* Adjust width to match container */
   z-index: 1; /* Ensure line is behind content */
 }
