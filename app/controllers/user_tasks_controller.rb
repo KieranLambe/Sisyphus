@@ -19,7 +19,7 @@ class UserTasksController < ApplicationController
     if @user_task.save
       redirect_to root_path, notice: 'User task was successfully created.'
     else
-      render :new
+      raise
     end
   end
 
@@ -64,7 +64,7 @@ class UserTasksController < ApplicationController
     if @user_task.save!
       redirect_to root_path, notice: 'Task added'
     else
-      raise
+      redirect_to root_path, notice: "Task limit reached"
     end
   end
 
