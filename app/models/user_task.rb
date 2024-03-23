@@ -14,5 +14,5 @@ class UserTask < ApplicationRecord
   belongs_to :user
   belongs_to :task
 
-  validates_associated :user, message: "Too many tasks"
+  validates_associated :user
 end

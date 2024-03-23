@@ -14,7 +14,7 @@ class User < ApplicationRecord
   has_many :user_achievements, dependent: :destroy
   has_many :achievements, through: :user_achievements
   validates_each :user_tasks do |user, attr|
-    user.errors.add attr if user.user_tasks.size == 5
+    user.errors.add attr, notice: "Too many tasks" if user.user_tasks.size == 5
   end
   # validates :user_tasks, uniqueness: true
 end
