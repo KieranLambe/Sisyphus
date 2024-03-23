@@ -1,17 +1,20 @@
 .achievement-card {
   margin: 10px;
-  padding-top: 10px;
-  padding-left: 27px;
+  // padding-top: 10px;
+  // padding-left: 27px;
+  text-align: center;
   border: 2px solid #eedac2;
   border-radius: 50px;
   height: 90px;
-  width: 500px;
+  width: 350px;
   background-color: #8e8756;
 }
 
-h4 {
+h4, p {
   margin: 0;
   display: flex;
+  justify-content: center;
+  align-items: center;
   align-items: center;
   color: #eedac2;
 }
