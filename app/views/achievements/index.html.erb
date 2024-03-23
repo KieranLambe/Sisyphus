@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <!-- Left column for account details -->
+    <div class="col-md-4">
+      <div class="account-details-card mb-4 mt-5">
+        <img src="avatar-image.jpg" alt="Avatar Image" class="avatar-image">
+        <div class="account-info">
+          <h4>Seb</h4>
+          <p><i class="fas fa-map-marker-alt"></i> London, Uk</p>        </div>
+      </div>
+    </div>
+    <!-- Right column for personal details -->
+    <div class="col-md-8">
+      <div class="personal-details-card mb-4 mt-5">
+        <h3 class="mb-3">Personal Details</h3>
+        <p>This user is more oriented towards music and cooking activities.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Achievements section -->
+   <h3 class="text-center mt-5 mb-4">These are all of your badges</h3>
+  <div class="row justify-content-center">
+    <% @achievements.each do |achievement| %>
+      <div class="col-md-4">
+        <div class="achievement-card">
+          <div class="achievement-icon">
+            <i class="fas fa-medal"></i> <!-- Badge icon -->
+          </div>
+          <div class="achievement-info">
+            <h4><%= achievement.name %></h4>
+            <p><%= achievement.description %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

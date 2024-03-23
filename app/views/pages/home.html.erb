@@ -1,46 +1,49 @@
 <div class="boulder-container-container" data-controller="roll-boulder">
   <div class="boulder-container" data-roll-boulder-target="hill">
-    <button class="image-button" data-roll-boulder-target="boulder" data-action="click->roll-boulder#rollBoulder"><%= cl_image_tag("Transparent_Boulder_Cropped_c4abo3",
-      width: 186, height: 186, crop: :fill) %></button>
+    <button class="image-button" data-roll-boulder-target="boulder"><%= image_tag "boulder.png", alt: "boulder" %></button>
   </div>
   <div class="content"></div>
   <div class="diagonal-line"></div>
-</div>
 
 
 <div class="title-card">
-  <%= image_tag "logo.png", alt: "Logo", class: "logo-image" %>
   <%# <h1>Sisyphus</h1> %>
-  <h2>The legend of you trying <br> to get stuff done</h2>
+  <h1>The legend of you trying <br> to get stuff done</h2>
 </div>
 
 <div class="list-card">
+  <h3 class="fs-2 fw-bold"> Your tasks for the day </h3>
   <%if @user_tasks.length > 0%>
-        <h3> Your tasks for the day </h3>
-        <% @user_tasks.each do |user_task| %>
-          <% if user_task.complete == false %>
-            <div class="task-card">
-              <h4 class="user_task"><%= link_to user_task.task.title, user_user_task_path(current_user, user_task), class: "text-decoration-none text-dark" %></h4>
-              <div class="button-container">
-                <%= link_to "Check", toggle_complete_user_task_path(user_task), data: { turbo_method: :patch }, class: 'button fa-solid fa-check' %>
-              </div>
+    <% @user_tasks.each do |user_task| %>
+      <div class="d-flex flex-column">
+        <% if user_task.complete == false %>
+          <div class="task-card">
+            <h4 class="user_task"><%= link_to user_task.task.title, user_user_task_path(current_user, user_task), class: "text-decoration-none text-dark" %></h4>
+            <div class="button-container d-flex">
+              <%= link_to "Roll it", toggle_complete_user_task_path(user_task), data: { controller: "complete-button", turbo_method: :patch }, class: 'btn-primary' %>
+              <%# <button class="btn-primary" data-action="click->roll-boulder#nextStage">Roll it!</button> %>
+              <%= link_to "Remove", user_task_path(user_task), data: { turbo_method: :delete, turbo_confirm: "Are you sure" } %>
             </div>
-          <% else %>
-            <h4><%= user_task.task.title %> This task is complete</h4>
-          <% end %>
+          </div>
+        <% else %>
+          <h4><%= user_task.task.title %></h4>
+          <p>This task is complete</p>
         <% end %>
-  <%end%>
-  <%# <div class="card">
-    <div class="card-content">
-      <h2>Favorites</h2>
-      <div class="button-container">
-        <button class="buttondiv"><i class="fas fa-running"></i></button>
-        <button class="buttondiv">Reading</button>
-        <button class="buttondiv">Guitar</button>
-        <button class="buttondiv">Cooking</button>
       </div>
-    </div>
-  </div> %>
+    <% end %>
+  <%end%>
+</div>
+
+<div class="list-card achievements">
+  <h3 class="fs-2 fw-bold">Recent achievements</h3>
+  <% @user_achievements.each do |user_achievement| %>
+    <% if user_achievement.achieved %>
+      <div>
+        <h4><%= user_achievement.achievement.name %></h4>
+      </div>
+    <% end %>
+  <% end %>
+  <%= link_to "See all", achievements_path, class: "text-decoration-none text-dark mt-3" %></button>
 </div>
 
   <%# <div class="card-container">

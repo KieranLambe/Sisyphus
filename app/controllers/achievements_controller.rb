@@ -1,11 +1,15 @@
 class AchievementsController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_task, only: [:show]
 
   def index
     @achievements = Achievement.all
   end
 
   def show
+  end
+
+  def new
+    @achievement = Achievement.new
   end
 
   private

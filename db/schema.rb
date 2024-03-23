@@ -10,15 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_16_110302) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_22_183413) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "achievments", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.boolean "achieved", default: false
-    t.string "condition"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -78,8 +76,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_16_110302) do
     t.bigint "achievment_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["achievment_id"], name: "index_user_achievments_on_achievment_id"
-    t.index ["user_id"], name: "index_user_achievments_on_user_id"
+    t.boolean "achieved", default: false
+    t.index ["achievement_id"], name: "index_user_achievements_on_achievement_id"
+    t.index ["user_id"], name: "index_user_achievements_on_user_id"
   end
 
   create_table "user_interests", force: :cascade do |t|

@@ -1,5 +1,5 @@
 .transition-effect {
-  transition: all 3s ease; /* Adjust the duration and timing function as needed */
+  transition: all 2s ease; /* Adjust the duration and timing function as needed */
 }
 
 .boulder-container {
@@ -27,12 +27,12 @@
     transform: rotate(0deg);
   }
   100% {
-    transform: rotate(720deg);
+    transform: rotate(360deg);
   }
 }
 
 .spin-animation {
-  animation: spin 3s linear forwards;
+  animation: spin 2s linear forwards;
 }
 
 .image-button {
@@ -61,6 +61,6 @@
   width: 0%;
   height: 0;
   border-top: 70vh solid transparent; /* Adjust height to match container */
-  border-right: 100vw solid #8e8756; /* Adjust width to match container */
+  border-right: 100vw solid $final-contrast; /* Adjust width to match container */
   z-index: 1; /* Ensure line is behind content */
 }

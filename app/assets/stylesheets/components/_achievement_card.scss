@@ -1,0 +1,47 @@
+// app/assets/stylesheets/achievements.scss
+
+.achievement-card {
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  .achievement-icon {
+    text-align: center;
+    margin-bottom: 15px;
+
+    img {
+      width: 50px; /* Adjust size as needed */
+      height: 50px; /* Adjust size as needed */
+    }
+  }
+
+  .achievement-info {
+    text-align: center;
+
+    h4 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #666;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+  }
+}
+
+.container {
+  text-align: center;
+}
+
+.mb-4 {
+  margin-bottom: 20px; /* Adjust margin as needed */
+}

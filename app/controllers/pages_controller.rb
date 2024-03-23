@@ -4,8 +4,10 @@ class PagesController < ApplicationController
   def home
     if current_user
       @user_tasks = current_user.user_tasks.to_a
+      @user_achievements = current_user.user_achievements.to_a
     else
       @user_tasks = []
+      @user_achievements = []
     end
 
     # @tasks = if params[:query].present?
@@ -23,5 +25,6 @@ class PagesController < ApplicationController
 
 
     @interests = Interest.all
+    @achievements = Achievement.all
   end
 end
