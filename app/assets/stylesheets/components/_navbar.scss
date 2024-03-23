@@ -36,4 +36,17 @@
       margin-right: 5px;
     }
   }
+
+  nav-item.dropdown {
+    .avatar {
+      i {
+        margin-right: 25px; // Add right margin to the icon
+        margin-left: 25px;
+      }
+    }
+  }
+
+  .user{
+    margin-left: 20px;
+  }
 }
