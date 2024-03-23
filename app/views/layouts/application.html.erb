@@ -8,9 +8,12 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <%= javascript_include_tag 'js/pie_chart' %> <!-- Include your new JavaScript file -->
+
   </head>
 
   <body>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <%= render "shared/navbar" %>
     <%= render "shared/flashes" %>
     <%= yield %>

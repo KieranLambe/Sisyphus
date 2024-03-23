@@ -1,0 +1,20 @@
+.card-list {
+  border: 1px solid;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 355px; /* Adjust width as needed */
+  padding: 20px;
+  padding-bottom: 5px;
+  overflow: hidden; /* Ensure contents don't overflow */
+  color: #eedac2;
+  background-color: rgb(142, 135, 86);
+  margin-right: 50px;
+  padding-bottom: 25px;
+}
+
+.achievements {
+  margin: 0;
+  margin-top: 10px;
+  height: 300px;
+  width: 27vw;
+}
