@@ -56,7 +56,7 @@ class UserTasksController < ApplicationController
     if @user_task.save!
       redirect_to root_path, notice: 'Task added'
     else
-      raise
+      redirect_to root_path, notice: "Task limit reach"
     end
   end
 
