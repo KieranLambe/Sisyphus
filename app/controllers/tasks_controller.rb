@@ -3,27 +3,21 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
-    # @tasks = Task.all
-    @tasks = Task.page(params[:page]).per(21)
-
-    respond_to do |format|
-      format.html
-      format.text { render partial: 'pages/lists', locals: { tasks: @tasks }, formats: [:html]}
-    end
-
+    @tasks = Task.all
     @interests = Interest.all
 
     @tasks = if params[:query].present?
-               Task.includes(:interests).joins(:interests)
-                   .where("tasks.title ILIKE ? OR tasks.description ILIKE ? OR interests.title ILIKE ? ",
-                          "%#{params[:query]}%", "%#{params[:query]}%", "%#{params[:query]}%")
-             else
-               Task.includes(:interests).all.shuffle
+                Task.includes(:interests).joins(:interests).
+                where("tasks.title ILIKE ? OR tasks.description ILIKE ? OR interests.title ILIKE ? ", "%#{params[:query]}%", "%#{params[:query]}%","%#{params[:query]}%")
+                .order(Arel.sql('RANDOM()')).page(params[:page]).per(21)
+              else
+                Task.includes(:interests).all.order(:title).page(params[:page]).per(21)
              end
+
 
     respond_to do |format|
       format.html
-      format.text { render partial: 'pages/lists', locals: { tasks: @tasks }, formats: [:html]}
+      format.text { render partial: 'tasks/lists', locals: { tasks: @tasks }, formats: [:html]}
     end
   end
 
