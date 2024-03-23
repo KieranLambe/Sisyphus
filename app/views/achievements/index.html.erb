@@ -1,11 +1,21 @@
 <div class="container">
   <div class="row">
     <!-- Right column for personal details -->
-    <div class="col-md-8">
+    <div class="col-md-4">
       <div class="percentage-pie-container mb-4 mt-3" style="width: 300px; height: 300px;">
         <h3 class="mb-3">Percentage Pie Chart</h3>
         <canvas id="pieChart" width="300" height="300"></canvas>
       </div>
+    </div>
+    <div class="col-md-4 achievements card-list">
+      <h3 class="fs-2 fw-bold">Recent achievements</h3>
+      <% @user_achievements.each do |user_achievement| %>
+        <% if user_achievement.achieved %>
+          <div>
+            <h4><%= user_achievement.achievement.name %></h4>
+          </div>
+        <% end %>
+      <% end %>
     </div>
     <!-- Left column for account details -->
     <div class="col-md-4">
