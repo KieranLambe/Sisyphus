@@ -128,10 +128,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_23_153903) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "interest_tasks", "interests"
   add_foreign_key "interest_tasks", "tasks"
-
-  add_foreign_key "user_achievements", "achievements", column: "achievement_id"
+  add_foreign_key "user_achievements", "achievements"
   add_foreign_key "user_achievements", "users"
-
   add_foreign_key "user_interests", "interests"
   add_foreign_key "user_interests", "users"
   add_foreign_key "user_tasks", "tasks"
