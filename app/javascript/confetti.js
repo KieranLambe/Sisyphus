@@ -13,6 +13,6 @@ function triggerConfetti() {
 }
 
 // Add event listener to the "Begin journey" button to trigger confetti effect on click
-document.querySelector('.begin-journey-btn button').addEventListener('click', function() {
+document.getElementById('begin-journey-btn button').addEventListener('click', function() {
   triggerConfetti();
 });
