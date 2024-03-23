@@ -36,7 +36,7 @@ class UserTasksController < ApplicationController
 
   def destroy
     @user_task.destroy
-    redirect_to user_tasks_path, notice: 'User task was successfully destroyed.'
+    redirect_to root_path, notice: 'Task has been removed.'
   end
 
   def add_tasks_to_user
@@ -61,10 +61,8 @@ class UserTasksController < ApplicationController
   end
 
   def toggle_complete
-    # @achievement = Achievement.find(29)
     @user_task = UserTask.find(params[:id])
     @user_task.update(complete: true)
-    # @achievement.update(achieved: true)
     redirect_to root_path, notice: 'Task complete'
   end
 

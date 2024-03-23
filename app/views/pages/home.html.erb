@@ -13,30 +13,34 @@
 </div>
 
 <div class="list-card">
-  <h3> Your tasks for the day </h3>
+  <h3 class="fs-2 fw-bold"> Your tasks for the day </h3>
   <%if @user_tasks.length > 0%>
     <% @user_tasks.each do |user_task| %>
-      <% if user_task.complete == false %>
-        <div class="task-card">
-          <h4 class="user_task"><%= link_to user_task.task.title, user_user_task_path(current_user, user_task), class: "text-decoration-none text-dark" %></h4>
-          <div class="button-container">
-            <%= link_to "Roll it", toggle_complete_user_task_path(user_task), data: { action: "click->roll-boulder#nextStage", turbo_method: :patch }, class: 'btn-primary' %>
-            <%# <button class="btn-primary" data-action="click->roll-boulder#nextStage">Roll it!</button> %>
+      <div class="d-flex flex-column">
+        <% if user_task.complete == false %>
+          <div class="task-card">
+            <h4 class="user_task"><%= link_to user_task.task.title, user_user_task_path(current_user, user_task), class: "text-decoration-none text-dark" %></h4>
+            <div class="button-container d-flex">
+              <%= link_to "Roll it", toggle_complete_user_task_path(user_task), data: { action: "click->roll-boulder#nextStage", turbo_method: :patch }, class: 'btn-primary' %>
+              <%# <button class="btn-primary" data-action="click->roll-boulder#nextStage">Roll it!</button> %>
+              <%= link_to "Remove", user_task_path(user_task), data: { turbo_method: :delete, turbo_confirm: "Are you sure" } %>
+            </div>
           </div>
-        </div>
-      <% else %>
-        <h4><%= user_task.task.title %> This task is complete</h4>
-      <% end %>
+        <% else %>
+          <h4><%= user_task.task.title %></h4>
+          <p>This task is complete</p>
+        <% end %>
+      </div>
     <% end %>
   <%end%>
 </div>
 
 <div class="list-card achievements">
-  <h3>Recent achievements</h3>
-  <% @achievements.each do |achievement| %>
-    <% if achievement.achieved %>
+  <h3 class="fs-2 fw-bold">Recent achievements</h3>
+  <% @user_achievements.each do |user_achievement| %>
+    <% if user_achievement.achieved %>
       <div>
-        <h4><%= achievement.name %></h4>
+        <h4><%= user_achievement.achievement.name %></h4>
       </div>
     <% end %>
   <% end %>
