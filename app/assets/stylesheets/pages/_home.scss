@@ -15,8 +15,9 @@
   text-align: center;
 }
 
-.button-container button, .btn-primary{
-  background-color: #4CAF50; /* Green background */
+.button-container button,
+.btn-primary {
+  background-color: #4caf50; /* Green background */
   color: white;
   border: none;
   padding: 10px 20px;
@@ -38,11 +39,6 @@
   background-color: #45a049; /* Darker green */
 }
 
-
-body {
-  background-color: #eedac2;
-}
-
 .h1 {
   text-align: center;
   font-size: 16px;
@@ -59,7 +55,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  background-color: #eedac2;
+  background-color: $white;
   border-bottom: #333;
 }
 
@@ -83,7 +79,7 @@ body {
   padding: 20px;
   padding-bottom: 5px;
   overflow: hidden; /* Ensure contents don't overflow */
-  color: #eedac2;
+  color: $white;
   background-color: rgb(142, 135, 86);
   margin-right: 50px;
   padding-bottom: 25px;
@@ -227,7 +223,7 @@ body {
 
 .logo-image {
   width: 400px; /* Adjust width as needed */
-  height: auto /* Maintain aspect ratio */
+  height: auto; /* Maintain aspect ratio */
 }
 
 .list-card {
@@ -243,8 +239,8 @@ body {
   padding: 20px;
   padding-bottom: 5px;
   overflow: hidden; /* Ensure contents don't overflow */
-  color: #eedac2;
-  background-color: rgb(142, 135, 86);
+  color: $white;
+  background-color: $final-main;
   margin-right: 50px;
   padding-bottom: 25px;
 }
