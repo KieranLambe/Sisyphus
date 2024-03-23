@@ -3,6 +3,11 @@ class AchievementsController < ApplicationController
 
   def index
     @achievements = Achievement.all
+    if current_user
+      @user_achievements = current_user.user_achievements.to_a
+    else
+      @user_achievements = []
+    end
   end
 
   def show

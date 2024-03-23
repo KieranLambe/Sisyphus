@@ -1,6 +1,5 @@
 class UserAchievementsController < ApplicationController
   def index
-    @user_achievements = UserAchievement.all
   end
 
   def new

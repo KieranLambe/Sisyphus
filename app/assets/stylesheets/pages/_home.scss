@@ -226,15 +226,11 @@ body {
   height: auto; /* Maintain aspect ratio */
 }
 
-.list-card {
+.user_tasks {
+  top: 20vh;
+  right: 5vw;
   z-index: 6;
   position: absolute;
-  top: 40vh;
-  right: 5vw;
-  border: 1px solid;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 355px; /* Adjust width as needed */
   // height: 400px; /* Adjust height as needed */
   padding: 20px;
   padding-bottom: 5px;
