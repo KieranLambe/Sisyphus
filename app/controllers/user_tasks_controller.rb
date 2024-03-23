@@ -36,7 +36,7 @@ class UserTasksController < ApplicationController
 
   def destroy
     @user_task.destroy
-    redirect_to user_tasks_path, notice: 'User task was successfully destroyed.'
+    redirect_to root_path, notice: 'Task has been removed.'
   end
 
   def add_tasks_to_user
