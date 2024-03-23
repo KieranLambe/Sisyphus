@@ -12,11 +12,6 @@ class TasksController < ApplicationController
                 .order(Arel.sql('RANDOM()')).page(params[:page]).per(21)
               else
                 Task.includes(:interests).all.order(:title).page(params[:page]).per(21)
-              .where("tasks.title ILIKE ? OR tasks.description ILIKE ? OR interests.title ILIKE ? ",
-                          "%#{params[:query]}%", "%#{params[:query]}%", "%#{params[:query]}%")
-             else
-               Task.includes(:interests).all.shuffle
-
              end
 
 
