@@ -21,7 +21,7 @@
           <div class="task-card">
             <h4 class="user_task"><%= link_to user_task.task.title, user_user_task_path(current_user, user_task), class: "text-decoration-none text-dark" %></h4>
             <div class="button-container d-flex">
-              <%= link_to "Roll it", toggle_complete_user_task_path(user_task), data: { action: "click->roll-boulder#nextStage", turbo_method: :patch }, class: 'btn-primary' %>
+              <%= link_to "Roll it", toggle_complete_user_task_path(user_task), data: { controller: "complete-button", turbo_method: :patch }, class: 'btn-primary' %>
               <%# <button class="btn-primary" data-action="click->roll-boulder#nextStage">Roll it!</button> %>
               <%= link_to "Remove", user_task_path(user_task), data: { turbo_method: :delete, turbo_confirm: "Are you sure" } %>
             </div>
