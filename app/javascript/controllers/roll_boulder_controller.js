@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["boulder", "hill"];
+  static targets = ["boulder", "hill", ];
 
   initialize() {
     this.currentStage = 0;
@@ -43,5 +43,9 @@ export default class extends Controller {
     } else {
       this.boulderTarget.style.transform = `translate(${newPositionX}px, -${newPositionY}px) rotate(1800deg)`;
     }
+  }
+
+  completeTask() {
+
   }
 }
