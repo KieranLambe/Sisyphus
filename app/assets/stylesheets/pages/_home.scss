@@ -15,9 +15,10 @@
   text-align: center;
 }
 
-.button-container button, .btn-primary{
-  background-color: #4CAF50; /* Green background */
-  color: white;
+.button-container button,
+.btn-primary {
+  background-color: #4caf50; /* Green background */
+  color: $final-text;
   border: none;
   padding: 10px 20px;
   text-align: center;
@@ -31,16 +32,11 @@
 }
 
 .button-container button:hover {
-  background-color: #45a049; /* Darker green */
+  background-color: $final-contrast; /* Darker green */
 }
 
 .btn-primary button:hover {
-  background-color: #45a049; /* Darker green */
-}
-
-
-body {
-  background-color: #eedac2;
+  background-color: $final-hover; /* Darker green */
 }
 
 .h1 {
@@ -59,7 +55,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  background-color: #eedac2;
+  background-color: $final-text;
   border-bottom: #333;
 }
 
@@ -83,7 +79,7 @@ body {
   padding: 20px;
   padding-bottom: 5px;
   overflow: hidden; /* Ensure contents don't overflow */
-  color: #eedac2;
+  color: $final-text;
   background-color: rgb(142, 135, 86);
   margin-right: 50px;
   padding-bottom: 25px;
@@ -97,7 +93,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  background-color: #cf7956;
+  background-color: $final-main;
 }
 
 .buttondiv {
@@ -227,7 +223,7 @@ body {
 
 .logo-image {
   width: 400px; /* Adjust width as needed */
-  height: auto /* Maintain aspect ratio */
+  height: auto; /* Maintain aspect ratio */
 }
 
 .user_tasks {
@@ -236,4 +232,16 @@ body {
   z-index: 6;
   position: absolute;
   // height: 400px; /* Adjust height as needed */
+  padding: 20px;
+  padding-bottom: 5px;
+  overflow: hidden; /* Ensure contents don't overflow */
+  color: $white;
+  background-color: $final-main;
+  margin-right: 50px;
+  padding-bottom: 25px;
+}
+
+.achievements {
+  top: 40vh;
+  left: 5vw;
 }
