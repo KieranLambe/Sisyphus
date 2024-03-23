@@ -18,7 +18,7 @@
 .button-container button,
 .btn-primary {
   background-color: #4caf50; /* Green background */
-  color: white;
+  color: $final-text;
   border: none;
   padding: 10px 20px;
   text-align: center;
@@ -32,11 +32,11 @@
 }
 
 .button-container button:hover {
-  background-color: #45a049; /* Darker green */
+  background-color: $final-contrast; /* Darker green */
 }
 
 .btn-primary button:hover {
-  background-color: #45a049; /* Darker green */
+  background-color: $final-hover; /* Darker green */
 }
 
 .h1 {
@@ -55,7 +55,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  background-color: $white;
+  background-color: $final-text;
   border-bottom: #333;
 }
 
@@ -79,7 +79,7 @@ body {
   padding: 20px;
   padding-bottom: 5px;
   overflow: hidden; /* Ensure contents don't overflow */
-  color: $white;
+  color: $final-text;
   background-color: rgb(142, 135, 86);
   margin-right: 50px;
   padding-bottom: 25px;
@@ -93,7 +93,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  background-color: #cf7956;
+  background-color: $final-main;
 }
 
 .buttondiv {
