@@ -13,6 +13,16 @@ class UserAchievementsController < ApplicationController
     redirect_to root_path
   end
 
+  def update
+    @user_achievement = UserAchievement.find(params[:id])
+    @user_achievement.update(achieved: true)
+  end
+
+  def add_user_achievement
+    @user_achievement = UserAchievemnet.new(user_achievement_params)
+    @user_achievement.save!
+  end
+
   private
 
   def user_achievement_params

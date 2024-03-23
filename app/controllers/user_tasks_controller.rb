@@ -61,10 +61,8 @@ class UserTasksController < ApplicationController
   end
 
   def toggle_complete
-    @achievement = Achievement.find(30)
     @user_task = UserTask.find(params[:id])
     @user_task.update(complete: true)
-    @achievement.update(achieved: true)
     redirect_to root_path, notice: 'Task complete'
   end
 
