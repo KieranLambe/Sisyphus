@@ -1,7 +1,7 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
-    <%= link_to "#", class: "navbar-brand" do %>
-      <%= image_tag "logo3.png", width: "150px", height: "50px" %>
+    <%= link_to root_path, class: "navbar-brand" do %>
+      <%= image_tag "logo.png", width: "150px", height: "50px" %>
     <% end %>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,6 +11,9 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to "Challenges", tasks_path, class: "nav-link" %>
+          </li>
           <li class="nav-item active">
             <%= link_to "Home", root_path, class: "nav-link" %>
           </li>
@@ -25,8 +28,8 @@
             <%= image_tag "https://i.ibb.co/yVGxFPR/2.png", class: "user", alt: "dropdown menu", width: "40", height: "40" %>
           </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Settings", new_user_user_interest_path(current_user), class: "dropdown-item" %>
-              <%= link_to "Another action", "#", class: "dropdown-item" %>
+              <%= link_to "Prefrences", new_user_user_interest_path(current_user), class: "dropdown-item" %>
+              <%= link_to "Favourites", "#", class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
             </div>
           </li>
@@ -35,6 +38,13 @@
             <%= link_to "Login", new_user_session_path, class: "nav-link" %>
           </li>
         <% end %>
+        <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="fas fa-bell"></i> <!-- Bell icon -->
+          </a>
+        </li>
+      </ul>
       </ul>
     </div>
   </div>

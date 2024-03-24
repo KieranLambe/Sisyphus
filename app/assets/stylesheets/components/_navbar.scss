@@ -1,12 +1,52 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: $final-main;
-}
+  background-color: $final-main; // example background color
+  padding: 10px 0;
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
-}
+  .navbar-brand {
+    img {
+      width: 150px;
+      height: 50px;
+    }
+  }
 
-.navbar-lewagon .navbar-vatar img {
-  width: 40px;
+  .navbar-collapse {
+    flex-grow: 0;
+  }
+
+  .nav-item {
+    margin-right: 20px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  .nav-link {
+    color: #000000; // example text color
+    font-size: 18px; // Increased font size
+    font-weight: 400;
+    transition: color 0.3s ease-in-out;
+
+    &:hover {
+      color: #ffffff; // example text color on hover
+    }
+
+    i {
+      margin-right: 5px;
+    }
+  }
+
+  nav-item.dropdown {
+    .avatar {
+      i {
+        margin-right: 25px; // Add right margin to the icon
+        margin-left: 25px;
+      }
+    }
+  }
+
+  .user{
+    margin-left: 20px;
+  }
 }
