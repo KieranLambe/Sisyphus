@@ -21,8 +21,8 @@
             <h4 class="user_task"><%= link_to user_task.task.title, user_user_task_path(current_user, user_task), class: "text-decoration-none text-dark" %></h4>
             <div class="button-container d-flex" data-controller="complete-button" data-complete-button-update-url="<%= user_task_path(user_task) %>">
               <%# <%= link_to "Roll it", toggle_complete_user_task_path(user_task), data: { target: "button", action: "click->roll-boulder#rollBoulder", turbo_method: :patch }, class: 'btn-primary' %>
-              <%= simple_form_for user_task, remote: true, html: {'data-complete-button-target': 'form'} do |f| %>
-                <%= f.input :complete, input_html: { "data-complete-button-target": "button", "data-action": "click->complete-button#completeButton" } %>
+              <%= form_with(model: user_task, url: user_user_task_path(current_user, user_task), data: { complete_button_target: "form" } ) do |f| %>
+                <%= f.check_box :complete, input_html: { "data-complete-button-target": "button", "data-action": "click->complete-button#completeButton" } %>
               <% end %>
               <%# <button class="btn-primary" data-action="click->roll-boulder#nextStage">Roll it!</button> %>
               <%= link_to "Remove", user_task_path(user_task), data: { turbo_method: :delete, turbo_confirm: "Are you sure" } %>

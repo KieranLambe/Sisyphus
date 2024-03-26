@@ -27,6 +27,8 @@ class UserTasksController < ApplicationController
   end
 
   def update
+    # respond_to do |format|
+
     if @user_task.update(user_task_params)
       redirect_to user_tasks_path, notice: 'User task was successfully updated.'
     else
