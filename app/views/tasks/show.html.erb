@@ -1,9 +1,9 @@
 <div class="container pt-3">
-  <div class="title">
-    <h2><%= @task.title %></h2>
-  <div class="description">
-    <h3><%= @task.description %></h3>
+  <div class="task_title mt-3">
+      <h2><%= @task.title %></h2>
   </div>
-</div>
+    <div class="description mt-3">
+      <h3><%= @task.description %></h3>
+    </div>
    <%= link_to 'Add to my tasks', user_task_add_path(user_id: current_user, task_id: @task.id), data: { turbo_method: :post }, class: 'btn btn-primary float-end' %>
 </div>
