@@ -64,6 +64,43 @@
 }
 p {
   color: #666;
-  font-size: 14px;
-  line-height: 1.4;
+  font-size: 20px;
+  line-height: 2.0;
+  margin-top: 20px;
+}
+
+h2 {
+  margin-bottom: 80px;
+
+}
+
+a, .page-current {
+  margin: 10px;
+
+}
+
+.pagination {
+  margin-top: 20px; /* Add some spacing above the pagination links */
+  text-align: center; /* Center the pagination links */
+}
+
+.pagination a, .current{
+  color: #333; /* Text color for pagination links */
+  display: inline-block;
+  padding: 5px 10px; /* Padding around each pagination link */
+  margin: 0 5px; /* Margin between pagination links */
+  border: 1px solid #ccc; /* Border around pagination links */
+  border-radius: 5px; /* Rounded corners for pagination links */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition effect */
+  text-decoration: none; /* Remove underline */
+  text-align: center;
+}
+
+.pagination a:hover, .current a:hover {
+  background-color: #f0f0f0; /* Background color on hover */
+}
+
+.pagination .current {
+  background-color: #fe5f55; /* Background color for current page */
+  color: #fff; /* Text color for current page */
 }
