@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_23_153903) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_22_183413) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -77,6 +77,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_23_153903) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "achieved", default: false
+    t.index ["achievement_id"], name: "index_user_achievements_on_achievement_id"
     t.index ["user_id"], name: "index_user_achievements_on_user_id"
   end
 

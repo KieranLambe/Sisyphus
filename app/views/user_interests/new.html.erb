@@ -4,8 +4,11 @@
       <div class="login-box d-flex flew-column justify-content-center" style="background-color: #E2725B; padding: 20px; border-radius: 10px;">
         <%= simple_form_for(current_user) do |f| %>
           <%= f.association :interests, as: :check_boxes, input_html: { class: 'interest' } %>
-          <%= f.button :submit, "Begin journey", input_html: { class: "begin-journey-btn button" }%>
         <% end %>
+      </div>
+      <div class="justify-content-center">
+        <button class="begin-journey-btn button" onclick="document.getElementById('second-button').style.display = 'block'; this.style.display = 'none';">Click Me!</button>
+        <button id="second-button" style="display: none;">Second Button</button>
       </div>
     </div>
   </div>
