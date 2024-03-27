@@ -1,50 +1,55 @@
 <div class="container">
-  <div class="row">
-    <!-- Right column for personal details -->
-    <div class="col-md-4">
-      <div class="percentage-pie-container mb-4 mt-3" style="width: 300px; height: 300px;">
-        <h3 class="mb-3">Percentage Pie Chart</h3>
-        <canvas id="pieChart" width="300" height="300"></canvas>
-      </div>
-    </div>
-    <div class="col-md-4 achievements card-list">
-      <h3 class="fs-2 fw-bold">Recent achievements</h3>
-      <% @user_achievements.each do |user_achievement| %>
-        <% if user_achievement.achieved %>
-          <div>
-            <h4><%= user_achievement.achievement.name %></h4>
+  <!-- Top section -->
+  <div class="top-section" style="padding: 20px;">
+    <div class="row">
+      <!-- Left column for account details -->
+      <div class="col-md-4">
+        <div class="account-details-card mb-4 mt-5">
+          <img src="<%= asset_path('Man pushing boulder.png') %>" alt="Avatar Image" class="avatar-image">
+          <div class="account-info">
+            <h4>Seb</h4>
+            <p><i class="fas fa-map-marker-alt"></i> London, UK</p>
           </div>
-        <% end %>
-      <% end %>
-    </div>
-    <!-- Left column for account details -->
-    <div class="col-md-4">
-      <div class="account-details-card mb-4 mt-5">
-        <img src="avatar-image.jpg" alt="Avatar Image" class="avatar-image">
-        <div class="account-info">
-          <h4>Seb</h4>
-          <p><i class="fas fa-map-marker-alt"></i> London, UK</p>
+        </div>
+      </div>
+      <!-- Right column for personal details -->
+      <div class="col-md-4">
+        <div class="percentage-pie-container mb-4 mt-3" style="width: 300px; height: 300px;">
+          <h4 class="mb-3"></h4>
+          <canvas id="pieChart" width="300" height="300"></canvas>
+        </div>
+      </div>
+      <!-- Recent achievements -->
+      <div class="col-md-4">
+        <div class="recent-achievements">
+          <h3>Recent Achievements</h3>
+         <div class="task-container">
+            <p><strong>Task:</strong> <%= @task %></p>
+            <p><strong>Completed at:</strong> <%= @completion_time %></p>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Achievements section -->
-  <h3 class="text-center mt-5 mb-4">These are all of your badges</h3>
-  <div class="row justify-content-center">
-    <% @achievements.each do |achievement| %>
-      <div class="col-md-4">
-        <div class="achievement-card">
-          <div class="achievement-icon">
-            <i class="fas fa-medal"></i> <!-- Badge icon -->
-          </div>
-          <div class="achievement-info">
-            <h4><%= achievement.name %></h4>
-            <p><%= achievement.description %></p>
+  <!-- Bottom section -->
+  <div class="bottom-section" style="padding: 20px;">
+    <!-- Achievements section -->
+    <h3 class="text-center mt-5 mb-4">These are all of your badges</h3>
+    <div class="row justify-content-center">
+      <% @achievements.each do |achievement| %>
+        <div class="col-md-4">
+          <div class="achievement-card">
+            <div class="achievement-icon">
+              <i class="fas fa-medal"></i> <!-- Badge icon -->
+            </div>
+            <div class="achievement-info">
+              <h4><%= achievement.name %></h4>
+              <p><%= achievement.description %></p>
+            </div>
           </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
-</div>
 </div>
