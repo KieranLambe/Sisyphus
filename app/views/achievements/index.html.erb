@@ -31,25 +31,31 @@
       </div>
     </div>
   </div>
+  <div class="container">
+    <!-- Top section -->
+    <div class="top-section" style="padding: 20px;">
+      <!-- Your existing content -->
+      <div class="row">
+        <div class="col-md-12 text-center"> <!-- Apply text-center class here -->
+          <h3 class="title2">You are doing great! 🏅</h3>
+        </div>
+      </div>
 
-  <!-- Bottom section -->
-  <div class="bottom-section" style="padding: 20px;">
-    <!-- Achievements section -->
-    <h3 class="text-center mt-5 mb-4">These are all of your badges</h3>
-    <div class="row justify-content-center">
-      <% @achievements.each do |achievement| %>
-        <div class="col-md-4">
-          <div class="achievement-card">
-            <div class="achievement-icon">
-              <i class="fas fa-medal"></i> <!-- Badge icon -->
-            </div>
-            <div class="achievement-info">
-              <h4><%= achievement.name %></h4>
-              <p><%= achievement.description %></p>
+      <div class="row">
+        <% @achievements.each do |achievement| %>
+          <div class="col-md-4">
+            <div class="achievement-card">
+              <div class="achievement-icon">
+                <i class="fas fa-medal"></i> <!-- Badge icon -->
+              </div>
+              <div class="achievement-info">
+                <h4><%= achievement.name %></h4>
+                <p><%= achievement.description %></p>
+              </div>
             </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

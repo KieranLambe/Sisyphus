@@ -3,19 +3,23 @@
   <head>
     <title>Sisyphus</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <%= javascript_include_tag 'js/pie_chart' %> <!-- Include your new JavaScript file -->
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
     <%# <%= javascript_include_tag 'js/pie_chart' %> <!-- Include your new JavaScript file -->
   </head>
 
   <body>
     <%# <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> %>
     <%# <%= javascript_include_tag 'confetti' %>
+
     <%= render "shared/navbar" %>
     <%= render "shared/flashes" %>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <%= yield %>
   </body>
 

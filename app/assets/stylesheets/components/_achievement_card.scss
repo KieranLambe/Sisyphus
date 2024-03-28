@@ -1,12 +1,16 @@
-// app/assets/stylesheets/achievements.scss
-
 .achievement-card {
+
+  .container {
+    width: 100vw; /* Take up 100% of the viewport width */
+    /* Other styles */
+  }
   background-color: #f0f0f0;
   border-radius: 5px;
   padding: 20px;
   margin-bottom: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
+  margin-right: 20px;
 
   &:hover {
     transform: translateY(-5px);
@@ -37,11 +41,10 @@
       margin-top: 10px;
     }
   }
-}
 
-.achievement-card {
-  width: 400px;
+  width: 370px;;
   height: 200px;
+  margin: 40px;
 }
 
 .container {
@@ -51,7 +54,6 @@
 .mb-4 {
   margin-bottom: 20px; /* Adjust margin as needed */
 }
-
 
 .avatar-image {
   width: 120px; /* Adjust width as needed */
@@ -64,14 +66,13 @@
   height: 100%;
 }
 
-
-/* In your CSS file or style section */
+/* Styles for task container */
 .task-container {
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
   margin: 20px auto;
-  max-width: 600px;
+  max-width: 100%;
 }
 
 .task-container h3 {
@@ -80,4 +81,40 @@
 
 .task-container p {
   margin-bottom: 5px;
+}
+
+// .bottom-section {
+//   display: flex;
+//   flex-wrap: wrap;
+//   justify-content: space-between;
+//   text-align: center;
+// }
+
+.title2 {
+  display: flex;
+  justify-content: center; /* Horizontally center */
+}
+
+.container {
+  margin-top: 40px;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.col-md-4 {
+  display: grid;
+  align-items: center; /* Horizontally center */
+  justify-content: center; /* Vertically center */
+  text-align: center; /* Optional: Center text horizontally */
+  padding: 0; /* Reset padding */
+}
+
+.footer {
+  background-color: #f0f0f0;
+  text-align: center;
+  /* Other styles */
 }
