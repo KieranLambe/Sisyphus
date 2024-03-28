@@ -6,12 +6,9 @@
           <div class="card shadow h-100" style="border-radius: 0.5rem;">
             <div class="card-body">
                 <h3 class="card-title"><%= task.title %></h3>
-                <% if task.interests.any? %>
-                  <p class="card-text"><strong>Interests:</strong> <%= task.interests.map(&:title).join(", ") %></p>
-                <% end %>
-              <div class="add_tasks">
-                  <%= link_to 'Add to my tasks', user_task_add_path(user_id: current_user, task_id: task), data: { turbo_method: :post }, class: 'btn btn-primary mt-2' %>
-              </div>
+                 <div class="add_tasks">
+                    <%= link_to 'Add task', user_task_add_path(user_id: current_user, task_id: task), data: { turbo_method: :post }, class: 'btn btn-primary mt-2' %>
+                </div>
             </div>
           </div>
         <% end %>

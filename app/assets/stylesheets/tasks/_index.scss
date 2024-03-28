@@ -36,8 +36,6 @@ card-link {
 
 }
 
-
-
 .card {
   background-color: #f0f0f0;
   color: white  ;
@@ -86,7 +84,6 @@ p {
 
 h2 {
   margin-bottom: 80px;
-
 }
 
 
@@ -122,10 +119,30 @@ h2 {
   height: 300px;
 }
 
+
+.custom-form {
+  display: flex;
+  justify-content: center;
+}
+
+/* Custom styling for the text input */
+.custom-input {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #fe5f55;
+  border-radius: 50px;
+  font-size: 20px;
+  background-color: #f0f0f0;
+}
+
+.d-none {
+  display: none;
+
 .container1{
 
   .btn-primary{
     height: 60px;
     width: 230px;
   }
+
 }
