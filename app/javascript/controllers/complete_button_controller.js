@@ -9,7 +9,7 @@ export default class extends Controller {
     // if(this.buttonTarget)
     // console.log("Hello")
     // console.log(this.buttonTarget)
-    // console.log(this.buttonTarget.checked)
+    console.log(this.buttonTarget.checked)
     // console.log(document.getElementById("user_task_complete").checked)
     // this.buttonTarget.value = false
     // this.buttonTarget.setAttribute("data-id", "incomplete")
