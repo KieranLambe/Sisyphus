@@ -21,8 +21,6 @@
   border-color: #555; /* Border color on hover */
 }
 
-
-
 .card {
   background-color: #f0f0f0;
   color: white  ;
@@ -71,7 +69,6 @@ p {
 
 h2 {
   margin-bottom: 80px;
-
 }
 
 a, .page-current {
@@ -108,4 +105,23 @@ a, .page-current {
 .col-md-4 {
   width: 400px;
   height: 300px;
+}
+
+.custom-form {
+  display: flex;
+  justify-content: center;
+}
+
+/* Custom styling for the text input */
+.custom-input {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #fe5f55;
+  border-radius: 50px;
+  font-size: 20px;
+  background-color: #f0f0f0;
+}
+
+.d-none {
+  display: none;
 }
