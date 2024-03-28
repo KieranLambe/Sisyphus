@@ -4,6 +4,12 @@ export default class extends Controller {
   static targets = ["boulder", "hill", ];
 
   initialize() {
+    var forms = document.querySelectorAll(".button-container");
+    var forms_array = [...forms];
+    console.log("")
+    forms_array.forEach(form =>
+      console.log(form.children.checked)
+    );
     this.currentStage = 0;
     console.log(this.boulderTarget);
     console.log(this.hillTarget);
