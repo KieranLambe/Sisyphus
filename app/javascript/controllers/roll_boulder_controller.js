@@ -6,7 +6,6 @@ export default class extends Controller {
   initialize() {
     var forms = document.querySelectorAll(".button-container");
     var forms_array = [...forms];
-    console.log("")
     forms_array.forEach(form =>
       console.log(form.children.checked)
     );
