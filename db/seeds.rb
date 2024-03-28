@@ -54,7 +54,7 @@ exercises = fetch_wger_data('exercise', access_token, 'en', 100)
 
 tasks_data = exercises.map do |exercise|
   {
-    title: exercise['name'],
+    title: "Try this exercise: #{exercise['name']}",
     description: strip_tags(exercise['description']).presence || 'No description available'
   }
 end
@@ -81,7 +81,7 @@ def fetch_yoga_data
   return [] unless response.success?
 
   parsed_data = JSON.parse(response.body)
-  filtered_data = parsed_data.map { |pose| { "title" => pose["english_name"], "description" => pose["pose_description"] } }
+  filtered_data = parsed_data.map { |pose| { "title" => "Try this Yoga pose: #{pose["english_name"]}", "description" => pose["pose_description"] } }
 
 end
 
@@ -107,7 +107,7 @@ def fetch_recipe_data
   parsed_data = JSON.parse(response.body)
 
   actual_data = parsed_data["recipes"].map do |recipe|
-    { "title" => recipe["title"], "description" => strip_tags(recipe["summary"]) }
+    { "title" => "Try this Recipe: #{recipe["title"]}", "description" => strip_tags(recipe["summary"]) }
   end
 
   actual_data
@@ -139,7 +139,7 @@ def fetch_book_data
     title = parsed_data["title"]
     description = parsed_data["plot"]
 
-    [{ "title" => title, "description" => description }]
+    [{ "title" => "Read this book: #{title}", "description" => description }]
 
 end
 
@@ -166,7 +166,7 @@ def fetch_google_book_data(query, max_results = 40)
     if parsed_data['totalItems'] > 0
       parsed_data['items'].map do |item|
         volume_info = item['volumeInfo']
-        { 'title' => volume_info['title'], 'description' => volume_info['description'] }
+        { 'title' => "Read this book: #{volume_info['title']}", 'description' => volume_info['description'] }
       end
     else
       puts 'No books found.'
@@ -212,12 +212,12 @@ tasks = [
   { title: "Do a Nature Sketch or Painting", description: "Head outdoors, observe nature, and create a sketch or painting inspired by what you see.", interests: [misc_intrests] },
   { title: "Attend a Virtual Workshop or Webinar", description: "Enhance your skills or knowledge by attending a virtual workshop or webinar on a topic of interest. Many platforms offer free or affordable options.", interests: [life_intrests] },
   {
-  "title": "Baking a Classic Cake",
+  "title": "Bake a Classic Cake",
   "description": "Select a timeless cake recipe such as chocolate, vanilla, or carrot cake, and embark on the journey of baking it from scratch. Explore the nuances of ingredient selection, mixing techniques, and baking times to achieve a moist and flavorful result reminiscent of traditional baking.",
   interests: [baking_intrests]
   },
   {
-  "title": "Cookie Decorating Workshop",
+  "title": "Take a Cookie Decorating Workshop",
   "description": "Immerse yourself in the world of cookie decorating through an interactive virtual workshop. Learn various techniques including flooding, piping, and royal icing consistency to create intricate designs on sugar cookies. Explore themes like holidays, seasons, or personal creativity as you enhance your cookie decorating skills.",
   interests: [baking_intrests]
   },
@@ -227,37 +227,37 @@ tasks = [
   interests: [baking_intrests]
   },
   {
-  "title": "Cake Decorating Class",
+  "title": "Take a Cake Decorating Class",
   "description": "Enroll in an online cake decorating class led by expert instructors who will guide you through advanced techniques to transform plain cakes into works of art. Explore fondant sculpting, piping intricate designs, and creating elaborate cake toppers using gum paste. Unlock your creativity and elevate your cake decorating skills to the next level.",
   interests: [baking_intrests]
   },
   {
-  "title": "Pie Baking Workshop",
+  "title": "Take a Pie Baking Workshop",
   "description": "Join a virtual workshop focused on the art of pie baking, where you'll learn to master flaky pie crusts and delicious fillings. Explore classic flavors like apple, pumpkin, and pecan, as well as creative variations such as savory quiches or hand pies. Gain insights into techniques for achieving perfectly baked pies every time.",
   interests: [baking_intrests]
   },
   {
-  "title": "Cupcake Decorating Challenge",
+  "title": "Participate in a Cupcake Decorating Challenge",
   "description": "Challenge yourself to a cupcake decorating challenge where you'll experiment with various piping tips, frosting textures, and decorative elements to create stunning cupcake designs. From elegant floral patterns to whimsical characters, unleash your imagination and showcase your cupcake decorating prowess.",
   interests: [baking_intrests]
   },
   {
-  "title": "French Pastry Masterclass",
+  "title": "Take a French Pastry Masterclass",
   "description": "Immerse yourself in the refined art of French pastry-making with a masterclass led by expert pastry chefs. Learn to create classic French pastries such as croissants, éclairs, and tarts, mastering techniques like laminating dough, piping choux pastry, and crafting delicate fruit fillings. Elevate your baking skills and impress with sophisticated French desserts.",
   interests: [baking_intrests]
   },
   {
-  "title": "Chocolate Truffle Making",
+  "title": "Take a Chocolate Truffle Making Class",
   "description": "Indulge in the decadent world of chocolate truffles as you learn to craft velvety-smooth ganache fillings and coat them in rich, tempered chocolate. Discover flavor variations like dark chocolate, white chocolate, and infused ganaches, and explore creative coatings such as cocoa powder, chopped nuts, or edible gold dust.",
   interests: [baking_intrests]
   },
   {
-  "title": "Artisan Bread Baking",
+  "title": "Take a Artisan Bread Baking",
   "description": "Dive into the artisanal realm of bread baking, where you'll explore ancient techniques and modern innovations to create rustic loaves with complex flavors and textures. Experiment with sourdough starters, long fermentation times, and specialty grains to produce breads that are as visually stunning as they are delicious.",
   interests: [baking_intrests]
   },
   {
-  "title": "Macaron Making Workshop",
+  "title": "Take a Macaron Making Workshop",
   "description": "Embark on a macaron-making journey with a virtual workshop dedicated to mastering these delicate French confections. Learn the secrets to achieving the perfect meringue, mastering macaronage, and creating smooth, glossy shells in an array of vibrant colors. Explore fillings like ganache, buttercream, and fruit curds to customize your macarons to perfection.",
   interests: [baking_intrests]
   },
@@ -267,22 +267,22 @@ tasks = [
   interests: [music_intrests]
   },
   {
-  "title": "Songwriting Workshop",
+  "title": "Take a Songwriting Workshop",
   "description": "Participate in a songwriting workshop where you can learn the fundamentals of songwriting, including melody, lyrics, chord progressions, and song structure. Express your creativity and learn how to turn your ideas into original songs.",
   interests: [music_intrests]
   },
   {
-  "title": "Music Production Course",
+  "title": "Take a Music Production Course",
   "description": "Enroll in a music production course to learn the ins and outs of recording, mixing, and mastering music. Explore software such as Ableton Live, Pro Tools, or Logic Pro as you hone your skills in music production.",
   interests: [music_intrests]
   },
   {
-  "title": "Singing Lessons",
+  "title": "Take a Singing Lessons",
   "description": "Take singing lessons to improve your vocal technique, range, and performance skills. Whether you're a beginner or an experienced singer, working with a vocal coach can help you develop your voice and express yourself through music.",
   interests: [music_intrests]
   },
   {
-  "title": "Music Theory Class",
+  "title": "Take a Music Theory Class",
   "description": "Deepen your understanding of music theory by taking a music theory class. Learn about scales, chords, harmony, rhythm, and other essential concepts that form the foundation of music.",
   interests: [music_intrests]
   },
@@ -292,12 +292,12 @@ tasks = [
   interests: [music_intrests]
   },
   {
-  "title": "Concert or Music Festival",
+  "title": "Go to a Concert or Music Festival",
   "description": "Attend a concert or music festival to experience live music performances. Whether it's a small local gig or a large-scale music festival, live music events can be inspiring and enjoyable.",
   interests: [music_intrests]
   },
   {
-  "title": "Music Appreciation Course",
+  "title": "Take a Music Appreciation Course",
   "description": "Take a music appreciation course to explore different genres, styles, and periods of music. Learn about the cultural and historical context of music and deepen your appreciation for the diverse world of music.",
   interests: [music_intrests]
   },
@@ -312,17 +312,17 @@ tasks = [
   interests: [music_intrests]
   },
   {
-  "title": "Language Exchange Meetup",
+  "title": "Go to a Language Exchange Meetup",
   "description": "Join a language exchange meetup where you can practice speaking with native speakers of the language you're learning. Language exchange events provide an opportunity to improve your speaking and listening skills in a casual and supportive environment.",
   interests: [language_intrests]
   },
   {
-  "title": "Online Language Course",
+  "title": "Take a Online Language Course",
   "description": "Enroll in an online language course to learn a new language at your own pace. Whether you're a beginner or looking to improve your proficiency, online language courses offer interactive lessons, exercises, and quizzes to help you master vocabulary, grammar, and pronunciation.",
   interests: [language_intrests]
   },
   {
-  "title": "Language Immersion Program",
+  "title": "Go To A Language Immersion Program",
   "description": "Immerse yourself in a language immersion program where you can live and study in a country where the language is spoken. Language immersion programs provide intensive language instruction combined with cultural experiences, allowing you to accelerate your language learning and gain firsthand exposure to the language and culture.",
   interests: [language_intrests]
   },
