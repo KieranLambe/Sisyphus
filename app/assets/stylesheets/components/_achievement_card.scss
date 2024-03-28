@@ -1,9 +1,9 @@
-
-.container {
-  width: 100vw; /* Take up 100% of the viewport width */
-  /* Other styles */
-}
 .achievement-card {
+
+  .container {
+    width: 100vw; /* Take up 100% of the viewport width */
+    /* Other styles */
+  }
   background-color: #f0f0f0;
   border-radius: 5px;
   padding: 20px;
@@ -105,13 +105,13 @@
   width: 100%;
 }
 
-// .col-md-4 {
-//   display: grid;
-//   align-items: center; /* Horizontally center */
-//   justify-content: center; /* Vertically center */
-//   text-align: center; /* Optional: Center text horizontally */
-//   padding: 0; /* Reset padding */
-// }
+.col-md-4 {
+  display: grid;
+  align-items: center; /* Horizontally center */
+  justify-content: center; /* Vertically center */
+  text-align: center; /* Optional: Center text horizontally */
+  padding: 0; /* Reset padding */
+}
 
 .footer {
   background-color: #f0f0f0;
