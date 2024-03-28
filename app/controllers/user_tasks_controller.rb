@@ -27,12 +27,11 @@ class UserTasksController < ApplicationController
   end
 
   def update
-    # respond_to do |format|
-
-    if @user_task.update(user_task_params)
-      redirect_to user_tasks_path, notice: 'User task was successfully updated.'
+    @user_task = current_user.user_tasks.find(params[:id])
+    if @user_task.update(user_task_complete_params)
+      render json: { message: "#{@user_task}" }
     else
-      render :edit
+      render json: { error: @user_task.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
