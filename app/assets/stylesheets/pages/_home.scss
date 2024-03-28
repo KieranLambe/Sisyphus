@@ -15,6 +15,11 @@
   text-align: center;
 }
 
+.interest-image {
+  width: 25%;
+  height: auto; /* Maintain aspect ratio */
+}
+
 .button-container button,
 .btn-primary {
   background-color: #4caf50; /* Green background */
