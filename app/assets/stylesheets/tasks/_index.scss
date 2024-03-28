@@ -2,10 +2,14 @@
   text-decoration: none;
 }
 
+card-link {
+  padding: none;
+}
+
 // design to buttons
 /* Primary button styles */
 .btn-primary {
-  width: 150px; /* Set width */
+  width: 200px; /* Set width */
   height: 40px; /* Set height */
   background-color: #fe5f55; /* Main color */
   color: #fff; /* Text color */
@@ -19,6 +23,7 @@
 .btn-primary:hover {
   background-color: #c4453d; /* Darker shade of main color on hover */
   border-color: #555; /* Border color on hover */
+
 }
 
 
@@ -27,7 +32,7 @@
   background-color: #f0f0f0;
   color: white  ;
   border-radius: 5px;
-  padding: 20px;
+  padding: 10px;
   margin-bottom: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
@@ -60,7 +65,7 @@
 
 .card-title {
   color: #333;
-  margin-bottom: 10px;
+
 }
 p {
   color: #666;
@@ -74,13 +79,10 @@ h2 {
 
 }
 
-a, .page-current {
-  margin: 10px;
 
-}
 
 .pagination {
-  margin-top: 20px; /* Add some spacing above the pagination links */
+  // margin-top: 20px; /* Add some spacing above the pagination links */
   text-align: center; /* Center the pagination links */
 }
 
@@ -106,6 +108,6 @@ a, .page-current {
 }
 
 .col-md-4 {
-  width: 400px;
+  width: 420px;
   height: 300px;
 }
