@@ -5,7 +5,7 @@
 // design to buttons
 /* Primary button styles */
 .btn-primary {
-  width: 150px; /* Set width */
+  width: 250px; /* Set width */
   height: 40px; /* Set height */
   background-color: #fe5f55; /* Main color */
   color: #fff; /* Text color */
@@ -15,8 +15,18 @@
   transition: background-color 0.3s ease, border-color 0.3s ease; /* Smooth transition for hover effect */
 }
 
+.btn-secondary {
+  width: 250px; /* Set width */
+  height: 80px; /* Set height */
+  background-color: #fe5f55; /* Main color */
+  color: #fff; /* Text color */
+  border: 2px solid transparent; /* Transparent border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Add pointer cursor */
+  transition: background-color 0.3s ease, border-color 0.3s ease; /* Smooth transition for hover effect */
+}
 /* Hover effect */
-.btn-primary:hover {
+.btn-primary:hover .btn-secondary{
   background-color: #c4453d; /* Darker shade of main color on hover */
   border-color: #555; /* Border color on hover */
 }
