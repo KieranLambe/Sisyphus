@@ -4,6 +4,7 @@
       <div class="login-box d-flex flew-column justify-content-center" style="background-color: #E2725B; padding: 20px; border-radius: 10px;">
         <%= simple_form_for(current_user) do |f| %>
           <%= f.association :interests, as: :check_boxes, input_html: { class: 'interest' } %>
+          <%= f.submit %>
         <% end %>
       </div>
       <div class="justify-content-center">

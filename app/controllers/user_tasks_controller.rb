@@ -27,10 +27,11 @@ class UserTasksController < ApplicationController
   end
 
   def update
-    if @user_task.update(user_task_params)
-      redirect_to user_tasks_path, notice: 'User task was successfully updated.'
+    @user_task = current_user.user_tasks.find(params[:id])
+    if @user_task.update(user_task_complete_params)
+      render json: { message: "#{@user_task}" }
     else
-      render :edit
+      render json: { error: @user_task.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
@@ -70,7 +71,8 @@ class UserTasksController < ApplicationController
 
   def toggle_complete
     @user_task = UserTask.find(params[:id])
-    @user_task.update(complete: true)
+    @user_task.update user_task_complete_params
+    @user_task.save
     redirect_to root_path, notice: 'Task complete'
   end
 
@@ -82,6 +84,10 @@ class UserTasksController < ApplicationController
 
   def user_task_params
     params.permit(:user_id, :task_id)
+  end
+
+  def user_task_complete_params
+    params.require(:user_task).permit(:complete)
   end
 
 

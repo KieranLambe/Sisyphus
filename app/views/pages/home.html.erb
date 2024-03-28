@@ -11,12 +11,13 @@
     <h1>The legend of you trying <br> to get stuff done</h1>
   </div>
 
+
   <div class="card-list user_tasks">
     <h3 class="fs-2 fw-bold"> Your tasks for the day </h3>
 
     <% interests = Interest.includes(tasks: :user_tasks).order(:title) %>
     <% interests.each do |interest| %>
-      <% interest_tasks = interest.tasks.select { |task| task.user_tasks.exists?(user_id: current_user.id) } %>
+      <% interest_tasks = interest.tasks.select { |task| task.user_tasks.exists?(user_id: current_user ) } %>
       <% next if interest_tasks.empty? %>
       <div class="interest-group">
         <h4><%= interest.title %></h4>
@@ -24,18 +25,27 @@
           <% user_task = task.user_tasks.find_by(user_id: current_user.id) %>
           <div class="d-flex flex-column">
             <% if user_task %>
-              <% if user_task.complete == false %>
+              <%# <% if user_task.complete == false %>
                 <div class="task-card">
                   <h4 class="user_task"><%= link_to task.title, user_user_task_path(current_user, user_task), class: "text-decoration-none text-dark" %></h4>
-                  <div class="button-container d-flex">
-                    <%= link_to "Roll it", toggle_complete_user_task_path(user_task), data: { controller: "complete-button", turbo_method: :patch }, class: 'btn-primary' %>
+                  <%# <div class="button-container d-flex"> %>
+                    <%# <%= link_to "Roll it", toggle_complete_user_task_path(user_task), data: { controller: "complete-button", turbo_method: :patch }, class: 'btn-primary' %>
+                    <%# <%= link_to "Remove", user_task_path(user_task), data: { turbo_method: :delete, turbo_confirm: "Are you sure" } %>
+                  <%# </div> %>
+                  <div class="button-container d-flex" data-controller="complete-button">
+                    <%# <%= link_to "Roll it", toggle_complete_user_task_path(user_task), data: { target: "button", action: "click->roll-boulder#rollBoulder", turbo_method: :patch }, class: 'btn-primary' %>
+                    <%= form_with(model: user_task, class: "text-lg inline-block my-3 w-72", url: user_user_task_path(current_user, user_task), method: :patch, data: { complete_button_target: "form" } ) do |f| %>
+                      <%= f.check_box :complete, data: { user_id: user_task.user_id, id: user_task.id, complete_button_target: "button", action: "roll-boulder#rollBoulder complete-button#tick" },
+                      class: "mr-2 align-middle bg-gray-50 border-gray-300 focus:ring-3 focus:ring-blue-300 h-5 w-5 rounded checked:bg-green-500" %>
+                    <% end %>
+                    <%# <button class="btn-primary" data-action="click->roll-boulder#nextStage">Roll it!</button> %>
                     <%= link_to "Remove", user_task_path(user_task), data: { turbo_method: :delete, turbo_confirm: "Are you sure" } %>
                   </div>
                 </div>
-              <% else %>
-                <h4><%= task.title %></h4>
-                <p>This task is complete</p>
-              <% end %>
+              <%# <% else %>
+                <%# <h4><%= task.title %>
+                <%# <p>This task is complete</p> %>
+              <%# <% end %>
             <% end %>
           </div>
         <% end %>
