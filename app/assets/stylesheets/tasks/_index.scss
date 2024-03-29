@@ -114,14 +114,29 @@ a, .page-current {
 
 /* Custom styling for the text input */
 .custom-input {
-  width: 100%;
-  padding: 10px;
+  position: relative;
+  width: calc(100% - 40px);
+  padding: 10px 50px;
   border: 2px solid #fe5f55;
   border-radius: 50px;
   font-size: 20px;
   background-color: #f0f0f0;
 }
 
+input#query {
+  border-radius: 50px;
+}
+
 .d-none {
   display: none;
+}
+
+.search-image {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  width: 25px;
+  height: 25px;
+  z-index: 1;
 }
