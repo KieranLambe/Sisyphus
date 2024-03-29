@@ -1,16 +1,18 @@
-<div class="container mt-5">
-  <div class="row justify-content-center">
-    <div class="col-12 col-sm-4">
-      <div class="login-box d-flex flew-column justify-content-center" style="background-color: #E2725B; padding: 20px; border-radius: 10px;">
-        <%= simple_form_for(current_user) do |f| %>
-          <%= f.association :interests, as: :check_boxes, input_html: { class: 'interest' } %>
-          <%= f.submit %>
-        <% end %>
-      </div>
-      <div class="justify-content-center">
-        <button class="begin-journey-btn button" onclick="document.getElementById('second-button').style.display = 'block'; this.style.display = 'none';">Click Me!</button>
-        <button id="second-button" style="display: none;">Second Button</button>
+
+
+ <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-12 col-sm-4">
+        <div class="login-box d-flex flew-column justify-content-center" style="background-color: #E2725B; padding: 20px; border-radius: 10px;">
+          <%= simple_form_for(current_user) do |f| %>
+            <%= f.association :interests, as: :check_boxes, input_html: { class: 'interest' } %>
+            <%= f.submit class: "btn btn-primary mt-3" %>
+          <% end %>
+        </div>
+        <div class="justify-content-center mt-3">
+          <button class="begin-journey-btn btn btn-success" id="first-button">Click Me!</button>
+          <button class="btn btn-secondary" id="second-button" style="display: none;">Second Button</button>
+        </div>
       </div>
     </div>
   </div>
-</div>

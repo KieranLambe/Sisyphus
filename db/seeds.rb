@@ -480,7 +480,6 @@ achievements.each do |achievement|
 end
 
 intrests.each do |intrest|
-  p intrest[:title]
   achievements = [
     { name: "New beginnings: #{intrest[:title]}", description: "Complete a #{intrest[:title]} task for the first time" },
     { name: "Warming up: #{intrest[:title]}", description: "Complete 3 #{intrest[:title]} tasks" }
