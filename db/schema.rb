@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_23_153903) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_22_183413) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -71,12 +71,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_23_153903) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "user_achievments", force: :cascade do |t|
+  create_table "user_achievements", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "achievment_id", null: false
+    t.bigint "achievement_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "achieved", default: false
+    t.index ["achievement_id"], name: "index_user_achievements_on_achievement_id"
     t.index ["user_id"], name: "index_user_achievements_on_user_id"
   end
 
@@ -128,8 +129,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_23_153903) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "interest_tasks", "interests"
   add_foreign_key "interest_tasks", "tasks"
-  add_foreign_key "user_achievments", "achievements", column: "achievment_id"
-  add_foreign_key "user_achievments", "users"
+  add_foreign_key "user_achievements", "achievements"
+  add_foreign_key "user_achievements", "users"
   add_foreign_key "user_interests", "interests"
   add_foreign_key "user_interests", "users"
   add_foreign_key "user_tasks", "tasks"

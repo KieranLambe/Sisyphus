@@ -26,7 +26,7 @@
          <div class="task-container">
             <p><strong>Task:</strong> <%= @task %>Baking a classic cake</p>
             <p><strong>Completed: 2d ago</strong> <%= @completion_time %></p>
-            <p><strong></strong> <span class="status">Completed 7 times this month<i class="fas fa-fire"></i></span></p>
+            <p><strong></strong> <span class="status">Completed 7 times this month<img src="<%= asset_path('fire.png') %>" alt="Fire Icon"style="width: 19px; height: 19px;"></span></p>
           </div>
         </div>
       </div>
@@ -49,7 +49,7 @@
           <div class="col-md-4">
             <div class="achievement-card">
               <div class="achievement-icon">
-                <i class="fas fa-medal"></i> <!-- Badge icon -->
+                <img src="<%= asset_path('medal.png')%>" alt="<%= achievement.name %>">
               </div>
               <div class="achievement-info">
                 <h4><%= achievement.name %></h4>
