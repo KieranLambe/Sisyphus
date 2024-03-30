@@ -16,8 +16,8 @@
     margin-bottom: 15px;
 
     img {
-      width: 80px; /* Adjust size as needed */
-      height: 80px; /* Adjust size as needed */
+      width: 44px; /* Adjust size as needed */
+      height: 39px; /* Adjust size as needed */
     }
   }
 
@@ -31,7 +31,7 @@
 
     p {
       color: #666;
-      font-size: 20px;
+      font-size: 19px;
       line-height: 2.0;
       margin-top: 5px;
     }
@@ -65,8 +65,8 @@
 
 /* Styles for task container */
 .task-container {
-  padding: 20px;
-  border: 1px solid #ccc;
+  padding: 52px;
+  border: 4px solid #ccc;
   border-radius: 5px;
   margin: 20px auto;
   max-width: 600px;
@@ -80,6 +80,12 @@
   margin-bottom: 5px;
 }
 
+.recent-achievements h3 {
+  margin-bottom: 10px;
+font-size: 35px;
+color:$final-main;
+font-weight: bold;
+}
 // .bottom-section {
 //   display: flex;
 //   flex-wrap: wrap;
@@ -88,6 +94,9 @@
 // }
 
 .title2 {
+  font-weight: bold;
+  color: $final-main;
+  font-size: 40px;
   display: flex;
   justify-content: center; /* Horizontally center */
 }
