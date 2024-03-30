@@ -18,7 +18,7 @@
   align-items: center;
 }
 
-.interest:hover + label {
+.user-interest:hover + label {
   background-color: $custom-background;
 }
 
@@ -42,6 +42,19 @@
     margin-bottom: 10px;
     text-align: center;
     display: flex;
+  }
+  .selected-indicator {
+    background-color: $final-contrast; /* Green background color */
+    color: #fff; /* White text color */
+    padding: 2px 6px; /* Padding around the text */
+    border-radius: 4px; /* Rounded corners */
+    font-size: 12px; /* Font size */
+  }
+
+  .login-box{
+    background-color: $final-contrast;
+    padding: 20px;
+    border-radius: 10px;
   }
 
   // grayscale everything but the pop up
