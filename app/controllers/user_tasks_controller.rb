@@ -36,8 +36,11 @@ class UserTasksController < ApplicationController
   end
 
   def destroy
-    @user_task.destroy
-    redirect_to root_path, notice: 'Task has been removed.'
+    # render json: { message: "Task has been removed" }
+    if @user_task.destroy
+      respond_to :json
+    end
+    # render json: { error: @user_task.errors.full_messages }, status: :unprocessable_entity
   end
 
   def add_tasks_to_user
