@@ -1,9 +1,10 @@
 import { Controller } from "@hotwired/stimulus";
 
-var forms = document.querySelectorAll(".button-container");
+var forms = forms = document.querySelectorAll(".button-container");
 var forms_array = [...forms];
 
 var checked_array;
+let list_length;
 
 // const hillWidth = this.hillTarget.offsetWidth;
 // const hillHeight = this.hillTarget.offsetHeight;
@@ -11,28 +12,22 @@ var checked_array;
 // const boulderHeight = this.boulderTarget.offsetHeight;
 
 export default class extends Controller {
-  static targets = ["boulder", "hill"];
+  static targets = ["boulder", "hill", "remove", "form"];
 
-  initialize() {
+  connect() {
     checked_array = [];
     const hillWidth = this.hillTarget.offsetWidth;
     const hillHeight = this.hillTarget.offsetHeight;
     const boulderWidth = this.boulderTarget.offsetWidth;
     const boulderHeight = this.boulderTarget.offsetHeight;
     const list_length = forms_array.length
-    // console.log(this.boulderTarget);
-    // console.log(this.hillTarget);
-    forms_array.forEach(form => {
-      if(form.children[0].children[3].checked) {
-        checked_array.push(form.children[0].children[3])
-      }
-    })
-    console.log(checked_array)
-    this.currentStage = checked_array.length;
-    console.log(this.currentStage)
 
+    // this.setStages()
+    this.currentStage = checked_array.length;
     const newPositionX = hillWidth - boulderWidth;
     const newPositionY = hillHeight - boulderHeight;
+
+    this.getChecked()
 
     if (this.currentStage === 0) {
       // Move the this.boulderTarget to the top right
@@ -55,10 +50,40 @@ export default class extends Controller {
       const fourthPositionY = (newPositionY / list_length) * checked_array.length;
       return this.boulderTarget.style.transform = `translate(${fourthPositionX}px, -${fourthPositionY}px) rotate(1440deg)`;
       // this.currentStage++;
+    } else if (this.currentStage === 4) {
+      const fourthPositionX = (newPositionX / list_length) * checked_array.length;
+      const fourthPositionY = (newPositionY / list_length) * checked_array.length;
+      return this.boulderTarget.style.transform = `translate(${fourthPositionX}px, -${fourthPositionY}px) rotate(1440deg)`;
     } else {
       return this.boulderTarget.style.transform = `translate(${newPositionX}px, -${newPositionY}px) rotate(1800deg)`;
     }
-}
+  }
+
+  getChecked() {
+    forms_array.forEach(form => {
+      if(form.children[0].children[3].checked) {
+        checked_array.push(form.children[0].children[3])
+      }
+    })
+  }
+
+  setStages() {
+    list_length = forms_array.length
+    return list_length
+  }
+
+  remove(e) {
+    const url = this.formTarget.action;
+    const csrfToken = document.querySelector("[name='csrf-token']").content;
+
+    fetch(url, {
+    method: "DELETE",
+    mode: "cors",
+    cache: "no-cache",
+    credentials: "same-origin",
+    headers: {"Content-Type": "application/json", "X-CSRF-Token": csrfToken},
+    }).then((response) => response.json()).then((data) => console.log(data))
+  }
 
   rollBoulder(e) {
     const button = e.target;
@@ -68,11 +93,14 @@ export default class extends Controller {
     const boulderHeight = this.boulderTarget.offsetHeight;
     // var forms = document.querySelectorAll(".button-container");
     // var forms_array = [...forms];
-    const list_length = forms_array.length
 
+    this.setStages()
+
+    // respond to check event, see if checked
     if(button.checked) {
       checked_array.push(button)
-      this.currentStage = checked_array.length;
+      this.currentStage = checked_array.length
+      //
       // console.log(" hi")
     } else {
       // let index = forms_array.indexOf(button)
@@ -82,9 +110,6 @@ export default class extends Controller {
       })
       this.currentStage = checked_array.length;
     }
-
-    console.log(checked_array)
-    console.log(this.currentStage)
 
     this.boulderTarget.classList.add("transition-effect");
 
@@ -112,6 +137,10 @@ export default class extends Controller {
       const fourthPositionY = (newPositionY / list_length) * checked_array.length;
       return this.boulderTarget.style.transform = `translate(${fourthPositionX}px, -${fourthPositionY}px) rotate(1440deg)`;
       // this.currentStage++;
+    } else if (this.currentStage === 4) {
+      const fourthPositionX = (newPositionX / list_length) * checked_array.length;
+      const fourthPositionY = (newPositionY / list_length) * checked_array.length;
+      return this.boulderTarget.style.transform = `translate(${fourthPositionX}px, -${fourthPositionY}px) rotate(1440deg)`;
     } else {
       return this.boulderTarget.style.transform = `translate(${newPositionX}px, -${newPositionY}px) rotate(1800deg)`;
     } }
