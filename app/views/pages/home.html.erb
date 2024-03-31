@@ -6,13 +6,13 @@
   <div class="diagonal-line"></div>
 
 
-  <div class="title-card">
+  <div class="title-card" data-controller="fade-in" data-target="fade-in.firstFadeInElement">
     <%# <h1>Sisyphus</h1> %>
     <h1>The legend of you trying <br> to get stuff done</h1>
   </div>
 
 
-  <div class="card-list user_tasks">
+  <div class="card-list user_tasks" data-controller="fade-in" data-target="fade-in.secondFadeInElement">
     <h3 class="fs-2 fw-bold"> Your tasks for the day </h3>
 
     <% interests = Interest.includes(tasks: :user_tasks).order(:title) %>

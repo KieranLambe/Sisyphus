@@ -3,7 +3,7 @@
     <% @interests.each_slice(4) do |slice| %>
       <% slice.each do |interest| %>
         <div class="col-md-3 mb-3">
-           <%= button_to tasks_path(query: interest.title), method: :get, class: "btn btn-primary btn-block interest-button", remote: true, data: { title: interest.title } do %>
+           <%= button_to tasks_path(query: interest.title), method: :get, class: "btn btn-secondary btn-block interest-button", remote: true, data: { title: interest.title } do %>
             <%= image_tag "#{interest.title.downcase.gsub(/\s+/, '_')}.png", alt: interest.title, class: "interest-image"  %>
             <%= interest.title %>
             <% end%>

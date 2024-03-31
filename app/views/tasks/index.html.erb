@@ -1,19 +1,28 @@
-<div data-controller="search-tasks interest-search">
-  <div class="row justify-content-center">
-    <div class="col-sm-8 my-3">
-      <%= form_with url: tasks_path, method: :get, html: {class: "d-flex", data: {search_tasks_target: "form"} } do |f|%>
+<div data-controller="search-tasks interest-search typing-effect">
+<div class="row justify-content-center">
+  <div class="col-sm-8 my-3">
+    <%= form_with url: tasks_path, method: :get, html: { class: "custom-form" }, data: { search_tasks_target: "form" } do |f| %>
+      <div class="input-group">
+        <%= image_tag("search.png", class: "search-image", alt: "Search Image") %>
         <%= f.text_field :query,
-              class: "form-control",
-              placeholder: "Search for more tasks",
+              class: "form-control custom-input",
+              placeholder: "Search for more tasks...",
               value: params[:query],
-              data: { search_tasks_target: "query",
-              action: "keyup->search-tasks#search"
+              data: {
+                typing_effect_target: "placeholder",
+                search_tasks_target: "query",
+                action: "keyup->search-tasks#search"
               }
           %>
-        <%= f.submit "Search", class: "btn btn-primary d-none", id: "hidden-submit", disabled: true %>
-      <% end %>
-    </div>
+          <div class="input-group-append d-none">
+            <%= f.submit "Search" %>
+          </div>
+      </div>
+    <% end %>
   </div>
+</div>
+
+
 
   <div class="task-grid-container">
     <div class="container">
@@ -24,8 +33,4 @@
       <%= render "lists", tasks: @tasks %>
     </div>
   </div>
-
-  <footer class="footer">
-    <!-- Footer content -->
-  </footer>
 </div>

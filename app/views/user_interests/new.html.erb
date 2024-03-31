@@ -1,15 +1,32 @@
 <div class="container mt-5">
-  <div class="row justify-content-center">
-    <div class="col-12 col-sm-4">
-      <div class="login-box d-flex flew-column justify-content-center" style="background-color: #E2725B; padding: 20px; border-radius: 10px;">
-        <%= simple_form_for(current_user) do |f| %>
-          <%= f.association :interests, as: :check_boxes, input_html: { class: 'interest' } %>
-          <%= f.submit %>
-        <% end %>
-      </div>
-      <div class="justify-content-center">
-        <button class="begin-journey-btn button" onclick="document.getElementById('second-button').style.display = 'block'; this.style.display = 'none';">Click Me!</button>
-        <button id="second-button" style="display: none;">Second Button</button>
+  <div class="row">
+    <div class="col">
+      <div class="login-box d-flex justify-content-center align-items-center">
+        <!-- Interests Section -->
+        <div class="interests-section">
+          <h2 class=" title1 text-center">Select your interests</h2>
+          <!-- Displaying interests -->
+          <% @interests.each_slice(2) do |interest_group| %>
+            <div class="row mb-3">
+              <% interest_group.each do |interest| %>
+                <div class="col-md-6">
+                  <% if current_user.interests.include?(interest) %>
+                    <%= button_to user_user_interests_path(current_user), method: :delete, class: "btn btn-secondary btn-block interest-button user-interest", remote: true, params: { user_interest: {interest_id: interest.id, user_id: current_user.id} } do %>
+                      <%= image_tag "#{interest.title.downcase.gsub(/\s+/, '_')}.png", alt: interest.title, class: "interest-image"  %>
+                      <%= interest.title %>
+                      <span class="selected-indicator">Selected</span>
+                    <% end %>
+                  <% else %>
+                    <%= button_to user_user_interests_path(current_user), method: :post, class: "btn btn-secondary btn-block interest-button", remote: true, params: { user_interest: {interest_id: interest.id, user_id: current_user.id} } do %>
+                      <%= image_tag "#{interest.title.downcase.gsub(/\s+/, '_')}.png", alt: interest.title, class: "interest-image"  %>
+                      <%= interest.title %>
+                    <% end %>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
