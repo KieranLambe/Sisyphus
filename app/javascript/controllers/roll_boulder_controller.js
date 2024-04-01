@@ -12,9 +12,13 @@ let list_length;
 // const boulderHeight = this.boulderTarget.offsetHeight;
 
 export default class extends Controller {
-  static targets = ["boulder", "hill", "remove", "form"];
+  static targets = ["boulder", "hill", "remove", "form", "card"];
 
   connect() {
+    this.setPosition()
+  }
+
+  setPosition() {
     checked_array = [];
     const hillWidth = this.hillTarget.offsetWidth;
     const hillHeight = this.hillTarget.offsetHeight;
@@ -27,6 +31,7 @@ export default class extends Controller {
     const newPositionX = hillWidth - boulderWidth;
     const newPositionY = hillHeight - boulderHeight;
 
+    this.setStages()
     this.getChecked()
 
     if (this.currentStage === 0) {
@@ -61,8 +66,9 @@ export default class extends Controller {
 
   getChecked() {
     forms_array.forEach(form => {
-      if(form.children[0].children[3].checked) {
-        checked_array.push(form.children[0].children[3])
+      if(form.children[0].children[2].children[0].children[2].checked) {
+        checked_array.push(form.children[0].children[2].children[0].children[2])
+        console.checked_array
       }
     })
   }
@@ -82,7 +88,12 @@ export default class extends Controller {
     cache: "no-cache",
     credentials: "same-origin",
     headers: {"Content-Type": "application/json", "X-CSRF-Token": csrfToken},
-    }).then((response) => response.json()).then((data) => console.log(data))
+    }) .then((response) => response.json())
+       .then((data) => console.log(data))
+
+    this.cardTarget.classList.add("d-none")
+    this.setPosition()
+    console.log(this.currentStage)
   }
 
   rollBoulder(e) {
