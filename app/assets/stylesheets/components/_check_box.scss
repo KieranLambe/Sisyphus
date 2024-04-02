@@ -28,18 +28,18 @@
 }
 .checkbox-wrapper-44 .toggleButton input + div svg {
   fill: none;
-  stroke-width: 2;
+  stroke-width: 4;
   stroke: #000;
   stroke-linecap: round;
   stroke-linejoin: round;
   width: 44px;
-  height: 46px;
+  height: 46.7px;
   display: block;
   position: absolute;
   left: -2.6px;
   top: -3.6px;
   right: -3px;
-  bottom: -3px;
+  bottom: -2px;
   z-index: 1;
   stroke-dashoffset: 124.6;
   stroke-dasharray: 0 162.6 133 29.6;
@@ -48,7 +48,7 @@
 .checkbox-wrapper-44 .toggleButton input + div:before,
 .checkbox-wrapper-44 .toggleButton input + div:after {
   content: "";
-  width: 3px;
+  width: 4px;
   height: 16px;
   background: #000;
   position: absolute;
@@ -201,6 +201,10 @@
 }
 
 .toggleButton:hover {
+  // top: 10px;
+  // left: 10px;
   border-radius: 25px;
   background-color: white;
+  background-position-x: center;
+  background-position-y: center;
 }

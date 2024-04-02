@@ -26,13 +26,13 @@
         <div class="d-flex">
           <% if user_task %>
             <%# <% if user_task.complete == false %>
-              <div class="task-card" data-roll-boulder-target="card">
+              <div class="task-card d-flex" data-roll-boulder-target="card">
                 <h4 class="user_task col-sm-8"><%= link_to task.title, user_user_task_path(current_user, user_task), class: "text-decoration-none text-dark" %></h4>
                 <%# <div class="button-container d-flex"> %>
                   <%# <%= link_to "Roll it", toggle_complete_user_task_path(user_task), data: { controller: "complete-button", turbo_method: :patch }, class: 'btn-primary' %>
                   <%# <%= link_to "Remove", user_task_path(user_task), data: { turbo_method: :delete, turbo_confirm: "Are you sure" } %>
                 <%# </div> %>
-                <div class="button-container d-flex col-sm-4" data-controller="complete-button">
+                <div class="button-container d-flex col-sm-3" data-controller="complete-button">
                   <%# <%= link_to "Roll it", toggle_complete_user_task_path(user_task), data: { target: "button", action: "click->roll-boulder#rollBoulder", turbo_method: :patch }, class: 'btn-primary' %>
                   <%# <button data-complete-button-target="button" data-action="roll-boulder#rollBoulder complete-button#tick"></button> %>
                   <%= form_with(model: user_task, class: "check_form text-lg inline-block w-72", url: user_user_task_path(current_user, user_task), method: :patch, data: { complete_button_target: "form", roll_boulder_target: "form" } ) do |f| %>
