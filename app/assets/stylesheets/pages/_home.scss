@@ -263,3 +263,35 @@ label {
 label:hover {
   color: #ffd700;
 }
+
+.task_description {
+  font: $body-font;
+  font-size: 20px;
+  margin-bottom: auto; /* Pushes the description to the middle */
+  max-width: 750px; /* Adjust max-width as needed */
+  margin-top: 10px; /* Adjust margin-top as needed */
+  padding-bottom: 30px;
+}
+
+.task_t {
+  font-size: 24px;
+  font: $headers-font;
+  font-weight: bold;
+  margin-top: 30px; /* Adjust margin-top as needed */
+
+    h2{
+      margin: 0;
+    }
+}
+
+.task_add {
+  margin-top: 20px; /* Adjust margin-top as needed */
+  margin-bottom: 20px; /* Adjust margin-bottom as needed */
+}
+
+.container_task {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
