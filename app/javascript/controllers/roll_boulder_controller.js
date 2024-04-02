@@ -15,10 +15,7 @@ export default class extends Controller {
   static targets = ["boulder", "hill", "remove", "form", "card"];
 
   connect() {
-    this.setPosition()
-  }
-
-  setPosition() {
+    // this.setPosition()
     checked_array = [];
     const hillWidth = this.hillTarget.offsetWidth;
     const hillHeight = this.hillTarget.offsetHeight;
@@ -31,8 +28,8 @@ export default class extends Controller {
     const newPositionX = hillWidth - boulderWidth;
     const newPositionY = hillHeight - boulderHeight;
 
-    this.setStages()
     this.getChecked()
+    this.setStages()
 
     if (this.currentStage === 0) {
       // Move the this.boulderTarget to the top right
@@ -62,6 +59,10 @@ export default class extends Controller {
     } else {
       return this.boulderTarget.style.transform = `translate(${newPositionX}px, -${newPositionY}px) rotate(1800deg)`;
     }
+  }
+
+  setPosition() {
+
   }
 
   getChecked() {

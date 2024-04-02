@@ -23,20 +23,20 @@
       <h4><%= interest.title %></h4>
       <% interest_tasks.each do |task| %>
         <% user_task = task.user_tasks.find_by(user_id: current_user.id) %>
-        <div class="d-flex flex-column">
+        <div class="d-flex">
           <% if user_task %>
             <%# <% if user_task.complete == false %>
               <div class="task-card" data-roll-boulder-target="card">
-                <h4 class="user_task"><%= link_to task.title, user_user_task_path(current_user, user_task), class: "text-decoration-none text-dark" %></h4>
+                <h4 class="user_task col-sm-8"><%= link_to task.title, user_user_task_path(current_user, user_task), class: "text-decoration-none text-dark" %></h4>
                 <%# <div class="button-container d-flex"> %>
                   <%# <%= link_to "Roll it", toggle_complete_user_task_path(user_task), data: { controller: "complete-button", turbo_method: :patch }, class: 'btn-primary' %>
                   <%# <%= link_to "Remove", user_task_path(user_task), data: { turbo_method: :delete, turbo_confirm: "Are you sure" } %>
                 <%# </div> %>
-                <div class="button-container d-flex" data-controller="complete-button">
+                <div class="button-container d-flex col-sm-4" data-controller="complete-button">
                   <%# <%= link_to "Roll it", toggle_complete_user_task_path(user_task), data: { target: "button", action: "click->roll-boulder#rollBoulder", turbo_method: :patch }, class: 'btn-primary' %>
                   <%# <button data-complete-button-target="button" data-action="roll-boulder#rollBoulder complete-button#tick"></button> %>
-                  <%= form_with(model: user_task, class: "check_form text-lg inline-block my-3 w-72", url: user_user_task_path(current_user, user_task), method: :patch, data: { complete_button_target: "form", roll_boulder_target: "form" } ) do |f| %>
-                    <div class="checkbox-wrapper-44">
+                  <%= form_with(model: user_task, class: "check_form text-lg inline-block w-72", url: user_user_task_path(current_user, user_task), method: :patch, data: { complete_button_target: "form", roll_boulder_target: "form" } ) do |f| %>
+                    <div class="checkbox-wrapper-44 m-2">
                       <label class="toggleButton ">
                         <%# <i class="app-icon fa-solid fa-check"></i> %>
                         <%= f.check_box :complete, data: { user_id: user_task.user_id, id: user_task.id, complete_button_target: "button", action: "roll-boulder#rollBoulder complete-button#tick" }, class: "check_box d-none" %>
@@ -47,213 +47,10 @@
                         </div>
                       </label>
                     </div>
-
-                      <style>
-                        .checkbox-wrapper-44 input[type="checkbox"] {
-                          display: none;
-                          visibility: hidden;
-                        }
-
-                        .checkbox-wrapper-44 *,
-                        .checkbox-wrapper-44 *::before,
-                        .checkbox-wrapper-44 *::after {
-                          box-sizing: border-box;
-                        }
-
-                        .checkbox-wrapper-44 .toggleButton {
-                          cursor: pointer;
-                          display: block;
-                          transform-origin: 50% 50%;
-                          transform-style: preserve-3d;
-                          transition: transform 0.14s ease;
-                        }
-                        .checkbox-wrapper-44 .toggleButton:active {
-                          transform: rotateX(30deg);
-                        }
-                        .checkbox-wrapper-44 .toggleButton input + div {
-                          border: 3px solid rgba(0, 0, 0, 0.2);
-                          border-radius: 50%;
-                          position: relative;
-                          width: 44px;
-                          height: 44px;
-                        }
-                        .checkbox-wrapper-44 .toggleButton input + div svg {
-                          fill: none;
-                          stroke-width: 3.6;
-                          stroke: #000;
-                          stroke-linecap: round;
-                          stroke-linejoin: round;
-                          width: 44px;
-                          height: 44px;
-                          display: block;
-                          position: absolute;
-                          left: -3px;
-                          top: -3px;
-                          right: -3px;
-                          bottom: -3px;
-                          z-index: 1;
-                          stroke-dashoffset: 124.6;
-                          stroke-dasharray: 0 162.6 133 29.6;
-                          transition: all 0.4s ease 0s;
-                        }
-                        .checkbox-wrapper-44 .toggleButton input + div:before,
-                        .checkbox-wrapper-44 .toggleButton input + div:after {
-                          content: "";
-                          width: 3px;
-                          height: 16px;
-                          background: #000;
-                          position: absolute;
-                          left: 50%;
-                          top: 50%;
-                          border-radius: 5px;
-                        }
-                        .checkbox-wrapper-44 .toggleButton input + div:before {
-                          opacity: 0;
-                          transform: scale(0.3) translate(-50%, -50%) rotate(45deg);
-                          -webkit-animation: bounceInBefore-44 0.3s linear forwards 0.3s;
-                                  animation: bounceInBefore-44 0.3s linear forwards 0.3s;
-                        }
-                        .checkbox-wrapper-44 .toggleButton input + div:after {
-                          opacity: 0;
-                          transform: scale(0.3) translate(-50%, -50%) rotate(-45deg);
-                          -webkit-animation: bounceInAfter-44 0.3s linear forwards 0.3s;
-                                  animation: bounceInAfter-44 0.3s linear forwards 0.3s;
-                        }
-                        .checkbox-wrapper-44 .toggleButton input:checked + div svg {
-                          stroke-dashoffset: 162.6;
-                          stroke-dasharray: 0 162.6 28 134.6;
-                          transition: all 0.4s ease 0.2s;
-                        }
-                        .checkbox-wrapper-44 .toggleButton input:checked + div:before {
-                          opacity: 0;
-                          transform: scale(0.3) translate(-50%, -50%) rotate(45deg);
-                          -webkit-animation: bounceInBeforeDont-44 0.3s linear forwards 0s;
-                                  animation: bounceInBeforeDont-44 0.3s linear forwards 0s;
-                        }
-                        .checkbox-wrapper-44 .toggleButton input:checked + div:after {
-                          opacity: 0;
-                          transform: scale(0.3) translate(-50%, -50%) rotate(-45deg);
-                          -webkit-animation: bounceInAfterDont-44 0.3s linear forwards 0s;
-                                  animation: bounceInAfterDont-44 0.3s linear forwards 0s;
-                        }
-
-                        @-webkit-keyframes bounceInBefore-44 {
-                          0% {
-                            opacity: 0;
-                            transform: scale(0.3) translate(-50%, -50%) rotate(45deg);
-                          }
-                          50% {
-                            opacity: 0.9;
-                            transform: scale(1.1) translate(-50%, -50%) rotate(45deg);
-                          }
-                          80% {
-                            opacity: 1;
-                            transform: scale(0.89) translate(-50%, -50%) rotate(45deg);
-                          }
-                          100% {
-                            opacity: 1;
-                            transform: scale(1) translate(-50%, -50%) rotate(45deg);
-                          }
-                        }
-
-                        @keyframes bounceInBefore-44 {
-                          0% {
-                            opacity: 0;
-                            transform: scale(0.3) translate(-50%, -50%) rotate(45deg);
-                          }
-                          50% {
-                            opacity: 0.9;
-                            transform: scale(1.1) translate(-50%, -50%) rotate(45deg);
-                          }
-                          80% {
-                            opacity: 1;
-                            transform: scale(0.89) translate(-50%, -50%) rotate(45deg);
-                          }
-                          100% {
-                            opacity: 1;
-                            transform: scale(1) translate(-50%, -50%) rotate(45deg);
-                          }
-                        }
-                        @-webkit-keyframes bounceInAfter-44 {
-                          0% {
-                            opacity: 0;
-                            transform: scale(0.3) translate(-50%, -50%) rotate(-45deg);
-                          }
-                          50% {
-                            opacity: 0.9;
-                            transform: scale(1.1) translate(-50%, -50%) rotate(-45deg);
-                          }
-                          80% {
-                            opacity: 1;
-                            transform: scale(0.89) translate(-50%, -50%) rotate(-45deg);
-                          }
-                          100% {
-                            opacity: 1;
-                            transform: scale(1) translate(-50%, -50%) rotate(-45deg);
-                          }
-                        }
-                        @keyframes bounceInAfter-44 {
-                          0% {
-                            opacity: 0;
-                            transform: scale(0.3) translate(-50%, -50%) rotate(-45deg);
-                          }
-                          50% {
-                            opacity: 0.9;
-                            transform: scale(1.1) translate(-50%, -50%) rotate(-45deg);
-                          }
-                          80% {
-                            opacity: 1;
-                            transform: scale(0.89) translate(-50%, -50%) rotate(-45deg);
-                          }
-                          100% {
-                            opacity: 1;
-                            transform: scale(1) translate(-50%, -50%) rotate(-45deg);
-                          }
-                        }
-                        @-webkit-keyframes bounceInBeforeDont-44 {
-                          0% {
-                            opacity: 1;
-                            transform: scale(1) translate(-50%, -50%) rotate(45deg);
-                          }
-                          100% {
-                            opacity: 0;
-                            transform: scale(0.3) translate(-50%, -50%) rotate(45deg);
-                          }
-                        }
-                        @keyframes bounceInBeforeDont-44 {
-                          0% {
-                            opacity: 1;
-                            transform: scale(1) translate(-50%, -50%) rotate(45deg);
-                          }
-                          100% {
-                            opacity: 0;
-                            transform: scale(0.3) translate(-50%, -50%) rotate(45deg);
-                          }
-                        }
-                        @-webkit-keyframes bounceInAfterDont-44 {
-                          0% {
-                            opacity: 1;
-                            transform: scale(1) translate(-50%, -50%) rotate(-45deg);
-                          }
-                          100% {
-                            opacity: 0;
-                            transform: scale(0.3) translate(-50%, -50%) rotate(-45deg);
-                          }
-                        }
-                        @keyframes bounceInAfterDont-44 {
-                          0% {
-                            opacity: 1;
-                            transform: scale(1) translate(-50%, -50%) rotate(-45deg);
-                          }
-                          100% {
-                            opacity: 0;
-                            transform: scale(0.3) translate(-50%, -50%) rotate(-45deg);
-                          }
-                        }
-                      </style>
-
                   <% end %>
-                  <button data-action="click->roll-boulder#remove">Remove</button>
+                  <div class="r-button p-1">
+                    <button data-action="click->roll-boulder#remove" class="fa-solid fa-trash text-center"></button>
+                  </div>
                   <%# <button class="btn-primary" data-action="click->roll-boulder#nextStage">Roll it!</button> %>
                 </div>
               </div>
