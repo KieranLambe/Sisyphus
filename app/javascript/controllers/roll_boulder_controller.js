@@ -23,12 +23,11 @@ export default class extends Controller {
     const boulderHeight = this.boulderTarget.offsetHeight;
     const list_length = forms_array.length
 
-    // this.setStages()
+    this.getChecked()
     this.currentStage = checked_array.length;
     const newPositionX = hillWidth - boulderWidth;
     const newPositionY = hillHeight - boulderHeight;
 
-    this.getChecked()
     this.setStages()
 
     if (this.currentStage === 0) {
@@ -67,9 +66,9 @@ export default class extends Controller {
 
   getChecked() {
     forms_array.forEach(form => {
-      if(form.children[0].children[2].children[0].children[2].checked) {
-        checked_array.push(form.children[0].children[2].children[0].children[2])
-        console.checked_array
+      if(form.children[0].children[2].children[0].children[1].checked) {
+        checked_array.push(form.children[0].children[2].children[0].children[1])
+        return checked_array
       }
     })
   }
