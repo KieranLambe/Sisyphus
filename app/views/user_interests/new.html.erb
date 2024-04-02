@@ -4,20 +4,20 @@
       <div class="login-box d-flex justify-content-center align-items-center">
         <!-- Interests Section -->
         <div class="interests-section">
-          <h2 class=" title1 text-center">Select your interests</h2>
+          <h2 class=" title1 text-center mb-4">Select your interests</h2>
           <!-- Displaying interests -->
           <% @interests.each_slice(2) do |interest_group| %>
             <div class="row mb-3">
               <% interest_group.each do |interest| %>
                 <div class="col-md-6">
                   <% if current_user.interests.include?(interest) %>
-                    <%= button_to user_user_interests_path(current_user), method: :delete, class: "btn btn-secondary btn-block interest-button user-interest", remote: true, params: { user_interest: {interest_id: interest.id, user_id: current_user.id} } do %>
+                    <%= button_to user_user_interest_path(current_user, interest.user_interests.find_by(interest_id: interest.id)), method: :delete, class: "btn btn-secondary btn-block interest-button user-interest", remote: true do %>
                       <%= image_tag "#{interest.title.downcase.gsub(/\s+/, '_')}.png", alt: interest.title, class: "interest-image"  %>
                       <%= interest.title %>
                       <span class="selected-indicator">Selected</span>
                     <% end %>
                   <% else %>
-                    <%= button_to user_user_interests_path(current_user), method: :post, class: "btn btn-secondary btn-block interest-button", remote: true, params: { user_interest: {interest_id: interest.id, user_id: current_user.id} } do %>
+                    <%= button_to user_user_interests_path(current_user), method: :post, class: "btn btn-secondary btn-block interest-button", remote: true, params: { user_interest: {user_id: current_user.id, interest_id: interest.id } } do %>
                       <%= image_tag "#{interest.title.downcase.gsub(/\s+/, '_')}.png", alt: interest.title, class: "interest-image"  %>
                       <%= interest.title %>
                     <% end %>
