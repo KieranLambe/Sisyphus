@@ -30,7 +30,9 @@
     </div>
     <div class="container2">
       <h2>Choose your favourite task! <i class="far fa-check-square"></i></h2>
-      <%= render "lists", tasks: @tasks %>
+      <div class="list-render">
+        <%= render "lists", tasks: @tasks %>
+      </div>
     </div>
   </div>
 </div>
