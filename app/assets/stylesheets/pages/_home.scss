@@ -292,6 +292,17 @@ body {
     }
 }
 
+
+.container2{
+  text-align: center;
+  height: auto;
+  width: 100%;
+  .lists-render{
+    margin-left: 125px;
+  }
+
+}
+
 .task_add {
   margin-top: 20px; /* Adjust margin-top as needed */
   margin-bottom: 20px; /* Adjust margin-bottom as needed */
@@ -311,3 +322,4 @@ body {
 // h4 {
 //   font-weight: bold;
 // }
+

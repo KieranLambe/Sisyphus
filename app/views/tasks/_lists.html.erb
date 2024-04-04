@@ -1,7 +1,7 @@
-<div data-search-tasks-target="list", data-interest-search-target="list", class='row'>
+<div data-search-tasks-target="list", data-interest-search-target="list", class='row lists-render'>
   <% tasks.each do |task| %>
     <% unless task.user_tasks.exists? %>
-      <div class="col-md-4 mb-4">
+      <div class="col-md-4 mb-4 align-right">
         <%= link_to task_path(task), class: " card-link text-decoration-none" do %>
           <div class="card shadow h-100" style="border-radius: 0.5rem;">
             <div class="card-body">
