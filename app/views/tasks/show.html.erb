@@ -1,11 +1,13 @@
-<div class="container_task pt-3">
-  <div class="task_t">
-    <h2><%= @task.title %></h2>
-  </div>
-  <div class="task_description">
-    <p><%= @task.description %></p>
-  </div>
-  <div class="task_add mt-3">
-    <%= link_to 'Add to my tasks', user_task_add_path(user_id: current_user, task_id: @task.id), data: { turbo_method: :post }, class: 'btn btn-primary' %>
+ <div class ="height">
+  <div class="container_task pt-3">
+    <div class="task_t">
+      <h2><%= @task.title %></h2>
+    </div>
+    <div class="task_description">
+      <p><%= @task.description %></p>
+    </div>
+    <div class="task_add mt-3">
+      <%= link_to 'Add to my tasks', user_task_add_path(user_id: current_user, task_id: @task.id), data: { turbo_method: :post }, class: 'btn btn-primary' %>
+    </div>
   </div>
 </div>
