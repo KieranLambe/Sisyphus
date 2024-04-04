@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus";
 
-var forms = forms = document.querySelectorAll(".button-container");
-var forms_array = [...forms];
+var forms;
+var forms_array;
 
 var checked_array;
 let list_length;
@@ -16,12 +16,11 @@ export default class extends Controller {
 
   connect() {
     // this.setPosition()
-    checked_array = [];
     const hillWidth = this.hillTarget.offsetWidth;
     const hillHeight = this.hillTarget.offsetHeight;
     const boulderWidth = this.boulderTarget.offsetWidth;
     const boulderHeight = this.boulderTarget.offsetHeight;
-    const list_length = forms_array.length
+    this.setPosition()
 
     this.getChecked()
     this.currentStage = checked_array.length;
@@ -61,25 +60,50 @@ export default class extends Controller {
   }
 
   setPosition() {
+    forms = forms = document.querySelectorAll(".button-container");
+    forms_array = [...forms];
+    const list_length = forms_array.length
+    return list_length
+  }
 
+  refresh() {
+    const tasks = this.formTarget;
+    const url = document.URL;
+
+    fetch(url, {
+      method: "GET",
+      header: {}
+    }).then(response => response.json())
+      .then((data) => {
+        console.log(data);
+      })
   }
 
   getChecked() {
+    checked_array = []
     forms_array.forEach(form => {
       if(form.children[0].children[2].children[0].children[1].checked) {
         checked_array.push(form.children[0].children[2].children[0].children[1])
         return checked_array
+      } else {
+        checked_array = checked_array.filter(function (input){
+          return input !== form.children[0].children[2].children[0].children[1]
+        })
       }
     })
   }
 
   setStages() {
+    forms = forms = document.querySelectorAll(".button-container");
+    forms_array = [...forms];
     list_length = forms_array.length
     return list_length
   }
 
   remove(e) {
     const url = this.formTarget.action;
+    let card = this.cardTarget
+    // console.log(url)
     const csrfToken = document.querySelector("[name='csrf-token']").content;
 
     fetch(url, {
@@ -88,24 +112,27 @@ export default class extends Controller {
     cache: "no-cache",
     credentials: "same-origin",
     headers: {"Content-Type": "application/json", "X-CSRF-Token": csrfToken},
-    }) .then((response) => response.json())
-       .then((data) => console.log(data))
+    })
+    // .then(response => response.json())
+    //   .then((data) => console.log(data))
 
-    this.cardTarget.classList.add("d-none")
+    // this.cardTarget.classList.add("d-none")
+    // this.refresh()
+    card.remove()
+    this.getChecked()
+    console.log(checked_array)
+    this.setStages()
+    this.currentStage = 0
+    // console.log(this.currentStage)
     this.setPosition()
-    console.log(this.currentStage)
+    this.rollBoulder()
+    // console.log(forms_array)
+    // console.log(list_length)
+    // console.log(this.currentStage)
   }
 
-  rollBoulder(e) {
+  tick(e) {
     const button = e.target;
-    const hillWidth = this.hillTarget.offsetWidth;
-    const hillHeight = this.hillTarget.offsetHeight;
-    const boulderWidth = this.boulderTarget.offsetWidth;
-    const boulderHeight = this.boulderTarget.offsetHeight;
-    // var forms = document.querySelectorAll(".button-container");
-    // var forms_array = [...forms];
-
-    this.setStages()
 
     // respond to check event, see if checked
     if(button.checked) {
@@ -122,7 +149,22 @@ export default class extends Controller {
       this.currentStage = checked_array.length;
     }
 
+    this.rollBoulder(checked_array)
+  }
+
+  rollBoulder(checked) {
+    const hillWidth = this.hillTarget.offsetWidth;
+    const hillHeight = this.hillTarget.offsetHeight;
+    const boulderWidth = this.boulderTarget.offsetWidth;
+    const boulderHeight = this.boulderTarget.offsetHeight;
+    // var forms = document.querySelectorAll(".button-container");
+    // var forms_array = [...forms];
+
+    this.setStages()
+
     this.boulderTarget.classList.add("transition-effect");
+
+    // console.log(this.currentStage)
 
     const newPositionX = hillWidth - boulderWidth;
     const newPositionY = hillHeight - boulderHeight;
@@ -154,5 +196,8 @@ export default class extends Controller {
       return this.boulderTarget.style.transform = `translate(${fourthPositionX}px, -${fourthPositionY}px) rotate(1440deg)`;
     } else {
       return this.boulderTarget.style.transform = `translate(${newPositionX}px, -${newPositionY}px) rotate(1800deg)`;
-    } }
+    }
+  }
+
+
 }
