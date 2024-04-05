@@ -17,11 +17,12 @@
   <body>
     <%# <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> %>
     <%# <%= javascript_include_tag 'confetti' %>
-
     <%= render "shared/navbar" %>
     <%= render "shared/flashes" %>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <%= yield %>
+    <div class="background-colour">
+      <%= yield %>
+    </div>
   </body>
 
   <footer>

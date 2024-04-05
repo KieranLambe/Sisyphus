@@ -1,5 +1,8 @@
 // Specific CSS for your home-page
 /* home.scss */
+.background-colour {
+  background-color: $final-tertiary;
+}
 
 /* Title styles */
 .title .sub {
@@ -287,11 +290,10 @@ body {
   font-weight: bold;
   margin-top: 30px; /* Adjust margin-top as needed */
 
-    h2{
-      margin: 0;
-    }
+  h2 {
+    margin: 0;
+  }
 }
-
 
 .task-grid-container {
   display: flex;
@@ -317,7 +319,6 @@ body {
     }
   }
 }
-
 
 .task_add {
   margin-top: 20px; /* Adjust margin-top as needed */

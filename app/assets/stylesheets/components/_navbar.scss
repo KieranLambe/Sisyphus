@@ -1,7 +1,7 @@
 .navbar-lewagon {
   display: flex;
   justify-content: space-between;
-  background-color: $final-main; // example background color
+  background-color: $final-black; // example background color
   padding: 3px 0;
 
   .navbar-brand {
@@ -55,7 +55,7 @@
     }
   }
 
-  .user{
+  .user {
     margin-left: 20px;
   }
 }
