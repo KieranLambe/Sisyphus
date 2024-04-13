@@ -1,7 +1,7 @@
 // Specific CSS for your home-page
 /* home.scss */
 .background-colour {
-  background-color: $final-tertiary;
+  background-color: $final-contrast;
 }
 
 /* Title styles */
@@ -43,32 +43,15 @@
   border-radius: 25px;
 }
 
-// .button-container button:hover {
-//   background-color: $final-contrast; /* Darker green */
-// }
-
-// .btn-primary button:hover {
-//   background-color: $final-hover; /* Darker green */
-// }
-
 .h1 {
   text-align: center;
   font-size: 16px;
-  margin-bottom: 10px; /* Add some space below the title */
+  margin-bottom: 10px;
 }
 
 .button-wrapper {
-  display: flex; /* Use flexbox layout */
-  justify-content: center; /* Center the buttons horizontally */
-}
-
-body {
-  position: relative;
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-  background-color: $final-text;
-  border-bottom: #333;
+  display: flex;
+  justify-content: center;
 }
 
 .card-container {
@@ -100,13 +83,6 @@ body {
 
 .card-content {
   text-align: center;
-}
-
-.body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-  background-color: $final-main;
 }
 
 .buttondiv {
