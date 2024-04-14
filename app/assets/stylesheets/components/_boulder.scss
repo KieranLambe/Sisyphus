@@ -6,20 +6,21 @@
   position: relative;
   width: 100%; /* Adjust the width as needed */
   height: 90vh; /* Adjust the height as needed */
-  z-index: 4;
+  z-index: -1;
 }
 
 .boulder-container-container {
   position: relative;
   width: 100%; /* Adjust the width as needed */
   height: 90vh; /* Adjust the height as needed */
-  z-index: 3;
+  z-index: -2;
 }
 
 [data-roll-boulder-target="boulder"] {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
+  z-index: -1;
 }
 
 @keyframes spin {
@@ -45,22 +46,13 @@
   height: 186px; /* Set custom height */
 }
 
-// .content {
-//   position: relative;
-//   z-index: 2; /* Ensure content is above the line */
-//   width: 50%; /* Adjust as needed */
-//   height: 100%;
-//   background-color: #ffffff; /* Default background color */
-// }
-
 .diagonal-line {
-  position: absolute;
+  position: fixed;
   bottom: 0;
-  //   top: calc(10vh - 10px); /* Adjust as needed */
   left: 0;
   width: 0%;
   height: 0;
   border-top: 70vh solid transparent; /* Adjust height to match container */
   border-right: 100vw solid $final-contrast; /* Adjust width to match container */
-  z-index: 1; /* Ensure line is behind content */
+  z-index: -3; /* Ensure line is behind content */
 }

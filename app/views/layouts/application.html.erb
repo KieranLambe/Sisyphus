@@ -20,9 +20,16 @@
     <%= render "shared/navbar" %>
     <%= render "shared/flashes" %>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <div class="background-colour">
+    <div class="boulder-container-container" data-controller="roll-boulder">
+      <div class="background-container">
+  <div class="boulder-container" data-roll-boulder-target="hill">
+    <button class="image-button" data-roll-boulder-target="boulder"><%= image_tag "boulder.png", alt: "boulder", class: "boulder-image" %></button>
+  </div>
+  <div class="diagonal-line"></div>
+  <div class="front-container">
       <%= yield %>
-    </div>
+  </div>
+  </div>
   </body>
 
   <footer>
