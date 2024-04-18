@@ -292,12 +292,40 @@ body {
     }
 }
 
+
+.task-grid-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .container {
+    margin-bottom: 20px;
+  }
+
+  .container2 {
+    text-align: center;
+    width: 100%;
+    margin-top: 30px;
+
+    h2 {
+      margin-bottom: 80px;
+    }
+
+    .list-render {
+      padding-left: 125px;
+      margin-top: 30px;
+    }
+  }
+}
+
+
 .task_add {
   margin-top: 20px; /* Adjust margin-top as needed */
   margin-bottom: 20px; /* Adjust margin-bottom as needed */
 }
 
 .container_task {
+  margin: 65px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -306,6 +334,15 @@ body {
 
 .task-card {
   width: 520px;
+}
+
+.boulder-image {
+  width: 200px;
+  height: 200px;
+}
+
+.height {
+  height: 445px;
 }
 
 // h4 {

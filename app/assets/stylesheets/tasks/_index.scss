@@ -30,11 +30,13 @@ card-link {
   transition: background-color 0.3s ease, border-color 0.3s ease; /* Smooth transition for hover effect */
 }
 /* Hover effect */
-.btn-primary:hover .btn-secondary{
-  background-color: #c4453d; /* Darker shade of main color on hover */
+.btn-primary :hover .btn-secondary :hover {
+  background-color: #555; /* Darker shade of main color on hover */
   border-color: #555; /* Border color on hover */
 
 }
+
+
 
 .card {
   background-color: #f0f0f0;
@@ -91,6 +93,7 @@ h2 {
 .pagination {
   // margin-top: 20px; /* Add some spacing above the pagination links */
   text-align: center; /* Center the pagination links */
+  margin-bottom: 10px;
 }
 
 .pagination a, .current{
@@ -154,4 +157,3 @@ input#query {
   height: 25px;
   z-index: 1;
 }
-
