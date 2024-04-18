@@ -23,6 +23,7 @@ export default class extends Controller {
     this.setPosition()
 
     this.getChecked()
+    // Uses the number of checked tasks to set the boulder's current position
     this.currentStage = checked_array.length;
     const newPositionX = hillWidth - boulderWidth;
     const newPositionY = hillHeight - boulderHeight;
@@ -60,7 +61,7 @@ export default class extends Controller {
   }
 
   setPosition() {
-    forms = forms = document.querySelectorAll(".button-container");
+    forms = document.querySelectorAll(".button-container");
     forms_array = [...forms];
     const list_length = forms_array.length
     return list_length
@@ -102,7 +103,7 @@ export default class extends Controller {
 
   remove(e) {
     const url = this.formTarget.action;
-    let card = this.cardTarget
+    let card = this.cardTarget;
     // console.log(url)
     const csrfToken = document.querySelector("[name='csrf-token']").content;
 
@@ -123,6 +124,8 @@ export default class extends Controller {
     console.log(checked_array)
     this.setStages()
     this.currentStage = 0
+    (newPositionX / list_length) * checked_array.length;
+    (newPositionY / list_length) * checked_array.length;
     // console.log(this.currentStage)
     this.setPosition()
     this.rollBoulder()

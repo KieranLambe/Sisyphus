@@ -48,7 +48,7 @@
                       </label>
                     </div>
                     <div class="r-button p-1">
-                      <button data-action="click->roll-boulder#remove" class="fa-solid fa-trash text-center"></button>
+                      <button><%= f.button :remove, data: { action: "click->roll-boulder#remove", class: "fa-solid fa-trash text-center" } %></button>
                     </div>
                   <% end %>
                   <%# <button class="btn-primary" data-action="click->roll-boulder#nextStage">Roll it!</button> %>
