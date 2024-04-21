@@ -2,17 +2,14 @@
 /* home.scss */
 
 /* Title styles */
-.front-container {
-  z-index: 10;
-}
-
-.front-container + .hidden-form {
-  display: none;
-}
 
 .relative-container {
   position: relative;
   z-index: 10;
+}
+
+.relative-container + .hidden-form {
+  display: none;
 }
 
 .title .sub {
