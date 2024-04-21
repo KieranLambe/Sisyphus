@@ -6,6 +6,10 @@
   z-index: 10;
 }
 
+.front-container + .hidden-form {
+  display: none;
+}
+
 .relative-container {
   position: relative;
   z-index: 10;
