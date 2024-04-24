@@ -6,13 +6,13 @@
   <div class="diagonal-line"></div>
 
 
-  <div class="title-card" data-controller="fade-in" data-target="fade-in.firstFadeInElement">
+  <div class="title-card" data-controller="fade-in" data-fade-in-target="firstFadeInElement">
     <%# <h1>Sisyphus</h1> %>
     <h1>The legend of you trying <br> to get stuff done</h1>
   </div>
 
 
-  <div class="card-list user_tasks" data-controller="fade-in" data-target="fade-in.secondFadeInElement">
+  <div class="card-list user_tasks" data-controller="fade-in" data-fade-in-target="secondFadeInElement">
     <h3 class="fs-2 fw-bold"> Your tasks for the day </h3>
     <% interests = Interest.includes(tasks: :user_tasks).order(:title) %>
     <% interests.each do |interest| %>
@@ -32,10 +32,10 @@
                   <%# <%= link_to "Roll it", toggle_complete_user_task_path(user_task), data: { controller: "complete-button", turbo_method: :patch }, class: 'btn-primary' %>
                   <%# <%= link_to "Remove", user_task_path(user_task), data: { turbo_method: :delete, turbo_confirm: "Are you sure" } %>
                 <%# </div> %>
-                <div class="button-container" data-controller="complete-button">
+                <div class="button-container d-flex" data-controller="complete-button" data-controller="remove-button">
                   <%# <%= link_to "Roll it", toggle_complete_user_task_path(user_task), data: { target: "button", action: "click->roll-boulder#rollBoulder", turbo_method: :patch }, class: 'btn-primary' %>
                   <%# <button data-complete-button-target="button" data-action="roll-boulder#rollBoulder complete-button#tick"></button> %>
-                  <%= form_with(model: user_task, class: "check_form text-lg inline-block w-72 d-flex", url: user_user_task_path(current_user, user_task), method: :patch, data: { complete_button_target: "form", roll_boulder_target: "form" } ) do |f| %>
+                  <%= form_with(model: user_task, class: "check_form text-lg inline-block w-72 d-flex", url: user_user_task_path(current_user, user_task), method: :patch, data: { complete_button_target: "form", remove_button_target: "form" } ) do |f| %>
                     <div class="checkbox-wrapper-44 m-2">
                       <label class="toggleButton ">
                         <%# <i class="app-icon fa-solid fa-check"></i> %>
@@ -47,10 +47,10 @@
                         </div>
                       </label>
                     </div>
-                    <div class="r-button p-1">
-                      <button><%= f.button :remove, data: { action: "click->roll-boulder#remove", class: "fa-solid fa-trash text-center" } %></button>
-                    </div>
                   <% end %>
+                  <div class="r-button p-1">
+                      <button class="fa-solid fa-trash text-center" data-action="click->remove-button#remove"></button>
+                  </div>
                   <%# <button class="btn-primary" data-action="click->roll-boulder#nextStage">Roll it!</button> %>
                 </div>
               </div>
@@ -61,7 +61,7 @@
           <% end %>
         </div>
       <% end %>
-  </div>
+    </div>
 
     <% end %>
   </div>
