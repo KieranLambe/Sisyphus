@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="complete-button"
 export default class extends Controller {
-  static targets = ["button", "form"]
+  static targets = ["button", "form", "remove"]
 
   tick(e) {
     const url = this.formTarget.action;
@@ -18,6 +18,13 @@ export default class extends Controller {
     })
       .then((response) => response.json())
   }
-}
 
-//   completeButton(event) {
+  disableRemove() {
+    if(this.buttonTarget.checked) {
+      this.removeTarget.classList.add("d-none")
+    }
+    else {
+      this.removeTarget.classList.remove("d-none")
+    }
+  }
+}
