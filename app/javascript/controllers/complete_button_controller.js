@@ -18,6 +18,8 @@ export default class extends Controller {
     })
       .then((response) => response.json())
   }
-}
 
-//   completeButton(event) {
+  disableRemove() {
+
+  }
+}

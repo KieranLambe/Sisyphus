@@ -6,16 +6,10 @@ var forms_array;
 var checked_array;
 let list_length;
 
-// const hillWidth = this.hillTarget.offsetWidth;
-// const hillHeight = this.hillTarget.offsetHeight;
-// const boulderWidth = this.boulderTarget.offsetWidth;
-// const boulderHeight = this.boulderTarget.offsetHeight;
-
 export default class extends Controller {
   static targets = ["boulder", "hill"];
 
   connect() {
-    // this.setPosition()
     const hillWidth = this.hillTarget.offsetWidth;
     const hillHeight = this.hillTarget.offsetHeight;
     const boulderWidth = this.boulderTarget.offsetWidth;
@@ -67,20 +61,6 @@ export default class extends Controller {
     return list_length
   }
 
-  // refresh() {
-  //   // const tasks = this.cardListTarget;
-  //   const url = document.URL;
-  //   console.log(url)
-
-  //   fetch(url, {
-  //     method: "GET",
-  //     header: {}
-  //   }).then(response => response.json())
-  //     .then((data) => {
-  //       console.log(data);
-  //     })
-  // }
-
   getChecked() {
     checked_array = []
     forms_array.forEach(form => {
@@ -103,21 +83,12 @@ export default class extends Controller {
   }
 
   remove() {
-    // console.log("Bye")
-    // this.refresh()
     this.getChecked()
-    // console.log(checked_array)
     this.setStages()
     this.currentStage = 0
     this.rollBoulder()
-    // (newPositionX / list_length) * checked_array.length;
-    // (newPositionY / list_length) * checked_array.length;
-    // console.log(this.currentStage)
     this.setPosition()
     this.rollBoulder()
-    // console.log(forms_array)
-    // console.log(list_length)
-    // console.log(this.currentStage)
   }
 
   tick(e) {
@@ -127,11 +98,7 @@ export default class extends Controller {
     if(button.checked) {
       checked_array.push(button)
       this.currentStage = checked_array.length
-      //
-      // console.log(" hi")
     } else {
-      // let index = forms_array.indexOf(button)
-      // console.log(index)
       checked_array = checked_array.filter(function (input){
         return input !== button
       })
@@ -146,14 +113,10 @@ export default class extends Controller {
     const hillHeight = this.hillTarget.offsetHeight;
     const boulderWidth = this.boulderTarget.offsetWidth;
     const boulderHeight = this.boulderTarget.offsetHeight;
-    // var forms = document.querySelectorAll(".button-container");
-    // var forms_array = [...forms];
 
     this.setStages()
 
     this.boulderTarget.classList.add("transition-effect");
-
-    // console.log(this.currentStage)
 
     const newPositionX = hillWidth - boulderWidth;
     const newPositionY = hillHeight - boulderHeight;

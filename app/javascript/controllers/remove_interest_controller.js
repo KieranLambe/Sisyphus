@@ -4,11 +4,7 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["interestGroup", "task", "interest"]
 
-  connect() {
-  }
-
   getTasks() {
-    // console.log("bye")
     const hidden_tasks = []
     const interest_groups = this.interestGroupTargets
     interest_groups.forEach(interest_group => {
