@@ -12,7 +12,7 @@ let list_length;
 // const boulderHeight = this.boulderTarget.offsetHeight;
 
 export default class extends Controller {
-  static targets = ["boulder", "hill", "form", "card"];
+  static targets = ["boulder", "hill"];
 
   connect() {
     // this.setPosition()
@@ -103,6 +103,7 @@ export default class extends Controller {
   }
 
   remove() {
+    // console.log("Bye")
     // this.refresh()
     this.getChecked()
     // console.log(checked_array)

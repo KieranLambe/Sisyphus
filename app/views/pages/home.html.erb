@@ -19,48 +19,52 @@
       <% interest_tasks = interest.tasks.select { |task| task.user_tasks.exists?(user_id: current_user ) } %>
       <% next if interest_tasks.empty? %>
 
-    <div class="interest-group">
-      <h4><%= interest.title %></h4>
-      <% interest_tasks.each do |task| %>
-        <% user_task = task.user_tasks.find_by(user_id: current_user.id) %>
-        <div class="d-flex">
-          <% if user_task %>
-            <%# <% if user_task.complete == false %>
-              <div class="task-card d-flex align-items-center justify-content-between" data-roll-boulder-target="card">
-                <h4 class="user_task col-sm-8"><%= link_to task.title, user_user_task_path(current_user, user_task), class: "text-decoration-none text-dark" %></h4>
-                <%# <div class="button-container d-flex"> %>
-                  <%# <%= link_to "Roll it", toggle_complete_user_task_path(user_task), data: { controller: "complete-button", turbo_method: :patch }, class: 'btn-primary' %>
-                  <%# <%= link_to "Remove", user_task_path(user_task), data: { turbo_method: :delete, turbo_confirm: "Are you sure" } %>
-                <%# </div> %>
-                <div class="button-container d-flex" data-controller="complete-button" data-controller="remove-button">
-                  <%# <%= link_to "Roll it", toggle_complete_user_task_path(user_task), data: { target: "button", action: "click->roll-boulder#rollBoulder", turbo_method: :patch }, class: 'btn-primary' %>
-                  <%# <button data-complete-button-target="button" data-action="roll-boulder#rollBoulder complete-button#tick"></button> %>
-                  <%= form_with(model: user_task, class: "check_form text-lg inline-block w-72 d-flex", url: user_user_task_path(current_user, user_task), method: :patch, data: { complete_button_target: "form", remove_button_target: "form" } ) do |f| %>
-                    <div class="checkbox-wrapper-44 m-2">
-                      <label class="toggleButton ">
-                        <%# <i class="app-icon fa-solid fa-check"></i> %>
-                        <%= f.check_box :complete, data: { user_id: user_task.user_id, id: user_task.id, complete_button_target: "button", action: "roll-boulder#tick complete-button#tick" }, class: "check_box d-none" %>
-                        <div>
-                          <svg viewBox="0 0 44 44">
-                            <path d="M14,24 L21,31 L39.7428882,11.5937758 C35.2809627,6.53125861 30.0333333,4 24,4 C12.95,4 4,12.95 4,24 C4,35.05 12.95,44 24,44 C35.05,44 44,35.05 44,24 C44,19.3 42.5809627,15.1645919 39.7428882,11.5937758" transform="translate(-2.000000, -2.000000)"></path>
-                          </svg>
+    <div data-controller="remove-interest">
+      <div class="interest-group" data-remove-interest-target="interestGroup">
+        <h4 data-remove-interest-target="interest"><%= interest.title %></h4>
+        <% interest_tasks.each do |task| %>
+          <% user_task = task.user_tasks.find_by(user_id: current_user.id) %>
+          <div class="user-task-container d-flex">
+            <% if user_task %>
+              <%# <% if user_task.complete == false %>
+                <div data-controller="complete-button remove-button">
+                  <div class="task-card d-flex align-items-center justify-content-between" data-remove-button-target="card">
+                    <h4 class="user_task col-sm-8"><%= link_to task.title, user_user_task_path(current_user, user_task), class: "text-decoration-none text-dark" %></h4>
+                    <%# <div class="button-container d-flex"> %>
+                      <%# <%= link_to "Roll it", toggle_complete_user_task_path(user_task), data: { controller: "complete-button", turbo_method: :patch }, class: 'btn-primary' %>
+                      <%# <%= link_to "Remove", user_task_path(user_task), data: { turbo_method: :delete, turbo_confirm: "Are you sure" } %>
+                    <%# </div> %>
+                    <div class="button-container d-flex">
+                      <%# <%= link_to "Roll it", toggle_complete_user_task_path(user_task), data: { target: "button", action: "click->roll-boulder#rollBoulder", turbo_method: :patch }, class: 'btn-primary' %>
+                      <%# <button data-complete-button-target="button" data-action="roll-boulder#rollBoulder complete-button#tick"></button> %>
+                      <%= form_with(model: user_task, class: "check_form text-lg inline-block w-72 d-flex", url: user_user_task_path(current_user, user_task), method: :patch, data: { complete_button_target: "form", remove_button_target: "form" } ) do |f| %>
+                        <div class="checkbox-wrapper-44 m-2">
+                          <label class="toggleButton ">
+                            <%# <i class="app-icon fa-solid fa-check"></i> %>
+                            <%= f.check_box :complete, data: { user_id: user_task.user_id, id: user_task.id, complete_button_target: "button", action: "roll-boulder#tick complete-button#tick" }, class: "check_box d-none" %>
+                            <div>
+                              <svg viewBox="0 0 44 44">
+                                <path d="M14,24 L21,31 L39.7428882,11.5937758 C35.2809627,6.53125861 30.0333333,4 24,4 C12.95,4 4,12.95 4,24 C4,35.05 12.95,44 24,44 C35.05,44 44,35.05 44,24 C44,19.3 42.5809627,15.1645919 39.7428882,11.5937758" transform="translate(-2.000000, -2.000000)"></path>
+                              </svg>
+                            </div>
+                          </label>
                         </div>
-                      </label>
+                      <% end %>
+                      <div class="r-button p-1">
+                        <button class="fa-solid fa-trash text-center" data-action="click->remove-button#remove click->roll-boulder#remove click->remove-interest#getTasks"></button>
+                      </div>
+                      <%# <button class="btn-primary" data-action="click->roll-boulder#nextStage">Roll it!</button> %>
                     </div>
-                  <% end %>
-                  <div class="r-button p-1">
-                    <button class="fa-solid fa-trash text-center" data-action="click->remove-button#remove" data-action="click->remove-button#remove"></button>
                   </div>
-                  <%# <button class="btn-primary" data-action="click->roll-boulder#nextStage">Roll it!</button> %>
                 </div>
-              </div>
-            <%# <% else %>
-              <%# <h4><%= task.title %>
-              <%# <p>This task is complete</p> %>
-            <%# <% end %>
-          <% end %>
-        </div>
-      <% end %>
+              <%# <% else %>
+                <%# <h4><%= task.title %>
+                <%# <p>This task is complete</p> %>
+              <%# <% end %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
     </div>
 
     <% end %>
