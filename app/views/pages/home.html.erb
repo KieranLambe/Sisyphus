@@ -32,7 +32,7 @@
                     <%= form_with(model: user_task, class: "check_form text-lg inline-block w-72 d-flex", url: user_user_task_path(current_user, user_task), method: :patch, data: { complete_button_target: "form", remove_button_target: "form" } ) do |f| %>
                       <div class="checkbox-wrapper-44 m-2">
                         <label class="toggleButton ">
-                          <%= f.check_box :complete, data: { user_id: user_task.user_id, id: user_task.id, complete_button_target: "button", action: "roll-boulder#tick complete-button#tick" }, class: "check_box d-none" %>
+                          <%= f.check_box :complete, data: { user_id: user_task.user_id, id: user_task.id, complete_button_target: "button", action: "roll-boulder#tick complete-button#tick complete-button#disableRemove" }, class: "check_box d-none" %>
                           <div>
                             <svg viewBox="0 0 44 44">
                               <path d="M14,24 L21,31 L39.7428882,11.5937758 C35.2809627,6.53125861 30.0333333,4 24,4 C12.95,4 4,12.95 4,24 C4,35.05 12.95,44 24,44 C35.05,44 44,35.05 44,24 C44,19.3 42.5809627,15.1645919 39.7428882,11.5937758" transform="translate(-2.000000, -2.000000)"></path>
@@ -42,7 +42,7 @@
                       </div>
                     <% end %>
                     <div class="r-button p-1">
-                      <button class="fa-solid fa-trash text-center" data-action="click->remove-button#remove click->roll-boulder#remove click->remove-interest#getTasks"></button>
+                      <button class="fa-solid fa-trash text-center" data-complete-button-target="remove" data-action="click->remove-button#remove click->roll-boulder#remove click->remove-interest#getTasks"></button>
                     </div>
                   </div>
                 </div>
