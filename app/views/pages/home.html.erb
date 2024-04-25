@@ -28,7 +28,7 @@
               <div data-controller="complete-button remove-button">
                 <div class="task-card d-flex align-items-center justify-content-between" data-remove-button-target="card">
                   <h4 class="user_task col-sm-8"><%= link_to task.title, user_user_task_path(current_user, user_task), class: "text-decoration-none text-dark" %></h4>
-                  <div class="button-container d-flex">
+                  <div class="button-container d-flex" data-complete-button-target="buttonGroup">
                     <%= form_with(model: user_task, class: "check_form text-lg inline-block w-72 d-flex", url: user_user_task_path(current_user, user_task), method: :patch, data: { complete_button_target: "form", remove_button_target: "form" } ) do |f| %>
                       <div class="checkbox-wrapper-44 m-2">
                         <label class="toggleButton ">

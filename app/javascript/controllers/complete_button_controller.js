@@ -2,7 +2,12 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="complete-button"
 export default class extends Controller {
-  static targets = ["button", "form", "remove"]
+  static targets = ["button", "form", "remove", "buttonGroup"]
+
+  connect() {
+    console.log(this.buttonGroupTarget)
+    this.disableRemove()
+  }
 
   tick(e) {
     const url = this.formTarget.action;
@@ -21,9 +26,11 @@ export default class extends Controller {
 
   disableRemove() {
     if(this.buttonTarget.checked) {
+      this.buttonGroupTarget.classList.add("flex-row-reverse")
       this.removeTarget.classList.add("d-none")
     }
     else {
+      this.buttonGroupTarget.classList.remove("flex-row-reverse")
       this.removeTarget.classList.remove("d-none")
     }
   }
