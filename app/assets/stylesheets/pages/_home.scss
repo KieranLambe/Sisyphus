@@ -211,7 +211,7 @@
 }
 
 .title-card {
-  z-index: 5;
+  // z-index: 5;
   position: absolute;
   top: 5vh;
   left: 5vw;
@@ -225,7 +225,7 @@
 .user_tasks {
   top: 20vh;
   right: 5vw;
-  z-index: 6;
+  // z-index: 6;
   position: absolute;
   // height: 400px; /* Adjust height as needed */
   padding: 20px;
