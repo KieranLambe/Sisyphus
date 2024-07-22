@@ -15,6 +15,8 @@ export default class extends Controller {
     const boulderWidth = this.boulderTarget.offsetWidth;
     const boulderHeight = this.boulderTarget.offsetHeight;
     this.setPosition();
+    this.isOnRight = true;
+    this.initialSwapDone = false;
 
     this.getChecked();
     // Uses the number of checked tasks to set the boulder's current position
@@ -186,13 +188,18 @@ export default class extends Controller {
   updateTextBubblePosition() {
     const boulderRect = this.boulderTarget.getBoundingClientRect();
 
-    const offsetX = 150; // Adjust based on desired position relative to the boulder
-    const offsetY = 100; // Adjust based on desired position relative to the boulder
+    const offsetX = this.isOnRight ? 150 : -150; // Adjust based on desired position relative to the boulder
+    const offsetY = this.isOnRight ? 50 : 0; // Adjust based on desired position relative to the boulder
 
     const textBubbleX = boulderRect.left + window.scrollX + offsetX;
     const textBubbleY = boulderRect.top + window.scrollY - offsetY;
 
     this.textBubbleTarget.style.left = `${textBubbleX}px`;
     this.textBubbleTarget.style.top = `${textBubbleY}px`;
+
+    if (!this.initialSwapDone) {
+      this.isOnRight = !this.isOnRight;
+      this.initialSwapDone = true;
+    }
   }
 }
