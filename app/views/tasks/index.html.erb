@@ -1,38 +1,43 @@
-<div data-controller="search-tasks interest-search typing-effect">
-<div class="row justify-content-center">
-  <div class="col-sm-8 my-3">
-    <%= form_with url: tasks_path, method: :get, html: { class: "custom-form" }, data: { search_tasks_target: "form" } do |f| %>
-      <div class="input-group">
-        <%= image_tag("search.png", class: "search-image", alt: "Search Image") %>
-        <%= f.text_field :query,
-              class: "form-control custom-input",
-              placeholder: "Search for more tasks...",
-              value: params[:query],
-              data: {
-                typing_effect_target: "placeholder",
-                search_tasks_target: "query",
-                action: "keyup->search-tasks#search"
-              }
-          %>
-          <div class="input-group-append d-none">
-            <%= f.submit "Search" %>
-          </div>
-      </div>
-    <% end %>
-  </div>
-</div>
-
-
-
-  <div class="task-grid-container">
-    <div class="container">
-      <%= render "interest", tasks: @tasks %>
-    </div>
-    <div class="container2">
-      <h2>Choose your favourite task! <i class="far fa-check-square"></i></h2>
-      <div class="list-render">
-        <%= render "lists", tasks: @tasks %>
-      </div>
+<div class="relative-container">
+  <div data-controller="search-tasks interest-search typing-effect">
+  <div class="row justify-content-center">
+    <div class="col-sm-8 my-3">
+      <%= form_with url: tasks_path, method: :get, html: { class: "custom-form" }, data: { search_tasks_target: "form" } do |f| %>
+        <div class="input-group">
+          <%= image_tag("search.png", class: "search-image", alt: "Search Image") %>
+          <%= f.text_field :query,
+                class: "form-control custom-input",
+                placeholder: "Search for more tasks...",
+                value: params[:query],
+                data: {
+                  typing_effect_target: "placeholder",
+                  search_tasks_target: "query",
+                  action: "keyup->search-tasks#search"
+                }
+            %>
+            <div class="input-group-append d-none">
+              <%= f.submit "Search" %>
+            </div>
+        </div>
+      <% end %>
     </div>
   </div>
+
+
+
+    <div class="task-grid-container">
+      <div class="container">
+        <%= render "interest", tasks: @tasks %>
+      </div>
+      <div class="container2">
+        <h2>Choose your favourite task! <i class="far fa-check-square"></i></h2>
+        <div class="list-render">
+          <%= render "lists", tasks: @tasks %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+<footer>
+  <%= render "shared/foot" %>
+</footer>

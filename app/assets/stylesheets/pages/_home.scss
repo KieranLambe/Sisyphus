@@ -2,6 +2,16 @@
 /* home.scss */
 
 /* Title styles */
+
+.relative-container {
+  position: relative;
+  z-index: 10;
+}
+
+.relative-container + .hidden-form {
+  display: none;
+}
+
 .title .sub {
   text-align: center;
   font-size: 60px;
@@ -40,32 +50,15 @@
   border-radius: 25px;
 }
 
-// .button-container button:hover {
-//   background-color: $final-contrast; /* Darker green */
-// }
-
-// .btn-primary button:hover {
-//   background-color: $final-hover; /* Darker green */
-// }
-
 .h1 {
   text-align: center;
   font-size: 16px;
-  margin-bottom: 10px; /* Add some space below the title */
+  margin-bottom: 10px;
 }
 
 .button-wrapper {
-  display: flex; /* Use flexbox layout */
-  justify-content: center; /* Center the buttons horizontally */
-}
-
-body {
-  position: relative;
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-  background-color: $final-text;
-  border-bottom: #333;
+  display: flex;
+  justify-content: center;
 }
 
 .card-container {
@@ -97,13 +90,6 @@ body {
 
 .card-content {
   text-align: center;
-}
-
-.body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-  background-color: $final-main;
 }
 
 .buttondiv {
@@ -225,7 +211,7 @@ body {
 }
 
 .title-card {
-  z-index: 5;
+  // z-index: 5;
   position: absolute;
   top: 5vh;
   left: 5vw;
@@ -239,7 +225,7 @@ body {
 .user_tasks {
   top: 20vh;
   right: 5vw;
-  z-index: 6;
+  // z-index: 6;
   position: absolute;
   // height: 400px; /* Adjust height as needed */
   padding: 20px;
@@ -287,11 +273,10 @@ body {
   font-weight: bold;
   margin-top: 30px; /* Adjust margin-top as needed */
 
-    h2{
-      margin: 0;
-    }
+  h2 {
+    margin: 0;
+  }
 }
-
 
 .task-grid-container {
   display: flex;
@@ -317,7 +302,6 @@ body {
     }
   }
 }
-
 
 .task_add {
   margin-top: 20px; /* Adjust margin-top as needed */

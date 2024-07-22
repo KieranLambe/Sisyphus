@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "3.1.2"
+ruby "3.3.4"
 
 #Kieran Lambe added cloudinary gem
 gem "cloudinary"

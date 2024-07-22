@@ -11,8 +11,8 @@ card-link {
 .btn-primary {
   width: 250px; /* Set width */
   height: 40px; /* Set height */
-  background-color: #fe5f55; /* Main color */
-  color: #fff; /* Text color */
+  background-color: $final-icon; /* Main color */
+  color: $final-black; /* Text color */
   border: 2px solid transparent; /* Transparent border */
   border-radius: 5px; /* Rounded corners */
   cursor: pointer; /* Add pointer cursor */
@@ -22,7 +22,7 @@ card-link {
 .btn-secondary {
   width: 250px; /* Set width */
   height: 80px; /* Set height */
-  background-color: #fe5f55; /* Main color */
+  background-color: $final-main; /* Main color */
   color: #fff; /* Text color */
   border: 2px solid transparent; /* Transparent border */
   border-radius: 5px; /* Rounded corners */
@@ -31,16 +31,13 @@ card-link {
 }
 /* Hover effect */
 .btn-primary :hover .btn-secondary :hover {
-  background-color: #555; /* Darker shade of main color on hover */
+  background-color: $final-icon; /* Darker shade of main color on hover */
   border-color: #555; /* Border color on hover */
-
 }
 
-
-
 .card {
-  background-color: #f0f0f0;
-  color: white  ;
+  background-color: $final-main;
+  color: white;
   border-radius: 5px;
   padding: 10px;
   margin-bottom: 20px;
@@ -63,24 +60,17 @@ card-link {
 
   .col-md-4 {
     text-align: center;
-
-    .card-title {
-      color: #333;
-      margin-bottom: 10px;
-    }
-
-
   }
 }
 
 .card-title {
-  color: #333;
-
+  color: $white;
 }
+
 p {
   color: #666;
   font-size: 20px;
-  line-height: 2.0;
+  line-height: 2;
   margin-top: 20px;
 }
 
@@ -88,16 +78,15 @@ h2 {
   margin-bottom: 80px;
 }
 
-
-
 .pagination {
   // margin-top: 20px; /* Add some spacing above the pagination links */
   text-align: center; /* Center the pagination links */
   margin-bottom: 10px;
 }
 
-.pagination a, .current{
-  color: #333; /* Text color for pagination links */
+.pagination a,
+.current {
+  color: $final-black; /* Text color for pagination links */
   display: inline-block;
   padding: 5px 10px; /* Padding around each pagination link */
   margin: 0 5px; /* Margin between pagination links */
@@ -108,20 +97,20 @@ h2 {
   text-align: center;
 }
 
-.pagination a:hover, .current a:hover {
-  background-color: #f0f0f0; /* Background color on hover */
+.pagination a:hover,
+.current a:hover {
+  background-color: $final-contrast; /* Background color on hover */
 }
 
 .pagination .current {
-  background-color: #fe5f55; /* Background color for current page */
+  background-color: $final-main; /* Background color for current page */
   color: #fff; /* Text color for current page */
 }
 
 .col-md-4 {
   width: 420px;
-  height: 300px;
+  height: 240px;
 }
-
 
 .custom-form {
   display: flex;
@@ -133,10 +122,10 @@ h2 {
   position: relative;
   width: calc(100% - 40px);
   padding: 10px 50px;
-  border: 2px solid #fe5f55;
+  border: 2px solid $final-main;
   border-radius: 50px;
   font-size: 20px;
-  background-color: #f0f0f0;
+  background-color: $final-tertiary;
 }
 
 input#query {
@@ -147,7 +136,6 @@ input#query {
   display: none;
 }
 
-
 .search-image {
   position: absolute;
   top: 50%;
@@ -155,5 +143,5 @@ input#query {
   transform: translateY(-50%);
   width: 25px;
   height: 25px;
-  z-index: 1;
+  // z-index: 1;
 }
