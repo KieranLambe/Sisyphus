@@ -4,9 +4,13 @@ export default class extends Controller {
   static targets = ["boulder", "textBubble"];
 
   connect() {
-    this.phrases = ["Hello there!", "Welcome to our site.", "Enjoy your stay!"];
+    this.phrases = [
+      "Hello there!",
+      "To get the ball rolling, select some tasks",
+      "I'll climb this hill as you progress",
+    ];
     this.currentPhraseIndex = 0;
-    this.fadeDuration = 1000; // Duration for fade in/out in milliseconds
+    this.fadeDuration = 500; // Duration for fade in/out in milliseconds
     this.delayBetweenPhrases = 3000; // Delay between phrases
 
     if (this.isHomePage()) {
