@@ -8,8 +8,18 @@ export default class extends Controller {
     this.currentPhraseIndex = 0;
     this.fadeDuration = 1000; // Duration for fade in/out in milliseconds
     this.delayBetweenPhrases = 3000; // Delay between phrases
-    this.startPhraseSequence();
-    console.log("speak-boulder-controller connected");
+
+    if (this.isHomePage()) {
+      this.startPhraseSequence();
+      console.log("speaking");
+    }
+  }
+
+  isHomePage() {
+    return (
+      window.location.pathname === "/" ||
+      window.location.pathname === "/index.html"
+    );
   }
 
   startPhraseSequence() {

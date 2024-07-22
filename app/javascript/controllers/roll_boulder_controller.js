@@ -31,38 +31,40 @@ export default class extends Controller {
         (newPositionX / list_length) * checked_array.length;
       const firstPositionY =
         (newPositionY / list_length) * checked_array.length;
-      return (this.boulderTarget.style.transform = `translate(${firstPositionX}px, -${firstPositionY}px) rotate(0deg)`);
+      this.boulderTarget.style.transform = `translate(${firstPositionX}px, -${firstPositionY}px) rotate(0deg)`;
       // this.currentStage++;
     } else if (this.currentStage === 1) {
       const secondPositionX =
         (newPositionX / list_length) * checked_array.length;
       const secondPositionY =
         (newPositionY / list_length) * checked_array.length;
-      return (this.boulderTarget.style.transform = `translate(${secondPositionX}px, -${secondPositionY}px) rotate(360deg)`);
+      this.boulderTarget.style.transform = `translate(${secondPositionX}px, -${secondPositionY}px) rotate(360deg)`;
       // this.currentStage++;
     } else if (this.currentStage === 2) {
       const thirdPositionX =
         (newPositionX / list_length) * checked_array.length;
       const thirdPositionY =
         (newPositionY / list_length) * checked_array.length;
-      return (this.boulderTarget.style.transform = `translate(${thirdPositionX}px, -${thirdPositionY}px) rotate(720deg)`);
+      this.boulderTarget.style.transform = `translate(${thirdPositionX}px, -${thirdPositionY}px) rotate(720deg)`;
       // this.currentStage++;
     } else if (this.currentStage === 3) {
       const fourthPositionX =
         (newPositionX / list_length) * checked_array.length;
       const fourthPositionY =
         (newPositionY / list_length) * checked_array.length;
-      return (this.boulderTarget.style.transform = `translate(${fourthPositionX}px, -${fourthPositionY}px) rotate(1080deg)`);
+      this.boulderTarget.style.transform = `translate(${fourthPositionX}px, -${fourthPositionY}px) rotate(1080deg)`;
       // this.currentStage++;
     } else if (this.currentStage === 4) {
       const fourthPositionX =
         (newPositionX / list_length) * checked_array.length;
       const fourthPositionY =
         (newPositionY / list_length) * checked_array.length;
-      return (this.boulderTarget.style.transform = `translate(${fourthPositionX}px, -${fourthPositionY}px) rotate(1440deg)`);
+      this.boulderTarget.style.transform = `translate(${fourthPositionX}px, -${fourthPositionY}px) rotate(1440deg)`;
     } else {
-      return (this.boulderTarget.style.transform = `translate(${newPositionX}px, -${newPositionY}px) rotate(1800deg)`);
+      this.boulderTarget.style.transform = `translate(${newPositionX}px, -${newPositionY}px) rotate(1800deg)`;
     }
+
+    this.updateTextBubblePosition();
   }
 
   setPosition() {
@@ -128,9 +130,15 @@ export default class extends Controller {
     const boulderHeight = this.boulderTarget.offsetHeight;
 
     this.setStages();
-    this.updateTextBubblePosition();
+    this.textBubbleTarget.style.display = "none";
 
     this.boulderTarget.classList.add("transition-effect");
+
+    this.boulderTarget.addEventListener(
+      "transitionend",
+      this.updateTextBubblePosition.bind(this),
+      { once: true }
+    );
 
     const newPositionX = hillWidth - boulderWidth;
     const newPositionY = hillHeight - boulderHeight;
@@ -177,10 +185,9 @@ export default class extends Controller {
 
   updateTextBubblePosition() {
     const boulderRect = this.boulderTarget.getBoundingClientRect();
-    const hillRect = this.hillTarget.getBoundingClientRect();
 
-    const offsetX = 20; // Adjust based on desired position relative to the boulder
-    const offsetY = 20; // Adjust based on desired position relative to the boulder
+    const offsetX = 150; // Adjust based on desired position relative to the boulder
+    const offsetY = 100; // Adjust based on desired position relative to the boulder
 
     const textBubbleX = boulderRect.left + window.scrollX + offsetX;
     const textBubbleY = boulderRect.top + window.scrollY - offsetY;

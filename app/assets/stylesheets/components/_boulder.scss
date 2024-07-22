@@ -61,10 +61,9 @@
 }
 
 .text-bubble {
-  position: absolute;
-  left: 30vh; /* Adjust based on the desired position relative to the boulder image */
-  bottom: -70vh; /* Adjust based on the desired position relative to the boulder image */
-  background: $final-main;
+  position: absolute; /* Adjust based on the desired position relative to the boulder image */ /* Adjust based on the desired position relative to the boulder image */
+  background: black;
+  color: #fff;
   border: 1px solid #fff;
   padding: 10px;
   border-radius: 10px;
