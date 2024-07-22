@@ -20,9 +20,18 @@ export default class extends Controller {
       this.fadeIn(this.firstFadeInElementTargets);
     }, 500); // 500 milliseconds delay for the first set of elements
 
-    setTimeout(() => {
-      this.fadeIn(this.secondFadeInElementTargets);
-    }, 1500); // 1500 milliseconds delay for the second set of elements
+    if (this.isHomePage()) {
+      setTimeout(() => {
+        this.fadeIn(this.secondFadeInElementTargets);
+      }, 1500); // 1500 milliseconds delay for the second set of elements
+    }
+  }
+
+  isHomePage() {
+    return (
+      window.location.pathname === "/" ||
+      window.location.pathname === "/index.html"
+    );
   }
 
   fadeIn(targets) {
