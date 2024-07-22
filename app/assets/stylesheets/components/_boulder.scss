@@ -56,15 +56,20 @@
   z-index: 1; /* Ensure line is behind content */
 }
 
+.text-bubble-container {
+  position: relative;
+}
+
 .text-bubble {
   position: absolute;
-  left: 20px; /* Adjust based on the desired position relative to the boulder image */
-  bottom: 20px; /* Adjust based on the desired position relative to the boulder image */
-  background: #fff;
-  border: 1px solid #ccc;
+  left: 30vh; /* Adjust based on the desired position relative to the boulder image */
+  bottom: -70vh; /* Adjust based on the desired position relative to the boulder image */
+  background: $final-main;
+  border: 1px solid #fff;
   padding: 10px;
   border-radius: 10px;
   opacity: 0;
   display: none;
   transition: opacity 1s;
+  z-index: 4;
 }

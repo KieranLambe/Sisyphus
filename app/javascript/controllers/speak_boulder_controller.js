@@ -9,6 +9,7 @@ export default class extends Controller {
     this.fadeDuration = 1000; // Duration for fade in/out in milliseconds
     this.delayBetweenPhrases = 3000; // Delay between phrases
     this.startPhraseSequence();
+    console.log("speak-boulder-controller connected");
   }
 
   startPhraseSequence() {
