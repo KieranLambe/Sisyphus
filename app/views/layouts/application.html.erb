@@ -28,7 +28,7 @@
     <div class="boulder-container-container" data-controller="roll-boulder">
       <div class="background-container">
         <div class="boulder-container" data-roll-boulder-target="hill">
-          <div class="text-bubble-container" data-controller="speak-boulder" data-speak-boulder-target="boulder">
+          <div class="text-bubble-container" data-controller="speak-boulder" data-user-logged-in="<%= user_signed_in? %>" data-username="<%= current_user.username if user_signed_in? %>" data-speak-boulder-target="boulder">
             <button class="image-button" data-roll-boulder-target="boulder"><%= image_tag "boulder.png", alt: "boulder", class: "boulder-image" %></button>
             <div class="text-bubble hidden" data-speak-boulder-target="textBubble" data-roll-boulder-target="textBubble"></div>
           </div>

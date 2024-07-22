@@ -4,11 +4,19 @@ export default class extends Controller {
   static targets = ["boulder", "textBubble"];
 
   connect() {
-    this.phrases = [
-      "Hello there!",
-      "To get the ball rolling, select some tasks",
-      "I'll climb this hill as you progress",
-    ];
+    const isLoggedIn = this.element.dataset.userLoggedIn === "true";
+    const username = this.element.dataset.username || "Guest";
+    this.phrases = isLoggedIn
+      ? [
+          `Welcome back ${username}!`,
+          "To get the ball rolling, select some tasks,",
+          "I will climb this hill as you progress!",
+        ]
+      : [
+          "Hello there!",
+          "Ready to get the ball rolling?",
+          "Login or create a free account.",
+        ];
     this.currentPhraseIndex = 0;
     this.fadeDuration = 500; // Duration for fade in/out in milliseconds
     this.delayBetweenPhrases = 3000; // Delay between phrases
