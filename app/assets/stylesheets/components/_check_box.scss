@@ -29,7 +29,7 @@
 .checkbox-wrapper-44 .toggleButton input + div svg {
   fill: none;
   stroke-width: 4;
-  stroke: rgb(0, 236, 83);
+  stroke: black;
   stroke-linecap: round;
   stroke-linejoin: round;
   width: 44px;
@@ -60,13 +60,13 @@
   opacity: 0;
   transform: scale(0.3) translate(-50%, -50%) rotate(45deg);
   -webkit-animation: bounceInBefore-44 0.3s linear forwards 0.3s;
-          animation: bounceInBefore-44 0.3s linear forwards 0.3s;
+  animation: bounceInBefore-44 0.3s linear forwards 0.3s;
 }
 .checkbox-wrapper-44 .toggleButton input + div:after {
   opacity: 0;
   transform: scale(0.3) translate(-50%, -50%) rotate(-45deg);
   -webkit-animation: bounceInAfter-44 0.3s linear forwards 0.3s;
-          animation: bounceInAfter-44 0.3s linear forwards 0.3s;
+  animation: bounceInAfter-44 0.3s linear forwards 0.3s;
 }
 .checkbox-wrapper-44 .toggleButton input:checked + div svg {
   stroke-dashoffset: 162.6;
@@ -77,13 +77,13 @@
   opacity: 0;
   transform: scale(0.3) translate(-50%, -50%) rotate(45deg);
   -webkit-animation: bounceInBeforeDont-44 0.3s linear forwards 0s;
-          animation: bounceInBeforeDont-44 0.3s linear forwards 0s;
+  animation: bounceInBeforeDont-44 0.3s linear forwards 0s;
 }
 .checkbox-wrapper-44 .toggleButton input:checked + div:after {
   opacity: 0;
   transform: scale(0.3) translate(-50%, -50%) rotate(-45deg);
   -webkit-animation: bounceInAfterDont-44 0.3s linear forwards 0s;
-          animation: bounceInAfterDont-44 0.3s linear forwards 0s;
+  animation: bounceInAfterDont-44 0.3s linear forwards 0s;
 }
 
 // @-webkit-keyframes bounceInBefore-44 {

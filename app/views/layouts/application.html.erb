@@ -28,7 +28,10 @@
     <div class="boulder-container-container" data-controller="roll-boulder">
       <div class="background-container">
         <div class="boulder-container" data-roll-boulder-target="hill">
-          <button class="image-button" data-roll-boulder-target="boulder"><%= image_tag "boulder.png", alt: "boulder", class: "boulder-image" %></button>
+          <div data-controller="speak-boulder" data-speak-boulder-target="boulder">
+            <button class="image-button" data-roll-boulder-target="boulder"><%= image_tag "boulder.png", alt: "boulder", class: "boulder-image" %></button>
+            <div class="text-bubble hidden" data-boulder-target="textBubble"></div>
+          </div>
         </div>
         <div class="diagonal-line"></div>
         <div style="position: relative; z-index: 100;">
@@ -76,6 +79,7 @@
           <% else %>
             <div class="card-list user_tasks" data-controller="fade-in" data-target="fade-in.secondFadeInElement">
               <h3 class="fs-2 fw-bold">Please login or sign up to see this content</h3>
+              <%= link_to 'Sign Up', new_user_registration_path, class: "btn btn-primary custom-login-button" %>
             </div>
           <% end %>
         </div>

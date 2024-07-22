@@ -55,3 +55,16 @@
   border-right: 100vw solid $final-contrast; /* Adjust width to match container */
   z-index: 1; /* Ensure line is behind content */
 }
+
+.text-bubble {
+  position: absolute;
+  left: 20px; /* Adjust based on the desired position relative to the boulder image */
+  bottom: 20px; /* Adjust based on the desired position relative to the boulder image */
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 10px;
+  opacity: 0;
+  display: none;
+  transition: opacity 1s;
+}
