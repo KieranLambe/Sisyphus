@@ -1,10 +1,12 @@
 /* app/assets/stylesheets/footer.css.scss */
-
 footer {
   background-color: $final-black; /* Dark background color */
   color: #fff; /* White text color */
-  padding: 40px 0;
+  padding: 15px 0;
   text-align: center;
+  // position: relative;
+  // bottom: 0px; /* Stick it to the bottom */
+  width: 100%; /* Full width */
 }
 
 .footer-columns {
@@ -15,7 +17,7 @@ footer {
 .footer-column {
   flex: 1;
   margin: 0 20px;
-  position: relative; /* Add position relative for line positioning */
+  // position: relative; /* Add position relative for line positioning */
 }
 
 /* Add border to the bottom of each column */
@@ -55,8 +57,4 @@ footer {
 
 .social-icons a:hover {
   color: #666; /* Dark grey on hover */
-}
-
-.container {
-  margin-bottom: 100px; /* Add margin to create space between content and footer */
 }
