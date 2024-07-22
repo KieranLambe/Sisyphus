@@ -135,7 +135,10 @@ export default class extends Controller {
     this.textBubbleTarget.style.display = "none";
 
     this.boulderTarget.classList.add("transition-effect");
-
+    if (checked_array.length === 0) {
+      this.initialSwapDone = false;
+      this.isOnRight = true;
+    }
     this.boulderTarget.addEventListener(
       "transitionend",
       this.updateTextBubblePosition.bind(this),
