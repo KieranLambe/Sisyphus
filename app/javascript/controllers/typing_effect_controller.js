@@ -7,7 +7,7 @@ export default class extends Controller {
     this.placeholderElement = this.placeholderTarget;
     this.placeholderText = this.placeholderElement.getAttribute("placeholder");
     this.currentIndex = 0;
-    this.typingInterval = 40;
+    this.typingInterval = 4000;
     this.startTyping();
   }
 
